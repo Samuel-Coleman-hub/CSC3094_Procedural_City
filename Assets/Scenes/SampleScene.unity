@@ -326,6 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lSystem: {fileID: 709684050}
   roadHelper: {fileID: 1131355125}
+  length: 12
 --- !u!4 &336736541
 Transform:
   m_ObjectHideFlags: 0
@@ -1127,7 +1128,7 @@ MonoBehaviour:
   rules:
   - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
   axiom: '[F]--F'
-  iterationLimit: 2
+  iterationLimit: 4
   randomIgnoreRuleModifier: 1
   chanceToIgnoreRule: 0.3
 --- !u!4 &709684051
@@ -1929,7 +1930,7 @@ MonoBehaviour:
   roadCorner: {fileID: 6277227229183156555, guid: 48c7a36ab0a68874bb74ffc65a1dbe08, type: 3}
   roadIntersection: {fileID: 1658953206791751761, guid: e8b6ff140e6b8bb43812395646de57d8, type: 3}
   roadCrossroad: {fileID: 1590357760157472204, guid: d6b226d9c0126bc4586c24cd0da0cbcb, type: 3}
-  roadEnd: {fileID: 7088314001046826360, guid: fe67174fecab0114ba6bbb38a971e8f9, type: 3}
+  roadEnd: {fileID: 1320407095890852616, guid: 1a5d397d5ae5af742a4990b44489f6c6, type: 3}
 --- !u!4 &1131355126
 Transform:
   m_ObjectHideFlags: 0

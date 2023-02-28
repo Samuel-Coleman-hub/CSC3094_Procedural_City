@@ -15,6 +15,6 @@ MonoBehaviour:
   letter: F
   results:
   - '[+F][-F]'
-  - '[+F][-F]F'
-  - '[-F][+F]F'
+  - '[+F]F[-F]'
+  - '[-F]F[+F]'
   randomResult: 1

@@ -60,15 +60,15 @@ public class RoadHelper : MonoBehaviour
                 Destroy(roadDict[pos]);
                 if (neighbourDir.Contains(Direction.Down))
                 {
-                    rotation = Quaternion.Euler(0, -90, 0);
+                    rotation = Quaternion.Euler(0, 90, 0);
                 }
                 else if (neighbourDir.Contains(Direction.Left))
                 {
-                    rotation = Quaternion.Euler(0, 360, 0);
+                    rotation = Quaternion.Euler(0, 180, 0);
                 }
                 else if (neighbourDir.Contains(Direction.Up))
                 {
-                    rotation = Quaternion.Euler(0, 90, 0);
+                    rotation = Quaternion.Euler(0, -90, 0);
                 }
                 roadDict[pos] = Instantiate(roadEnd, pos, rotation, transform);
 
@@ -80,9 +80,44 @@ public class RoadHelper : MonoBehaviour
                 {
                     continue;
                 }
-            }else if(neighbourDir.Count == 3)
-            {
 
+                //Checking for where a bend is needed
+                Destroy(roadDict[pos]);
+                if (neighbourDir.Contains(Direction.Down) && neighbourDir.Contains(Direction.Right))
+                {
+                    rotation = Quaternion.Euler(0, 90, 0);
+                }
+                else if (neighbourDir.Contains(Direction.Left) && neighbourDir.Contains(Direction.Down))
+                {
+                    rotation = Quaternion.Euler(0, 180, 0);
+                }
+                else if (neighbourDir.Contains(Direction.Up) && neighbourDir.Contains(Direction.Left))
+                {
+                    rotation = Quaternion.Euler(0, -90, 0);
+                }
+                roadDict[pos] = Instantiate(roadCorner, pos, rotation, transform);
+
+            }
+            else if(neighbourDir.Count == 3)
+            {
+                //Check for intersection
+                Destroy(roadDict[pos]);
+                if (neighbourDir.Contains(Direction.Up) && neighbourDir.Contains(Direction.Right)
+                    && neighbourDir.Contains(Direction.Down))
+                {
+                    rotation = Quaternion.Euler(0, 90, 0);
+                }
+                else if (neighbourDir.Contains(Direction.Left) && neighbourDir.Contains(Direction.Right)
+                    && neighbourDir.Contains(Direction.Down))
+                {
+                    rotation = Quaternion.Euler(0, 180, 0);
+                }
+                else if (neighbourDir.Contains(Direction.Up) && neighbourDir.Contains(Direction.Left)
+                    && neighbourDir.Contains(Direction.Down))
+                {
+                    rotation = Quaternion.Euler(0, -90, 0);
+                }
+                roadDict[pos] = Instantiate(roadIntersection, pos, rotation, transform);
             }
             else
             {

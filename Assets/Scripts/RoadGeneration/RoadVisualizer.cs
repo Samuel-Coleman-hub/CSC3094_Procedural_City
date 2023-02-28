@@ -9,7 +9,7 @@ public class RoadVisualizer : MonoBehaviour
     public RoadHelper roadHelper;
 
     //Length and angle that the agent will move at
-    private int length = 8;
+    public int length = 8;
     private float angle = 90f;
 
     //Returns length ensuring always greater than 0
