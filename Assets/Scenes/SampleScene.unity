@@ -160,6 +160,68 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &200823958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 200823960}
+  - component: {fileID: 200823959}
+  m_Layer: 0
+  m_Name: City Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &200823959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200823958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b92b78e71dd74f4bb1c342270567b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xSlider: {fileID: 396589625}
+  zSlider: {fileID: 2099104997}
+  randomSlider: {fileID: 942688059}
+  gridSpawner: {fileID: 1035148755}
+  x: 40
+  z: 40
+  gridSpacing: 1
+  gridOrigin: {x: 0, y: 0, z: 0}
+  gridTilePrefab: {fileID: 354321629346971810, guid: 54f224ca2e674884c957c69d97e02a12, type: 3}
+  gridCenter: {x: 0, y: 0, z: 0}
+  buildingPrefab: {fileID: 5369354472377203406, guid: fba4ca020bc21824484cf5efb2431293, type: 3}
+  CityCentreRadius: 30
+  chanceOfBuilding: 1
+  materials:
+  - {fileID: 2100000, guid: 41954af32c8c9bb4aa79bd19180453a4, type: 2}
+  - {fileID: 2100000, guid: 87a061207492238489fda1e5654d9ea8, type: 2}
+  - {fileID: 2100000, guid: 18f752670189ed343ab231ff52ef9a50, type: 2}
+  visualizer: {fileID: 336736540}
+--- !u!4 &200823960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200823958}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &255690682
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c621278f6f9a6c24fb86c43a2843776f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cityManager: {fileID: 200823959}
   lSystem: {fileID: 709684050}
   roadHelper: {fileID: 1131355125}
   length: 12
@@ -335,7 +398,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336736539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0361247, y: -1.8215408, z: -1.977201}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -856,8 +919,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1035148755}
-        m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
+      - m_Target: {fileID: 200823959}
+        m_TargetAssemblyTypeName: CityManager, Assembly-CSharp
         m_MethodName: SetX
         m_Mode: 1
         m_Arguments:
@@ -1128,7 +1191,7 @@ MonoBehaviour:
   rules:
   - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
   axiom: '[F]--F'
-  iterationLimit: 4
+  iterationLimit: 2
   randomIgnoreRuleModifier: 1
   chanceToIgnoreRule: 0.3
 --- !u!4 &709684051
@@ -1139,7 +1202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709684049}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 197.8117, y: 133.48482, z: 4.5849}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1604,8 +1667,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1035148755}
-        m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
+      - m_Target: {fileID: 200823959}
+        m_TargetAssemblyTypeName: CityManager, Assembly-CSharp
         m_MethodName: SetRandom
         m_Mode: 1
         m_Arguments:
@@ -1778,21 +1841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf9b623f0a2d1749bae05325a0b49e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSlider: {fileID: 396589625}
-  zSlider: {fileID: 2099104997}
-  randomSlider: {fileID: 942688059}
-  x: 20
-  z: 20
-  gridSpacing: 1
-  gridOrigin: {x: 0, y: 0, z: 0}
-  gridTilePrefab: {fileID: 354321629346971810, guid: 54f224ca2e674884c957c69d97e02a12, type: 3}
-  buildingPrefab: {fileID: 5369354472377203406, guid: fba4ca020bc21824484cf5efb2431293, type: 3}
-  CityCentreRadius: 10
-  chanceOfBuilding: 0
-  materials:
-  - {fileID: 2100000, guid: 41954af32c8c9bb4aa79bd19180453a4, type: 2}
-  - {fileID: 2100000, guid: 87a061207492238489fda1e5654d9ea8, type: 2}
-  - {fileID: 2100000, guid: 18f752670189ed343ab231ff52ef9a50, type: 2}
 --- !u!1 &1035744886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1939,7 +1987,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131355124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.882642, y: -2.4571702, z: -1.6340547}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2030,8 +2078,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1035148755}
-        m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
+      - m_Target: {fileID: 200823959}
+        m_TargetAssemblyTypeName: CityManager, Assembly-CSharp
         m_MethodName: GenerateBuildings
         m_Mode: 1
         m_Arguments:
@@ -2921,8 +2969,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1035148755}
-        m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
+      - m_Target: {fileID: 200823959}
+        m_TargetAssemblyTypeName: CityManager, Assembly-CSharp
         m_MethodName: SetY
         m_Mode: 1
         m_Arguments:
@@ -3017,8 +3065,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1035148755}
-        m_TargetAssemblyTypeName: GridSpawner, Assembly-CSharp
+      - m_Target: {fileID: 200823959}
+        m_TargetAssemblyTypeName: CityManager, Assembly-CSharp
         m_MethodName: GenerateGrid
         m_Mode: 1
         m_Arguments:

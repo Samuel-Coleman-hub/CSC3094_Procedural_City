@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RoadVisualizer : MonoBehaviour
 {
+    [SerializeField] CityManager cityManager;
+
     public LSystem lSystem;
     List<Vector3> positions = new List<Vector3>();
     public RoadHelper roadHelper;
@@ -29,18 +31,21 @@ public class RoadVisualizer : MonoBehaviour
         set => length = value;
     }
 
-    private void Start()
+    public void StartRoadGeneration()
     {
+        //Position agent to start in center for road placement
+        this.transform.position = cityManager.gridCenter;
+        roadHelper.transform.position = cityManager.gridCenter;
         string sequence = lSystem.GenerateSentence();
         VisualizeSequence(sequence);
     }
 
-    //
+    
     private void VisualizeSequence(string sequence)
     {
         //Used for saving and loading agents position
         Stack<AgentParameters> savePoints = new Stack<AgentParameters>();
-        var currentPos = Vector3.zero;
+        var currentPos = cityManager.gridCenter;
 
         Vector3 direction = Vector3.forward;
         Vector3 tempPos = Vector3.zero;

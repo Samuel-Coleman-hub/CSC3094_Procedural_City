@@ -7,36 +7,21 @@ using UnityEngine.UI;
 
 public class GridSpawner : MonoBehaviour
 {
-    [Header("UI Settings")]
-    [SerializeField] public Slider xSlider;
-    [SerializeField] public Slider zSlider;
-    [SerializeField] public Slider randomSlider;
-
-    [Header("Dimensions")]
-    [SerializeField] public int x;
-    [SerializeField] public int z;
-    [SerializeField] public float gridSpacing = 0f;
-    [SerializeField] public Vector3 gridOrigin = Vector3.zero;
-    [SerializeField] public GameObject gridTilePrefab;
-    [SerializeField] public GameObject buildingPrefab;
-
-    [Header("Randomosity")]
-    [SerializeField] private int CityCentreRadius;
-    [SerializeField] private int chanceOfBuilding;
-
-    [SerializeField] List<Material> materials = new List<Material>();
-
+    //Grid Generation Variables
+    private int x;
+    private int z;
+    private float gridSpacing;
+    private Vector3 gridOrigin;
+    private GameObject gridTilePrefab;
     private GridTile[,] gridMatrix;
 
-    private float randomPercentage = 0.5f;
+    //Building generation variables
+    private List<Material> materials = new List<Material>();
+    private GameObject buildingPrefab = null;
+    private float randomPercentage;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    private void SpawnGrid()
+    private GridTile[,] SpawnGrid()
     {
         gridMatrix = new GridTile[x, z];
 
@@ -48,11 +33,11 @@ public class GridSpawner : MonoBehaviour
                 GameObject temp = Instantiate(gridTilePrefab, spawnPos, Quaternion.identity, transform);
                 //double centerScore = Math.Sqrt((Math.Pow(i - j, 2) + Math.Pow((x/2) - (z/2), 2)));
                 double centerScore = Math.Floor(Math.Sqrt(Math.Pow(((x/2)-i), 2) + Math.Pow(((z/2)-j), 2)));
-                Debug.Log("Center is " + (gridMatrix.GetLength(0)/2) + (gridMatrix.GetLength(1)/2));
-                Debug.Log(i + " " + j + " " + centerScore);
                 gridMatrix[i, j] = new GridTile(temp, i, j, centerScore, TileType.Empty);
             }
         }
+
+        return gridMatrix;
         
     }
 
@@ -82,25 +67,16 @@ public class GridSpawner : MonoBehaviour
         }
     }
 
-    public void SetX()
+    public GridTile[,] GenerateGrid(int x, int z, float gridSpacing, Vector3 gridOrigin, GameObject gridTilePrefab)
     {
-        x = (int)xSlider.value;
-        Debug.Log(x);
-    }
+        this.x = x;
+        this.z = z;
+        this.gridSpacing = gridSpacing;
+        this.gridOrigin = gridOrigin;
+        this.gridTilePrefab = gridTilePrefab;
 
-    public void SetY()
-    {
-        z = (int)zSlider.value;
-    }
 
-    public void SetRandom()
-    {
-         randomPercentage = randomSlider.value;
-    }
-
-    public void GenerateGrid()
-    {
-        if(gridMatrix != null)
+        if (gridMatrix != null)
         {
             for (int i = 0; i < gridMatrix.GetLength(0); i++)
             {
@@ -112,15 +88,17 @@ public class GridSpawner : MonoBehaviour
                 }
             }
         }
-        
 
         gridMatrix = null;
 
-        SpawnGrid();
+        return SpawnGrid();
     }
 
-    public void GenerateBuildings()
+    public void GenerateBuildings(List<Material> materials, GameObject buildingPrefab, float randomPercentage)
     {
+        this.materials = materials;
+        this.buildingPrefab = buildingPrefab;
+        this.randomPercentage = randomPercentage;
         SpawnBuildings();
     }
 
