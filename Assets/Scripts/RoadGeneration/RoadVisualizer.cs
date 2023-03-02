@@ -34,7 +34,6 @@ public class RoadVisualizer : MonoBehaviour
     public void StartRoadGeneration()
     {
         //Position agent to start in center for road placement
-        this.transform.position = cityManager.gridCenter;
         roadHelper.transform.position = cityManager.gridCenter;
         string sequence = lSystem.GenerateSentence();
         VisualizeSequence(sequence);
@@ -98,5 +97,7 @@ public class RoadVisualizer : MonoBehaviour
             }
         }
         roadHelper.FixRoad();
+        roadHelper.transform.position = new Vector3(cityManager.gridCenter.x, cityManager.gridCenter.y + 0.25f,
+            cityManager.gridCenter.z);
     }
 }

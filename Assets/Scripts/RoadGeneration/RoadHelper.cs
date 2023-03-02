@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoadHelper : MonoBehaviour
 {
+    [SerializeField] CityManager cityManager;
     public GameObject roadStraight;
     public GameObject roadCorner;
     public GameObject roadIntersection;
@@ -37,9 +38,10 @@ public class RoadHelper : MonoBehaviour
             //Instantiate road object
             GameObject road = Instantiate(roadStraight, pos, rotation, transform);
             roadDict.Add(pos, road);
+            cityManager.gridMatrix[pos.x, pos.z].TileType = TileType.Road;
 
             //Add positions to fix road possibilites, if we think they might need fixing
-            if(i == 0 || i == length - 1)
+            if (i == 0 || i == length - 1)
             {
                 fixRoadPossibilities.Add(pos);
             }

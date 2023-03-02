@@ -193,8 +193,8 @@ MonoBehaviour:
   zSlider: {fileID: 2099104997}
   randomSlider: {fileID: 942688059}
   gridSpawner: {fileID: 1035148755}
-  x: 40
-  z: 40
+  x: 80
+  z: 80
   gridSpacing: 1
   gridOrigin: {x: 0, y: 0, z: 0}
   gridTilePrefab: {fileID: 354321629346971810, guid: 54f224ca2e674884c957c69d97e02a12, type: 3}
@@ -1974,6 +1974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32cd00e622b58134db8cbea801007253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cityManager: {fileID: 200823959}
   roadStraight: {fileID: 6124764286943912418, guid: 4396ae6104b07ef43a12bf08af9d0e90, type: 3}
   roadCorner: {fileID: 6277227229183156555, guid: 48c7a36ab0a68874bb74ffc65a1dbe08, type: 3}
   roadIntersection: {fileID: 1658953206791751761, guid: e8b6ff140e6b8bb43812395646de57d8, type: 3}
