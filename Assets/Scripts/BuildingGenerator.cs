@@ -5,6 +5,7 @@ using UnityEngine;
 public class BuildingGenerator : MonoBehaviour
 {
     //Building generation variables
+    [SerializeField] private AnimationCurve heightCurve;
     private List<Material> materials = new List<Material>();
     private GameObject buildingPrefab = null;
     private float randomPercentage;
@@ -28,6 +29,18 @@ public class BuildingGenerator : MonoBehaviour
                     GameObject buildingObject = Instantiate(buildingPrefab, new Vector3(tile.transform.position.x, tile.transform.position.y + 1f,
                         tile.transform.position.z), Quaternion.identity);
                     buildingObject.GetComponent<MeshRenderer>().material = materials[UnityEngine.Random.Range(0, materials.Count)];
+
+                    //Randomise scale of building
+                    int gridLength = gridMatrix.GetLength(0) > gridMatrix.GetLength(1) ? gridMatrix.GetLength(0) : gridMatrix.GetLength(1);
+                    float centerScorePercentage = (float)(gridMatrix[i, j].CenterScore / gridLength);
+                    float yScale = Mathf.Clamp(heightCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value * 5f ,0.5f,10);
+
+                    buildingObject.transform.position += Vector3.up * yScale / 2;
+                    buildingObject.transform.localScale += Vector3.up * yScale;
+
+                    //buildingObject.transform.localScale = new Vector3(buildingObject.transform.localScale.x,
+                    //    yScale, buildingObject.transform.localScale.z);
+                    //buildingObject.transform.position += new Vector3(0f, yScale * 0.1f, 0f);
 
                     gridMatrix[i, j].ChildObject = buildingObject;
                     gridMatrix[i, j].TileType = TileType.Building;
