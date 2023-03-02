@@ -20,6 +20,7 @@ public class CityManager : MonoBehaviour
     [SerializeField] public Vector3 gridCenter;
 
     [Header("Building Settings")]
+    [SerializeField] public BuildingGenerator buildingGenerator;
     [SerializeField] public GameObject buildingPrefab;
     [SerializeField] private int CityCentreRadius;
     [SerializeField] private int chanceOfBuilding;
@@ -41,7 +42,7 @@ public class CityManager : MonoBehaviour
 
     public void GenerateBuildings()
     {
-        gridSpawner.GenerateBuildings(materials, buildingPrefab, randomPercentage);
+        buildingGenerator.GenerateBuildings(materials, buildingPrefab, randomPercentage, gridMatrix);
     }
 
     public void GenerateGrid()
