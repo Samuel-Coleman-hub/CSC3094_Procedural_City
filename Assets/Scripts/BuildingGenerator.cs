@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,8 +25,17 @@ public class BuildingGenerator : MonoBehaviour
                     gridMatrix[i, j].TileType = TileType.Empty;
                 }
 
-                if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && UnityEngine.Random.value * gridMatrix[i, j].CenterScore <= randomPercentage * 2)
+
+                //Check neighbour cells
+                bool allEmpty = false;
+                int numOfEmptyCells = 0;
+
+                (allEmpty, numOfEmptyCells) = NumberOfEmptyNeighbours(i,j);
+
+                if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && UnityEngine.Random.value * gridMatrix[i, j].CenterScore <= randomPercentage * 2 && numOfEmptyCells <= 3
+                    )
                 {
+
                     GameObject tile = gridMatrix[i, j].Object;
                     GameObject buildingObject = Instantiate(buildingPrefab, new Vector3(tile.transform.position.x, tile.transform.position.y + 1f,
                         tile.transform.position.z), Quaternion.identity);
@@ -38,15 +49,65 @@ public class BuildingGenerator : MonoBehaviour
                     buildingObject.transform.position += Vector3.up * yScale / 2;
                     buildingObject.transform.localScale += Vector3.up * yScale;
 
-                    //buildingObject.transform.localScale = new Vector3(buildingObject.transform.localScale.x,
-                    //    yScale, buildingObject.transform.localScale.z);
-                    //buildingObject.transform.position += new Vector3(0f, yScale * 0.1f, 0f);
-
                     gridMatrix[i, j].ChildObject = buildingObject;
                     gridMatrix[i, j].TileType = TileType.Building;
                 }
             }
         }
+    }
+
+    private (bool,int) NumberOfEmptyNeighbours(int x, int z)
+    {
+        //I could make this a four loop
+        int emptyNeighbours = 4;
+        bool allEmpty = false;
+
+        //Left
+        if (z-1 >= 0 && z-1 < gridMatrix.GetLength(1))
+        {
+            if (!gridMatrix[x, z-1].TileType.Equals(TileType.Empty))
+            {
+                emptyNeighbours--;
+                allEmpty = false;
+            }
+        }
+
+
+
+        //right
+        if (z+1 >= 0 && z+1 < gridMatrix.GetLength(1))
+        {
+            if (!gridMatrix[x, z+1].TileType.Equals(TileType.Empty))
+            {
+                emptyNeighbours--;
+                allEmpty = false;
+            }
+        }
+
+        //up
+        if (x-1 >= 0 && x-1 < gridMatrix.GetLength(0))
+        {
+            if (!gridMatrix[x-1, z].TileType.Equals(TileType.Empty))
+            {
+                emptyNeighbours--;
+                allEmpty = false;
+            }
+        }
+
+        //down
+        if (x+1 >= 0 && x+1 < gridMatrix.GetLength(0))
+        {
+            if (!gridMatrix[x+1, z].TileType.Equals(TileType.Empty))
+            {
+                emptyNeighbours--;
+                allEmpty = false;
+            }
+        }
+
+        allEmpty = true;
+
+        return (allEmpty, emptyNeighbours);
+
     }
 
     public void GenerateBuildings(List<Material> materials, GameObject buildingPrefab, float randomPercentage, GridTile[,] gridMatrix)

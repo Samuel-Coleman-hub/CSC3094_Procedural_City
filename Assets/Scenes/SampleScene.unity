@@ -201,7 +201,7 @@ MonoBehaviour:
   gridCenter: {x: 0, y: 0, z: 0}
   buildingGenerator: {fileID: 985850044}
   buildingPrefab: {fileID: 5369354472377203406, guid: fba4ca020bc21824484cf5efb2431293, type: 3}
-  CityCentreRadius: 30
+  CityCentreRadius: 60
   chanceOfBuilding: 1
   materials:
   - {fileID: 2100000, guid: 41954af32c8c9bb4aa79bd19180453a4, type: 2}
