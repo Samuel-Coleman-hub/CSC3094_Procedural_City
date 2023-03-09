@@ -26,7 +26,6 @@ public class GridSpawner : MonoBehaviour
             {
                 Vector3 spawnPos = new Vector3(i * gridSpacing, 0, j* gridSpacing) + gridOrigin;
                 GameObject temp = Instantiate(gridTilePrefab, spawnPos, Quaternion.identity, transform);
-                //double centerScore = Math.Sqrt((Math.Pow(i - j, 2) + Math.Pow((x/2) - (z/2), 2)));
                 double centerScore = Math.Floor(Math.Sqrt(Math.Pow(((x/2)-i), 2) + Math.Pow(((z/2)-j), 2)));
                 gridMatrix[i, j] = new GridTile(temp, i, j, centerScore, TileType.Empty);
             }

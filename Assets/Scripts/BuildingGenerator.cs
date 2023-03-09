@@ -27,86 +27,122 @@ public class BuildingGenerator : MonoBehaviour
 
 
                 //Check neighbour cells
-                bool allEmpty = false;
-                int numOfEmptyCells = 0;
+                List<GridTile> emptyNeighbours;
+                int fullTiles = 0;
+                bool nextToRoad;
 
-                (allEmpty, numOfEmptyCells) = NumberOfEmptyNeighbours(i,j);
+                (emptyNeighbours, fullTiles, nextToRoad) = NumberOfEmptyNeighbours(i,j);
 
-                if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && UnityEngine.Random.value * gridMatrix[i, j].CenterScore <= randomPercentage * 2 && numOfEmptyCells <= 3
-                    )
+                if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && UnityEngine.Random.value * gridMatrix[i, j].CenterScore <= randomPercentage * 2 && nextToRoad)
                 {
+                    Material mat = materials[UnityEngine.Random.Range(0, materials.Count)];
+                    //Randmoise scale
 
-                    GameObject tile = gridMatrix[i, j].Object;
-                    GameObject buildingObject = Instantiate(buildingPrefab, new Vector3(tile.transform.position.x, tile.transform.position.y + 1f,
-                        tile.transform.position.z), Quaternion.identity);
-                    buildingObject.GetComponent<MeshRenderer>().material = materials[UnityEngine.Random.Range(0, materials.Count)];
-
-                    //Randomise scale of building
                     int gridLength = gridMatrix.GetLength(0) > gridMatrix.GetLength(1) ? gridMatrix.GetLength(0) : gridMatrix.GetLength(1);
                     float centerScorePercentage = (float)(gridMatrix[i, j].CenterScore / gridLength);
-                    float yScale = Mathf.Clamp(heightCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value * 5f ,0.5f,10);
+                    float yScale = Mathf.Clamp(heightCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value * 5f, 0.5f, 10);
 
-                    buildingObject.transform.position += Vector3.up * yScale / 2;
-                    buildingObject.transform.localScale += Vector3.up * yScale;
-
-                    gridMatrix[i, j].ChildObject = buildingObject;
-                    gridMatrix[i, j].TileType = TileType.Building;
+                    //Generate initial building
+                    GenerateBuilding(i, j, yScale, mat);
+                    //Tile size
+                    int buildingTileSize = emptyNeighbours.Count;//(int)Math.Min(emptyNeighbours.Count, Math.Max(1, heightCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value * 5f));
+                    for(int tileIndex = 0; tileIndex < buildingTileSize; tileIndex++)
+                    {
+                        GenerateBuilding(emptyNeighbours[tileIndex].GetX(), emptyNeighbours[tileIndex].GetY(), yScale, mat);
+                    }
                 }
             }
         }
     }
 
-    private (bool,int) NumberOfEmptyNeighbours(int x, int z)
+    private void GenerateBuilding(int i, int j, float yScale, Material mat)
     {
-        //I could make this a four loop
-        int emptyNeighbours = 4;
-        bool allEmpty = false;
+        GameObject tile = gridMatrix[i, j].Object;
 
-        //Left
-        if (z-1 >= 0 && z-1 < gridMatrix.GetLength(1))
+        GameObject buildingObject = Instantiate(buildingPrefab, new Vector3(tile.transform.position.x, tile.transform.position.y + 1f,
+            tile.transform.position.z), Quaternion.identity);
+        buildingObject.GetComponent<MeshRenderer>().material = mat;
+
+        //Randomise scale of building
+        buildingObject.transform.position += Vector3.up * yScale / 2;
+        buildingObject.transform.localScale += Vector3.up * yScale;
+
+        gridMatrix[i, j].ChildObject = buildingObject;
+        gridMatrix[i, j].TileType = TileType.Building;
+    }
+
+    private (List<GridTile>,int,bool) NumberOfEmptyNeighbours(int x, int z)
+    {
+        int fullTiles = 0;
+        bool nextToRoad = false;
+
+        int minX = Math.Max(x - 1, gridMatrix.GetLowerBound(0) + 1);
+        int maxX = Math.Min(x + 1, gridMatrix.GetUpperBound(0) - 1);
+        int minZ = Math.Max(z - 1, gridMatrix.GetLowerBound(1) + 1);
+        int maxZ = Math.Min(z + 1, gridMatrix.GetUpperBound(1) - 1);
+
+        List<GridTile> emptyNeighbours = new List<GridTile>();
+
+        for(int i = minX; i <= maxX; i++)
         {
-            if (!gridMatrix[x, z-1].TileType.Equals(TileType.Empty))
+            for (int j = minZ; j <= maxZ; j++)
             {
-                emptyNeighbours--;
-                allEmpty = false;
+                if (!gridMatrix[i, j].TileType.Equals(TileType.Empty))
+                {
+                    nextToRoad = gridMatrix[i, j].TileType.Equals(TileType.Road);
+                    fullTiles++;
+                }
+                else if(i != x && j != z)
+                {
+                    emptyNeighbours.Add(gridMatrix[i,j]);
+                }
+                
             }
         }
 
+        return (emptyNeighbours, fullTiles, nextToRoad);
+        ////I could make this a four loop
+        //int emptyNeighbours = 4;
 
+        ////Left
+        //if (z-1 >= 0 && z-1 < gridMatrix.GetLength(1))
+        //{
+        //    if (!gridMatrix[x, z-1].TileType.Equals(TileType.Empty))
+        //    {
+        //        emptyNeighbours--;
+        //    }
+        //}
 
-        //right
-        if (z+1 >= 0 && z+1 < gridMatrix.GetLength(1))
-        {
-            if (!gridMatrix[x, z+1].TileType.Equals(TileType.Empty))
-            {
-                emptyNeighbours--;
-                allEmpty = false;
-            }
-        }
+        ////right
+        //if (z+1 >= 0 && z+1 < gridMatrix.GetLength(1))
+        //{
+        //    if (!gridMatrix[x, z+1].TileType.Equals(TileType.Empty))
+        //    {
+        //        emptyNeighbours--;
+        //    }
+        //}
 
-        //up
-        if (x-1 >= 0 && x-1 < gridMatrix.GetLength(0))
-        {
-            if (!gridMatrix[x-1, z].TileType.Equals(TileType.Empty))
-            {
-                emptyNeighbours--;
-                allEmpty = false;
-            }
-        }
+        ////up
+        //if (x-1 >= 0 && x-1 < gridMatrix.GetLength(0))
+        //{
+        //    if (!gridMatrix[x-1, z].TileType.Equals(TileType.Empty))
+        //    {
+        //        emptyNeighbours--;
+        //    }
+        //}
 
-        //down
-        if (x+1 >= 0 && x+1 < gridMatrix.GetLength(0))
-        {
-            if (!gridMatrix[x+1, z].TileType.Equals(TileType.Empty))
-            {
-                emptyNeighbours--;
-                allEmpty = false;
-            }
-        }
+        ////down
+        //if (x+1 >= 0 && x+1 < gridMatrix.GetLength(0))
+        //{
+        //    if (!gridMatrix[x+1, z].TileType.Equals(TileType.Empty))
+        //    {
+        //        emptyNeighbours--;
+        //    }
+        //}
 
-        allEmpty = true;
+        //bool allEmpty = emptyNeighbours <= 0;
 
-        return (allEmpty, emptyNeighbours);
+        //return (allEmpty, emptyNeighbours);
 
     }
 
