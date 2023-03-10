@@ -28,6 +28,9 @@ public class GridSpawner : MonoBehaviour
                 GameObject temp = Instantiate(gridTilePrefab, spawnPos, Quaternion.identity, transform);
                 double centerScore = Math.Floor(Math.Sqrt(Math.Pow(((x/2)-i), 2) + Math.Pow(((z/2)-j), 2)));
                 gridMatrix[i, j] = new GridTile(temp, i, j, centerScore, TileType.Empty);
+
+                //For debugging
+                temp.GetComponentInChildren<TextMeshProUGUI>().text = "Row " + i + " , Column " + j; 
             }
         }
 

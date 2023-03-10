@@ -1192,7 +1192,7 @@ MonoBehaviour:
   rules:
   - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
   axiom: '[F]--F'
-  iterationLimit: 6
+  iterationLimit: 3
   randomIgnoreRuleModifier: 1
   chanceToIgnoreRule: 0.3
 --- !u!4 &709684051
