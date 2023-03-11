@@ -87,30 +87,27 @@ public class BuildingGenerator : MonoBehaviour
         //emptyTiles[1, 1] = gridMatrix[x, z];
 
         Debug.Log("This is for x: " + x + " z: " + z);
+        //THERE IS AN ERROR HERE IT IS NOT SEARCHING THROUGH ALL THE NEIGHBOURS
         for(int i = minX; i <= maxX; i++)
         {
             for (int j = minZ; j <= maxZ; j++)
             {
-                if (!gridMatrix[i, j].TileType.Equals(TileType.Empty))
-                {
-                    if(nextToRoad == false)
-                    {
-                        nextToRoad = gridMatrix[i, j].TileType.Equals(TileType.Road);
-                    }
-                    fullTiles++;
-                }
-                else
+                Debug.Log("IS A Neighbour of " + x + " " + z + " is: " + i + " " + j);
+                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                cube.transform.position = new Vector3(i, 0, j);
+                if (gridMatrix[i, j].TileType.Equals(TileType.Empty))
                 {
                     //Here need to work out if its next to another cell already in the emptyNeighbours list
                     //If it is then add to list if not then clear list
                     Debug.Log("Square check incoming for neighbouring cell " + i + " " + j);
-                    if(emptyNeighbours.Count <= 1)
+                    if (emptyNeighbours.Count <= 1)
                     {
                         Debug.Log("Auto add " + i + " " + j);
                         emptyNeighbours.Add(gridMatrix[i, j]);
                     }
                     else
                     {
+                        Debug.Log("Should I look left?");
                         //Left
                         if (j - 1 >= 0 && j - 1 < gridMatrix.GetLength(1))
                         {
@@ -123,6 +120,7 @@ public class BuildingGenerator : MonoBehaviour
                             }
                         }
 
+                        Debug.Log("Should I look right?");
                         //right
                         if (j + 1 >= 0 && j + 1 < gridMatrix.GetLength(1))
                         {
@@ -135,6 +133,7 @@ public class BuildingGenerator : MonoBehaviour
                             }
                         }
 
+                        Debug.Log("Should I look up?");
                         //up
                         if (i - 1 >= 0 && i - 1 < gridMatrix.GetLength(0))
                         {
@@ -147,6 +146,7 @@ public class BuildingGenerator : MonoBehaviour
                             }
                         }
 
+                        Debug.Log("Should I look down?");
                         //down
                         if (i + 1 >= 0 && i + 1 < gridMatrix.GetLength(0))
                         {
@@ -160,12 +160,13 @@ public class BuildingGenerator : MonoBehaviour
                         }
 
                         Debug.Log(i + " " + j + " is not in a square");
-                        emptyNeighbours.Clear();
-                        emptyNeighbours.Add(gridMatrix[x, z]);
+                        //emptyNeighbours.Clear();
+                        //emptyNeighbours.Add(gridMatrix[x, z]);
                     }
+                    Debug.Log("End of search for " + i + " " + j);
 
                 }
-                
+
             }
         }
 
