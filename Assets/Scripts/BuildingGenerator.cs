@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BuildingGenerator : MonoBehaviour
@@ -45,30 +46,42 @@ public class BuildingGenerator : MonoBehaviour
 
                     (emptyNeighbours, fullTiles, nextToRoad) = NumberOfEmptyNeighbours(i, j);
 
-                    int buildingTileSize = emptyNeighbours.Count;//(int)Math.Min(emptyNeighbours.Count, Math.Max(1, heightCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value * 5f));
+                    int buildingTileSize = emptyNeighbours.Count;
+                    Debug.Log("Building tile size for " + i + " " + j  + ": is " + buildingTileSize);
+                    //(int)Math.Min(emptyNeighbours.Count, Math.Max(1, heightCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value * 5f));
                     for(int tileIndex = 0; tileIndex < buildingTileSize; tileIndex++)
                     {
-                        GenerateBuilding(emptyNeighbours[tileIndex].GetX(), emptyNeighbours[tileIndex].GetY(), yScale, mat);
+                        Debug.Log("Generating building " + emptyNeighbours[tileIndex].GetX() + " " + emptyNeighbours[tileIndex].GetY() + " for " + i + " " + j);
+                        StartCoroutine(GenerateBuilding(emptyNeighbours[tileIndex].GetX(), emptyNeighbours[tileIndex].GetY(), yScale, mat));
                     }
                 }
             }
         }
     }
 
-    private void GenerateBuilding(int i, int j, float yScale, Material mat)
+    private IEnumerator GenerateBuilding(int x, int z, float yScale, Material mat)
     {
-        GameObject tile = gridMatrix[i, j].Object;
+        Debug.Log("In generateBuilding for " + x + " " + z);
+        GameObject tile = gridMatrix[x, z].Object;
 
+        Debug.Log("Before Object Instantiate " + x + " " + z);
         GameObject buildingObject = Instantiate(buildingPrefab, new Vector3(tile.transform.position.x, tile.transform.position.y + 1f,
-            tile.transform.position.z), Quaternion.identity);
+            tile.transform.position.z), Quaternion.identity) as GameObject;
+        Debug.Log("after Object Instantiate " + x + " " + z);
+        buildingObject.name = "Building" + x + " " + z;
+        Debug.Log(buildingObject.name);
+
+        yield return new WaitForSeconds(0f);
+
         buildingObject.GetComponent<MeshRenderer>().material = mat;
 
         //Randomise scale of building
         buildingObject.transform.position += Vector3.up * yScale / 2;
         buildingObject.transform.localScale += Vector3.up * yScale;
+        buildingObject.transform.parent = gridMatrix[x, z].Object.transform;
 
-        gridMatrix[i, j].ChildObject = buildingObject;
-        gridMatrix[i, j].TileType = TileType.Building;
+        gridMatrix[x, z].ChildObject = buildingObject;
+        gridMatrix[x, z].TileType = TileType.Building;
     }
 
     private (List<GridTile>,int,bool) NumberOfEmptyNeighbours(int x, int z)
@@ -87,7 +100,6 @@ public class BuildingGenerator : MonoBehaviour
         //emptyTiles[1, 1] = gridMatrix[x, z];
 
         Debug.Log("This is for x: " + x + " z: " + z);
-        //THERE IS AN ERROR HERE IT IS NOT SEARCHING THROUGH ALL THE NEIGHBOURS
         for(int i = minX; i <= maxX; i++)
         {
             for (int j = minZ; j <= maxZ; j++)
@@ -104,62 +116,67 @@ public class BuildingGenerator : MonoBehaviour
                     {
                         Debug.Log("Auto add " + i + " " + j);
                         emptyNeighbours.Add(gridMatrix[i, j]);
+                        gridMatrix[i, j].TileType = TileType.Building;
                     }
                     else
                     {
-                        Debug.Log("Should I look left?");
-                        //Left
-                        if (j - 1 >= 0 && j - 1 < gridMatrix.GetLength(1))
-                        {
-                            Debug.Log(i + " " + j + " looking left");
-                            if (emptyNeighbours.Contains(gridMatrix[i, j - 1]))
-                            {
-                                Debug.Log(i + " " + j + " left yes");
-                                emptyNeighbours.Add(gridMatrix[i, j]);
-                                break;
-                            }
-                        }
+                        emptyNeighbours.Add(gridMatrix[i, j]);
 
-                        Debug.Log("Should I look right?");
-                        //right
-                        if (j + 1 >= 0 && j + 1 < gridMatrix.GetLength(1))
-                        {
-                            Debug.Log(i + " " + j + " looking right");
-                            if (emptyNeighbours.Contains(gridMatrix[i, j + 1]))
-                            {
-                                Debug.Log(i + " " + j + " right yes");
-                                emptyNeighbours.Add(gridMatrix[i, j]);
-                                break;
-                            }
-                        }
+                        //This method works for now but should not be the final solution
+                        gridMatrix[i, j].TileType = TileType.Building;
+                        //Debug.Log("Should I look left?");
+                        ////Left
+                        //if (j - 1 >= 0 && j - 1 < gridMatrix.GetLength(1))
+                        //{
+                        //    Debug.Log(i + " " + j + " looking left");
+                        //    if (emptyNeighbours.Contains(gridMatrix[i, j - 1]))
+                        //    {
+                        //        Debug.Log(i + " " + j + " left yes");
+                        //        emptyNeighbours.Add(gridMatrix[i, j]);
+                        //        //break;
+                        //    }
+                        //}
 
-                        Debug.Log("Should I look up?");
-                        //up
-                        if (i - 1 >= 0 && i - 1 < gridMatrix.GetLength(0))
-                        {
-                            Debug.Log(i + " " + j + " looking up");
-                            if (emptyNeighbours.Contains(gridMatrix[i - 1, j]))
-                            {
-                                Debug.Log(i + " " + j + " up yes");
-                                emptyNeighbours.Add(gridMatrix[i, j]);
-                                break;
-                            }
-                        }
+                        //Debug.Log("Should I look right?");
+                        ////right
+                        //if (j + 1 >= 0 && j + 1 < gridMatrix.GetLength(1))
+                        //{
+                        //    Debug.Log(i + " " + j + " looking right");
+                        //    if (emptyNeighbours.Contains(gridMatrix[i, j + 1]))
+                        //    {
+                        //        Debug.Log(i + " " + j + " right yes");
+                        //        emptyNeighbours.Add(gridMatrix[i, j]);
+                        //       // break;
+                        //    }
+                        //}
 
-                        Debug.Log("Should I look down?");
-                        //down
-                        if (i + 1 >= 0 && i + 1 < gridMatrix.GetLength(0))
-                        {
-                            Debug.Log(i + " " + j + " looking down");
-                            if (emptyNeighbours.Contains(gridMatrix[i + 1, j]))
-                            {
-                                Debug.Log(i + " " + j + " down yes");
-                                emptyNeighbours.Add(gridMatrix[i, j]);
-                                break;
-                            }
-                        }
+                        //Debug.Log("Should I look up?");
+                        ////up
+                        //if (i - 1 >= 0 && i - 1 < gridMatrix.GetLength(0))
+                        //{
+                        //    Debug.Log(i + " " + j + " looking up");
+                        //    if (emptyNeighbours.Contains(gridMatrix[i - 1, j]))
+                        //    {
+                        //        Debug.Log(i + " " + j + " up yes");
+                        //        emptyNeighbours.Add(gridMatrix[i, j]);
+                        //       // break;
+                        //    }
+                        //}
 
-                        Debug.Log(i + " " + j + " is not in a square");
+                        //Debug.Log("Should I look down?");
+                        ////down
+                        //if (i + 1 >= 0 && i + 1 < gridMatrix.GetLength(0))
+                        //{
+                        //    Debug.Log(i + " " + j + " looking down");
+                        //    if (emptyNeighbours.Contains(gridMatrix[i + 1, j]))
+                        //    {
+                        //        Debug.Log(i + " " + j + " down yes");
+                        //        emptyNeighbours.Add(gridMatrix[i, j]);
+                        //       // break;
+                        //    }
+                        //}
+
+                        //Debug.Log(i + " " + j + " is not in a square");
                         //emptyNeighbours.Clear();
                         //emptyNeighbours.Add(gridMatrix[x, z]);
                     }
@@ -170,6 +187,8 @@ public class BuildingGenerator : MonoBehaviour
             }
         }
 
+        Debug.Log("For " + x + " " + z + " "+ emptyNeighbours.Count + "  and distinct" + emptyNeighbours.Distinct().ToList().Count);
+        emptyNeighbours = emptyNeighbours.Distinct().ToList();
         return (emptyNeighbours, fullTiles, nextToRoad);
         ////I could make this a four loop
         //int emptyNeighbours = 4;
@@ -227,6 +246,6 @@ public class BuildingGenerator : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0);
     }
 }
