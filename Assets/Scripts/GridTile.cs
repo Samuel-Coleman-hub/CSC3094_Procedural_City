@@ -18,6 +18,7 @@ public class GridTile
     private int _yPosition;
     private double _centerScore;
     private TileType _type;
+    private bool _nearRoad = false;
 
     public GameObject Object { get { return _tileObject; } set { _tileObject = value; } }
     public GameObject ChildObject { get { return _childObject; } set { _childObject = value; } }
@@ -25,6 +26,7 @@ public class GridTile
     public int GetY() { return _yPosition; }
     public double CenterScore { get { return _centerScore; } set { _centerScore = value; } }
     public TileType TileType { get { return _type; } set { _type = value; } }
+    public bool NearRoad { get { return _nearRoad; } set { _nearRoad = value; } }
         
 
     public GridTile(GameObject tileObject, int xPosition, int yPosition, double centerScore, TileType type)

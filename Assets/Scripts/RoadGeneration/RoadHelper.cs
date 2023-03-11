@@ -40,6 +40,20 @@ public class RoadHelper : MonoBehaviour
             roadDict.Add(pos, road);
             cityManager.gridMatrix[pos.x, pos.z].TileType = TileType.Road;
 
+            //Mark positions on the opposite sides of the road as being next to the road
+            if (dir.x != 0)
+            {
+                cityManager.gridMatrix[pos.x, pos.z + 1].NearRoad = true;
+                cityManager.gridMatrix[pos.x, pos.z - 1].NearRoad = true;
+            }
+            else if (dir.z != 0)
+            {
+                cityManager.gridMatrix[pos.x + 1, pos.z].NearRoad = true;
+                cityManager.gridMatrix[pos.x - 1, pos.z].NearRoad = true;
+            }
+
+            //Debug.Log("Position " + pos.x + " " + pos.z + " direction: " + dir);
+
             //Add positions to fix road possibilites, if we think they might need fixing
             if (i == 0 || i == length - 1)
             {
@@ -63,14 +77,22 @@ public class RoadHelper : MonoBehaviour
                 if (neighbourDir.Contains(Direction.Down))
                 {
                     rotation = Quaternion.Euler(0, 90, 0);
+                    cityManager.gridMatrix[pos.x, pos.z + 1].NearRoad = true;
+                    //Debug.Log("road end down " + pos.x + " " + pos.z);
                 }
                 else if (neighbourDir.Contains(Direction.Left))
                 {
                     rotation = Quaternion.Euler(0, 180, 0);
+                    cityManager.gridMatrix[pos.x-1, pos.z].NearRoad = true;
+                    cityManager.gridMatrix[pos.x+1, pos.z].NearRoad = true;
+                    //Debug.Log("road end left " + pos.x + " " + pos.z);
+                    
                 }
                 else if (neighbourDir.Contains(Direction.Up))
                 {
                     rotation = Quaternion.Euler(0, -90, 0);
+                    cityManager.gridMatrix[pos.x, pos.z -1].NearRoad = true;
+                    //Debug.Log("road end up " + pos.x + " " + pos.z);
                 }
                 roadDict[pos] = Instantiate(roadEnd, pos, rotation, transform);
 
@@ -88,14 +110,20 @@ public class RoadHelper : MonoBehaviour
                 if (neighbourDir.Contains(Direction.Down) && neighbourDir.Contains(Direction.Right))
                 {
                     rotation = Quaternion.Euler(0, 90, 0);
+                    cityManager.gridMatrix[pos.x - 1, pos.z].NearRoad = true;
+                    //Debug.Log("Bend down and right " + pos.x + " " + pos.z);
                 }
                 else if (neighbourDir.Contains(Direction.Left) && neighbourDir.Contains(Direction.Down))
                 {
                     rotation = Quaternion.Euler(0, 180, 0);
+                    cityManager.gridMatrix[pos.x + 1, pos.z].NearRoad = true;
+                    //Debug.Log("Bend Left and Down " + pos.x + " " + pos.z);
                 }
                 else if (neighbourDir.Contains(Direction.Up) && neighbourDir.Contains(Direction.Left))
                 {
                     rotation = Quaternion.Euler(0, -90, 0);
+                    cityManager.gridMatrix[pos.x + 1, pos.z].NearRoad = true;
+                    //Debug.Log("Bend Up and Left " + pos.x + " " + pos.z);
                 }
                 roadDict[pos] = Instantiate(roadCorner, pos, rotation, transform);
 

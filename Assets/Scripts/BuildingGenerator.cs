@@ -25,15 +25,7 @@ public class BuildingGenerator : MonoBehaviour
                     gridMatrix[i, j].TileType = TileType.Empty;
                 }
 
-
-                //Check neighbour cells
-                List<GridTile> emptyNeighbours;
-                int fullTiles = 0;
-                bool nextToRoad;
-
-                (emptyNeighbours, fullTiles, nextToRoad) = NumberOfEmptyNeighbours(i,j);
-
-                if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && UnityEngine.Random.value * gridMatrix[i, j].CenterScore <= randomPercentage * 3f && nextToRoad)
+                if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && UnityEngine.Random.value * gridMatrix[i, j].CenterScore <= randomPercentage * 3f && gridMatrix[i,j].NearRoad)
                 {
                     Material mat = materials[UnityEngine.Random.Range(0, materials.Count)];
                     //Randmoise scale
@@ -45,6 +37,14 @@ public class BuildingGenerator : MonoBehaviour
                     //Generate initial building
                     //GenerateBuilding(i, j, yScale, mat);
                     //Tile size
+
+                    //Check neighbour cells
+                    List<GridTile> emptyNeighbours;
+                    int fullTiles = 0;
+                    bool nextToRoad;
+
+                    (emptyNeighbours, fullTiles, nextToRoad) = NumberOfEmptyNeighbours(i, j);
+
                     int buildingTileSize = emptyNeighbours.Count;//(int)Math.Min(emptyNeighbours.Count, Math.Max(1, heightCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value * 5f));
                     for(int tileIndex = 0; tileIndex < buildingTileSize; tileIndex++)
                     {
