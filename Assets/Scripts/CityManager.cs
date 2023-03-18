@@ -14,6 +14,7 @@ public class CityManager : MonoBehaviour
     [SerializeField] public GridSpawner gridSpawner;
     [SerializeField] public int x;
     [SerializeField] public int z;
+    [SerializeField] public int numCityZones;
     [SerializeField] public float gridSpacing = 0f;
     [SerializeField] public Vector3 gridOrigin = Vector3.zero;
     [SerializeField] public GameObject gridTilePrefab;
@@ -48,7 +49,7 @@ public class CityManager : MonoBehaviour
     public void GenerateGrid()
     {
         gridCenter = new Vector3(x / 2, 0.45f, z / 2);
-        gridMatrix = gridSpawner.GenerateGrid(x, z, gridSpacing, gridOrigin, gridTilePrefab);
+        gridMatrix = gridSpawner.GenerateGrid(x, z, gridSpacing, numCityZones, gridOrigin, gridTilePrefab);
     }
 
     public void SetX()
