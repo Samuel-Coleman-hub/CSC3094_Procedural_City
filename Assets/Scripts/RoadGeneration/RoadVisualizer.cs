@@ -85,7 +85,7 @@ public class RoadVisualizer : MonoBehaviour
                     //Used to be drawline
                     roadHelper.PlaceRoad(tempPos, Vector3Int.RoundToInt(direction), length);
                     //Makes line shorter overtime so roads get shorter further we go
-                    Length -= 2;
+                    Length -= 1;
                     positions.Add(currentPos);
                     break;
                 case EncodingLetters.turnRight:

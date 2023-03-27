@@ -57,7 +57,7 @@ public class GridSpawner : MonoBehaviour
                 
                 
                 //For debugging
-                temp.GetComponentInChildren<TextMeshProUGUI>().text = "Row " + i + " , Column " + j + " " + gridMatrix[i,j].Zone; 
+                //temp.GetComponentInChildren<TextMeshProUGUI>().text = "Row " + i + " , Column " + j + " " + gridMatrix[i,j].Zone; 
             }
         }
 
