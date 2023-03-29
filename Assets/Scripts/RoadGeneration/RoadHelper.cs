@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class RoadHelper : MonoBehaviour
 {
@@ -27,8 +28,15 @@ public class RoadHelper : MonoBehaviour
 
         for(int i = 0; i < length; i++)
         {
+            
             //Next position of road
             Vector3Int pos = Vector3Int.RoundToInt(startPos + dir * i);
+            //Checks if position is within the grid
+            
+            if(pos.x >= cityManager.x || pos.z >= cityManager.z || pos.x <= 0 || pos.z <= 0)
+            {
+                break;
+            }
 
             //Checks that a road object has not alredy been placed at position
             if (roadDict.ContainsKey(pos))
@@ -40,13 +48,14 @@ public class RoadHelper : MonoBehaviour
             roadDict.Add(pos, road);
             cityManager.gridMatrix[pos.x, pos.z].TileType = TileType.Road;
 
+
             //Mark positions on the opposite sides of the road as being next to the road
-            if (dir.x != 0)
+            if (dir.x != 0 && (pos.z - 1 >= 0 && pos.z + 1 < cityManager.x))
             {
                 cityManager.gridMatrix[pos.x, pos.z + 1].NearRoad = true;
                 cityManager.gridMatrix[pos.x, pos.z - 1].NearRoad = true;
             }
-            else if (dir.z != 0)
+            else if (dir.z != 0 && (pos.x - 1 >= 0 && pos.x + 1 < cityManager.x))
             {
                 cityManager.gridMatrix[pos.x + 1, pos.z].NearRoad = true;
                 cityManager.gridMatrix[pos.x - 1, pos.z].NearRoad = true;
@@ -66,6 +75,7 @@ public class RoadHelper : MonoBehaviour
     {
         foreach(Vector3Int pos in fixRoadPossibilities)
         {
+            Debug.Log(pos.x + " " + pos.z);
             //Get neighbour road directions
             List<Direction> neighbourDir = PlacementHelper.FindNeighbour(pos, roadDict.Keys);
 
@@ -77,21 +87,21 @@ public class RoadHelper : MonoBehaviour
                 if (neighbourDir.Contains(Direction.Down))
                 {
                     rotation = Quaternion.Euler(0, 90, 0);
-                    cityManager.gridMatrix[pos.x, pos.z + 1].NearRoad = true;
+                    if (RoadsNearbyInGrid(pos.x, pos.z)) { cityManager.gridMatrix[pos.x, pos.z + 1].NearRoad = true; }
                     //Debug.Log("road end down " + pos.x + " " + pos.z);
                 }
                 else if (neighbourDir.Contains(Direction.Left))
                 {
                     rotation = Quaternion.Euler(0, 180, 0);
-                    cityManager.gridMatrix[pos.x-1, pos.z].NearRoad = true;
-                    cityManager.gridMatrix[pos.x+1, pos.z].NearRoad = true;
+                    if (RoadsNearbyInGrid(pos.x, pos.z)) { cityManager.gridMatrix[pos.x-1, pos.z].NearRoad = true; }
+                    if (RoadsNearbyInGrid(pos.x, pos.z)) { cityManager.gridMatrix[pos.x+1, pos.z].NearRoad = true; }
                     //Debug.Log("road end left " + pos.x + " " + pos.z);
                     
                 }
                 else if (neighbourDir.Contains(Direction.Up))
                 {
                     rotation = Quaternion.Euler(0, -90, 0);
-                    cityManager.gridMatrix[pos.x, pos.z -1].NearRoad = true;
+                    if (RoadsNearbyInGrid(pos.x, pos.z)) { cityManager.gridMatrix[pos.x, pos.z -1].NearRoad = true; }
                     //Debug.Log("road end up " + pos.x + " " + pos.z);
                 }
                 roadDict[pos] = Instantiate(roadEnd, pos, rotation, transform);
@@ -110,19 +120,19 @@ public class RoadHelper : MonoBehaviour
                 if (neighbourDir.Contains(Direction.Down) && neighbourDir.Contains(Direction.Right))
                 {
                     rotation = Quaternion.Euler(0, 90, 0);
-                    cityManager.gridMatrix[pos.x - 1, pos.z].NearRoad = true;
+                    if (RoadsNearbyInGrid(pos.x,pos.z)) { cityManager.gridMatrix[pos.x - 1, pos.z].NearRoad = true; }
                     //Debug.Log("Bend down and right " + pos.x + " " + pos.z);
                 }
                 else if (neighbourDir.Contains(Direction.Left) && neighbourDir.Contains(Direction.Down))
                 {
                     rotation = Quaternion.Euler(0, 180, 0);
-                    cityManager.gridMatrix[pos.x + 1, pos.z].NearRoad = true;
+                    if (RoadsNearbyInGrid(pos.x, pos.z)) { cityManager.gridMatrix[pos.x + 1, pos.z].NearRoad = true; }
                     //Debug.Log("Bend Left and Down " + pos.x + " " + pos.z);
                 }
                 else if (neighbourDir.Contains(Direction.Up) && neighbourDir.Contains(Direction.Left))
                 {
                     rotation = Quaternion.Euler(0, -90, 0);
-                    cityManager.gridMatrix[pos.x + 1, pos.z].NearRoad = true;
+                    if (RoadsNearbyInGrid(pos.x, pos.z)) { cityManager.gridMatrix[pos.x + 1, pos.z].NearRoad = true; }
                     //Debug.Log("Bend Up and Left " + pos.x + " " + pos.z);
                 }
                 roadDict[pos] = Instantiate(roadCorner, pos, rotation, transform);
@@ -154,6 +164,18 @@ public class RoadHelper : MonoBehaviour
                 Destroy(roadDict[pos]);
                 roadDict[pos] = Instantiate(roadCrossroad, pos, rotation, transform);
             }
+        }
+    }
+
+    private bool RoadsNearbyInGrid(int x, int z)
+    {
+        if((x - 1 >= 0 && x + 1 < cityManager.x) && (z - 1 >= 0 && z + 1 < cityManager.x))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
