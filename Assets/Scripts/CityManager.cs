@@ -19,6 +19,7 @@ public class CityManager : MonoBehaviour
     [SerializeField] public Vector3 gridOrigin = Vector3.zero;
     [SerializeField] public GameObject gridTilePrefab;
     [SerializeField] public Vector3 gridCenter;
+    
 
     [Header("Building Settings")]
     [SerializeField] public BuildingGenerator buildingGenerator;
@@ -38,7 +39,43 @@ public class CityManager : MonoBehaviour
     private void Start()
     {
         GenerateGrid();
-        visualizer.StartRoadGeneration();
+        Dictionary<Zone, Vector2Int> zoneCentroids = gridSpawner.ZoneCentroids();
+        Vector3 industrialCenter = new Vector3(zoneCentroids[Zone.Industrial].x, 0.45f, zoneCentroids[Zone.Industrial].y);
+        visualizer.StartRoadGeneration(industrialCenter);
+
+        Debug.Log("Spawnning sphere");
+        GameObject temp = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Sphere));
+        temp.transform.position = industrialCenter;
+        //StartCoroutine(GenerateZoneRoads());
+        //visualizer.StartRoadGeneration(residentalCenter);
+        //visualizer.StartRoadGeneration(agricultureCenter);
+
+    }
+
+    IEnumerator GenerateZoneRoads()
+    {
+        Dictionary<Zone, Vector2Int> zoneCentroids = gridSpawner.ZoneCentroids();
+        Vector3 industrialCenter = new Vector3(zoneCentroids[Zone.Industrial].x, 0.45f, zoneCentroids[Zone.Industrial].y);
+        Vector3 residentalCenter = new Vector3(zoneCentroids[Zone.Residential].x, 0.45f, zoneCentroids[Zone.Residential].y);
+        Vector3 agricultureCenter = new Vector3(zoneCentroids[Zone.Agriculture].x, 0.45f, zoneCentroids[Zone.Agriculture].y);
+        Debug.Log("Industrial Center" + industrialCenter.x + " " + industrialCenter.z);
+        Debug.Log("Residential Center" + residentalCenter.x + " " + residentalCenter.z);
+        Debug.Log("Agricultural Center" + agricultureCenter.x + " " + agricultureCenter.z);
+
+        visualizer.StartRoadGeneration(industrialCenter);
+        GameObject temp = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Sphere));
+        temp.transform.position = industrialCenter;
+
+        yield return new WaitForSeconds(10f);
+
+        //RoadVisualizer industrialVisualiser = new RoadVisualizer();
+        //industrialVisualiser.StartRoadGeneration(industrialCenter);
+
+        yield return new WaitForSeconds(10f);
+
+        //RoadVisualizer agricultureVisualiser = new RoadVisualizer();
+        //agricultureVisualiser.StartRoadGeneration(agricultureCenter);
+
     }
 
     public void GenerateBuildings()

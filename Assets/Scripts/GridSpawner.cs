@@ -20,6 +20,8 @@ public class GridSpawner : MonoBehaviour
     private Vector2Int[] centroids;
     private Color[] colourRegions;
 
+    private Dictionary<Zone, Vector2Int> zoneCentroids;
+
     // Start is called before the first frame update
     private GridTile[,] SpawnGrid()
     {
@@ -54,10 +56,8 @@ public class GridSpawner : MonoBehaviour
                         gridMatrix[i, j].Zone = Zone.Agriculture;
                         break;
                 }
-                
-                
                 //For debugging
-                //temp.GetComponentInChildren<TextMeshProUGUI>().text = "Row " + i + " , Column " + j + " " + gridMatrix[i,j].Zone; 
+                temp.GetComponentInChildren<TextMeshProUGUI>().text = "Row " + i + " , Column " + j + " " + gridMatrix[i,j].Zone; 
             }
         }
 
@@ -92,6 +92,11 @@ public class GridSpawner : MonoBehaviour
         return SpawnGrid();
     }
 
+    public Dictionary<Zone,Vector2Int> ZoneCentroids()
+    {
+        return zoneCentroids;
+    }
+
     private void StartVoroni()
     {
         centroids = new Vector2Int[numCityZones];
@@ -101,6 +106,11 @@ public class GridSpawner : MonoBehaviour
             centroids[i] = new Vector2Int(Random.Range(0, x), Random.Range(0, z));
             colourRegions[i] = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
         }
+
+        zoneCentroids = new Dictionary<Zone, Vector2Int>();
+        zoneCentroids.Add(Zone.Industrial, centroids[0]);
+        zoneCentroids.Add(Zone.Residential, centroids[1]);
+        zoneCentroids.Add(Zone.Agriculture, centroids[2]);
     }
 
     private int GetClosestCentroidIndex(Vector2Int pixelPos, Vector2Int[] centroids)
@@ -117,5 +127,6 @@ public class GridSpawner : MonoBehaviour
         }
         return index;
     }
+
 
 }

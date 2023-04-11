@@ -14,6 +14,8 @@ public class RoadVisualizer : MonoBehaviour
     public int length = 8;
     private float angle = 90f;
 
+    private Vector3 startPos;
+
     //Returns length ensuring always greater than 0
     public int Length
     {
@@ -31,10 +33,11 @@ public class RoadVisualizer : MonoBehaviour
         set => length = value;
     }
 
-    public void StartRoadGeneration()
+    public void StartRoadGeneration(Vector3 startPos)
     {
         //Position agent to start in center for road placement
-        roadHelper.transform.position = cityManager.gridCenter;
+        //roadHelper.transform.position = startPos;
+        this.startPos = startPos;
         string sequence = lSystem.GenerateSentence();
         VisualizeSequence(sequence);
     }
@@ -44,7 +47,8 @@ public class RoadVisualizer : MonoBehaviour
     {
         //Used for saving and loading agents position
         Stack<AgentParameters> savePoints = new Stack<AgentParameters>();
-        var currentPos = cityManager.gridCenter;
+        //var currentPos = cityManager.gridCenter; 
+        var currentPos = startPos;
 
         Vector3 direction = Vector3.forward;
         Vector3 tempPos = Vector3.zero;
