@@ -15,14 +15,15 @@ public class GridSpawner : MonoBehaviour
     private Vector3 gridOrigin;
     private GameObject gridTilePrefab;
     private GridTile[,] gridMatrix;
-    private int numCityZones;
 
     private Vector2Int[] centroids;
     private Color[] colourRegions;
 
-    private Dictionary<Zone, Vector2Int> zoneCentroids;
+    private List<CityZone> cityZones = new List<CityZone>();
+    private List<Vector3> zoneCentroids = new List<Vector3>();
 
     // Start is called before the first frame update
+
     private GridTile[,] SpawnGrid()
     {
         gridMatrix = new GridTile[x, z];
@@ -43,19 +44,10 @@ public class GridSpawner : MonoBehaviour
                 int closestCentroidIndex = GetClosestCentroidIndex(new Vector2Int(i, j), centroids);
                 gridMatrix[i, j].Object.GetComponent<MeshRenderer>().material.color = colourRegions[closestCentroidIndex];
 
-                //Maybe change this so that it works with any number of zones
-                switch (closestCentroidIndex)
-                {
-                    case 0:
-                        gridMatrix[i, j].Zone = Zone.Industrial;
-                        break;
-                    case 1:
-                        gridMatrix[i, j].Zone = Zone.Residential;
-                        break;
-                    case 2:
-                        gridMatrix[i, j].Zone = Zone.Agriculture;
-                        break;
-                }
+                //Maybe change this so that it works with any number of zones. Hello past me thank you i did
+                Debug.Log("Hello my closest centroid is " + closestCentroidIndex);
+                Debug.Log("this is the length of zones " + cityZones.Count);
+                gridMatrix[i, j].Zone = cityZones[closestCentroidIndex];
                 //For debugging
                 temp.GetComponentInChildren<TextMeshProUGUI>().text = "Row " + i + " , Column " + j + " " + gridMatrix[i,j].Zone; 
             }
@@ -64,12 +56,12 @@ public class GridSpawner : MonoBehaviour
         return gridMatrix;
     }
 
-    public GridTile[,] GenerateGrid(int x, int z, float gridSpacing, int numCityZones, Vector3 gridOrigin, GameObject gridTilePrefab)
+    public GridTile[,] GenerateGrid(int x, int z, float gridSpacing, List<CityZone> cityZones, Vector3 gridOrigin, GameObject gridTilePrefab)
     {
         this.x = x;
         this.z = z;
         this.gridSpacing = gridSpacing;
-        this.numCityZones = numCityZones;
+        this.cityZones = cityZones;
         this.gridOrigin = gridOrigin;
         this.gridTilePrefab = gridTilePrefab;
 
@@ -92,25 +84,21 @@ public class GridSpawner : MonoBehaviour
         return SpawnGrid();
     }
 
-    public Dictionary<Zone,Vector2Int> ZoneCentroids()
+    public List<Vector3> ZoneCentroids()
     {
         return zoneCentroids;
     }
 
     private void StartVoroni()
     {
-        centroids = new Vector2Int[numCityZones];
-        colourRegions = new Color[numCityZones];
-        for (int i = 0; i < numCityZones; i++)
+        centroids = new Vector2Int[cityZones.Count];
+        colourRegions = new Color[cityZones.Count];
+        for (int i = 0; i < cityZones.Count; i++)
         {
             centroids[i] = new Vector2Int(Random.Range(0, x), Random.Range(0, z));
             colourRegions[i] = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
+            zoneCentroids.Add(new Vector3(centroids[i].x, 0f, centroids[i].y));
         }
-
-        zoneCentroids = new Dictionary<Zone, Vector2Int>();
-        zoneCentroids.Add(Zone.Industrial, centroids[0]);
-        zoneCentroids.Add(Zone.Residential, centroids[1]);
-        zoneCentroids.Add(Zone.Agriculture, centroids[2]);
     }
 
     private int GetClosestCentroidIndex(Vector2Int pixelPos, Vector2Int[] centroids)

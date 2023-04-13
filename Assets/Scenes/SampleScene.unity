@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 200823959}
   m_Layer: 0
   m_Name: City Manager
-  m_TagString: Untagged
+  m_TagString: CityManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,7 +195,6 @@ MonoBehaviour:
   gridSpawner: {fileID: 1035148755}
   x: 80
   z: 80
-  numCityZones: 3
   gridSpacing: 1
   gridOrigin: {x: 0, y: 0, z: 0}
   gridTilePrefab: {fileID: 354321629346971810, guid: 54f224ca2e674884c957c69d97e02a12, type: 3}
@@ -209,6 +208,25 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 87a061207492238489fda1e5654d9ea8, type: 2}
   - {fileID: 2100000, guid: 18f752670189ed343ab231ff52ef9a50, type: 2}
   visualizer: {fileID: 336736540}
+  zones:
+  - roadLength: 8
+    chanceOfBuildingPlacement: 3
+    buildingYScaleMultiplier: 10
+  - roadLength: 6
+    chanceOfBuildingPlacement: 0.25
+    buildingYScaleMultiplier: 3
+  - roadLength: 4
+    chanceOfBuildingPlacement: 1.03
+    buildingYScaleMultiplier: 7.34
+  - roadLength: 4
+    chanceOfBuildingPlacement: 1.03
+    buildingYScaleMultiplier: 6.41
+  - roadLength: 4
+    chanceOfBuildingPlacement: 1.03
+    buildingYScaleMultiplier: 6.41
+  - roadLength: 4
+    chanceOfBuildingPlacement: 1.03
+    buildingYScaleMultiplier: 6.41
 --- !u!4 &200823960
 Transform:
   m_ObjectHideFlags: 0
@@ -2729,7 +2747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132949f47e3680d43b10cc5f20a8c482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lSystem: {fileID: 709684050}
+  lSystem: {fileID: 0}
   prefab: {fileID: 8685521330805257529, guid: 02b8b2c98dd684a4382df1d4d0395049, type: 3}
   lineMaterial: {fileID: 2100000, guid: 87a061207492238489fda1e5654d9ea8, type: 2}
 --- !u!4 &1654960384

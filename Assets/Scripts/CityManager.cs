@@ -14,14 +14,10 @@ public class CityManager : MonoBehaviour
     [SerializeField] public GridSpawner gridSpawner;
     [SerializeField] public int x;
     [SerializeField] public int z;
-    [SerializeField] public int numCityZones;
     [SerializeField] public float gridSpacing = 0f;
     [SerializeField] public Vector3 gridOrigin = Vector3.zero;
     [SerializeField] public GameObject gridTilePrefab;
     [SerializeField] public Vector3 gridCenter;
-
-
-    
 
     [Header("Building Settings")]
     [SerializeField] public BuildingGenerator buildingGenerator;
@@ -36,18 +32,21 @@ public class CityManager : MonoBehaviour
     
 
     public GridTile[,] gridMatrix;
+
+    [Header("City Zones")]
+    [SerializeField] public List<CityZone> zones = new List<CityZone>();
     
 
     private void Start()
     {
         GenerateGrid();
-        Dictionary<Zone, Vector2Int> zoneCentroids = gridSpawner.ZoneCentroids();
-        Vector3 industrialCenter = new Vector3(zoneCentroids[Zone.Industrial].x, 0f, zoneCentroids[Zone.Industrial].y);
-        Vector3 residentalCenter = new Vector3(zoneCentroids[Zone.Residential].x, 0f, zoneCentroids[Zone.Residential].y);
-        Vector3 agricultureCenter = new Vector3(zoneCentroids[Zone.Agriculture].x, 0f, zoneCentroids[Zone.Agriculture].y);
-        visualizer.StartRoadGeneration(industrialCenter, 6);
-        visualizer.StartRoadGeneration(residentalCenter, 6);
-        visualizer.StartRoadGeneration(agricultureCenter, 10);
+        List<Vector3> zoneCentroids = gridSpawner.ZoneCentroids();
+
+        for(int i = 0; i < zones.Count; i++)
+        {
+            visualizer.StartRoadGeneration(zoneCentroids[i], zones[i].roadLength);
+        }
+
         visualizer.roadHelper.transform.position = new Vector3(visualizer.roadHelper.transform.position.x,
             gridCenter.y - 0.15f, visualizer.roadHelper.transform.position.z);
     }
@@ -60,7 +59,7 @@ public class CityManager : MonoBehaviour
     public void GenerateGrid()
     {
         gridCenter = new Vector3(x / 2, 0.45f, z / 2);
-        gridMatrix = gridSpawner.GenerateGrid(x, z, gridSpacing, numCityZones, gridOrigin, gridTilePrefab);
+        gridMatrix = gridSpawner.GenerateGrid(x, z, gridSpacing, zones, gridOrigin, gridTilePrefab);
     }
 
     public void SetX()
@@ -78,7 +77,14 @@ public class CityManager : MonoBehaviour
     {
         randomPercentage = randomSlider.value;
     }
+}
 
-    
-
+[System.Serializable]
+public class CityZone
+{
+    public int roadLength;
+    [Range(0f, 3f)]
+    public float chanceOfBuildingPlacement;
+    [Range(3f, 10f)]
+    public float buildingYScaleMultiplier;
 }

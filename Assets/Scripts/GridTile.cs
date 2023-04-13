@@ -10,13 +10,6 @@ public enum TileType
     Empty
 }
 
-public enum Zone
-{
-    Industrial,
-    Residential,
-    Agriculture
-}
-
 public class GridTile
 {
     private GameObject _tileObject;
@@ -26,7 +19,7 @@ public class GridTile
     private double _centerScore;
     private TileType _type;
     private bool _nearRoad = false;
-    private Zone _zone;
+    private CityZone _zone;
 
     public GameObject Object { get { return _tileObject; } set { _tileObject = value; } }
     public GameObject ChildObject { get { return _childObject; } set { _childObject = value; } }
@@ -35,7 +28,7 @@ public class GridTile
     public double CenterScore { get { return _centerScore; } set { _centerScore = value; } }
     public TileType TileType { get { return _type; } set { _type = value; } }
     public bool NearRoad { get { return _nearRoad; } set { _nearRoad = value; } }
-    public Zone Zone { get { return _zone; } set { _zone = value; } }
+    public CityZone Zone { get { return _zone; } set { _zone = value; } }
         
 
     public GridTile(GameObject tileObject, int xPosition, int yPosition, double centerScore, TileType type)

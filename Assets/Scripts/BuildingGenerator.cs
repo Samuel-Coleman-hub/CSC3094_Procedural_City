@@ -27,7 +27,7 @@ public class BuildingGenerator : MonoBehaviour
                     gridMatrix[i, j].TileType = TileType.Empty;
                 }
 
-                float placementChanceMultipler = !gridMatrix[i, j].Zone.Equals(Zone.Agriculture) ? 3f : 0.25f;
+                float placementChanceMultipler = gridMatrix[i, j].Zone.chanceOfBuildingPlacement;
                 if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && UnityEngine.Random.value * gridMatrix[i, j].CenterScore <= randomPercentage * placementChanceMultipler
                     && gridMatrix[i,j].NearRoad)
                 {
@@ -54,7 +54,7 @@ public class BuildingGenerator : MonoBehaviour
                     int gridLength = gridMatrix.GetLength(0) > gridMatrix.GetLength(1) ? gridMatrix.GetLength(0) : gridMatrix.GetLength(1);
                     float centerScorePercentage = (float)(gridMatrix[i, j].CenterScore / gridLength);
 
-                    float yScaleMultiplier = gridMatrix[i, j].Zone.Equals(Zone.Industrial) ? 10f : 3f;
+                    float yScaleMultiplier = gridMatrix[i, j].Zone.buildingYScaleMultiplier;
                     float yScale = Mathf.Clamp(heightCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value * yScaleMultiplier, 0.5f, 10);
                     float xzScale = Mathf.Clamp(heightCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value * 5f, 1f, emptyNeighbours.Count * 0.35f);
                     Debug.Log("xzScale " + xzScale);
