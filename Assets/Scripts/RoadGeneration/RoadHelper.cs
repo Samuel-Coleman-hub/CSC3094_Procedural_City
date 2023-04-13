@@ -43,11 +43,18 @@ public class RoadHelper : MonoBehaviour
             {
                 continue;
             }
-            //Instantiate road object
-            GameObject road = Instantiate(roadStraight, pos, rotation, transform);
-            roadDict.Add(pos, road);
-            cityManager.gridMatrix[pos.x, pos.z].TileType = TileType.Road;
 
+            if (cityManager.gridMatrix[pos.x, pos.z].TileType.Equals(TileType.Empty))
+            {
+                GameObject road = Instantiate(roadStraight, pos, rotation, transform);
+                roadDict.Add(pos, road);
+                cityManager.gridMatrix[pos.x, pos.z].TileType = TileType.Road;
+            }
+            else
+            {
+                fixRoadPossibilities.Add(pos);
+            }
+            //Instantiate road object
 
             //Mark positions on the opposite sides of the road as being next to the road
             if (dir.x != 0 && (pos.z - 1 >= 0 && pos.z + 1 < cityManager.x))
@@ -104,6 +111,7 @@ public class RoadHelper : MonoBehaviour
                     if (RoadsNearbyInGrid(pos.x, pos.z)) { cityManager.gridMatrix[pos.x, pos.z -1].NearRoad = true; }
                     //Debug.Log("road end up " + pos.x + " " + pos.z);
                 }
+
                 roadDict[pos] = Instantiate(roadEnd, pos, rotation, transform);
 
             }

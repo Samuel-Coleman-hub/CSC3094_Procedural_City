@@ -11,7 +11,7 @@ public class RoadVisualizer : MonoBehaviour
     public RoadHelper roadHelper;
 
     //Length and angle that the agent will move at
-    public int length = 8;
+    private int length = 8;
     private float angle = 90f;
 
     private Vector3 startPos;
@@ -33,8 +33,9 @@ public class RoadVisualizer : MonoBehaviour
         set => length = value;
     }
 
-    public void StartRoadGeneration(Vector3 startPos)
+    public void StartRoadGeneration(Vector3 startPos, int length)
     {
+        this.length = length;
         //Position agent to start in center for road placement
         //roadHelper.transform.position = startPos;
         this.startPos = startPos;
@@ -101,7 +102,8 @@ public class RoadVisualizer : MonoBehaviour
             }
         }
         roadHelper.FixRoad();
-        roadHelper.transform.position = new Vector3(cityManager.gridCenter.x, cityManager.gridCenter.y + 0.25f,
-            cityManager.gridCenter.z);
+        
+        //roadHelper.transform.position = new Vector3(this.transform.position.x, cityManager.gridCenter.y - 0.15f,
+         //   this.transform.position.z);
     }
 }

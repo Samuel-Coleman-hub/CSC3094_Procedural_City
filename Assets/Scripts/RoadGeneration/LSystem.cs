@@ -16,11 +16,6 @@ public class LSystem : MonoBehaviour
     [Range(0, 1)]
     public float chanceToIgnoreRule = 0.3f;
 
-    private void Start()
-    {
-        Debug.Log(GenerateSentence());
-    }
-
     //Assigns a word from axiom
     public string GenerateSentence(string word = null)
     {
