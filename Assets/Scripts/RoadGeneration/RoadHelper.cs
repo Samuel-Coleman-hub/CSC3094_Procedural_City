@@ -33,7 +33,7 @@ public class RoadHelper : MonoBehaviour
             Vector3Int pos = Vector3Int.RoundToInt(startPos + dir * i);
             //Checks if position is within the grid
             
-            if(pos.x >= cityManager.x || pos.z >= cityManager.z || pos.x <= 0 || pos.z <= 0)
+            if(pos.x >= cityManager.x || pos.z >= cityManager.z || pos.x <= 0 || pos.z <= 0 )
             {
                 break;
             }

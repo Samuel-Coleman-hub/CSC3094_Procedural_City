@@ -40,11 +40,13 @@ public class CityManager : MonoBehaviour
     private void Start()
     {
         GenerateGrid();
-        List<Vector3> zoneCentroids = gridSpawner.ZoneCentroids();
 
         for(int i = 0; i < zones.Count; i++)
         {
-            visualizer.StartRoadGeneration(zoneCentroids[i], zones[i]);
+            if (zones[i].generateRoadsForZone)
+            {
+                visualizer.StartRoadGeneration(zones[i].zoneCenter, zones[i]);
+            }   
         }
 
         visualizer.roadHelper.transform.position = new Vector3(visualizer.roadHelper.transform.position.x,
@@ -83,6 +85,7 @@ public class CityManager : MonoBehaviour
 public class CityZone
 {
     [Header("L-System Settings")]
+    public bool generateRoadsForZone;
     public int roadLength;
     public Rule[] rules;
     public string axiom;
@@ -97,5 +100,9 @@ public class CityZone
     public float chanceOfBuildingPlacement;
     [Range(3f, 10f)]
     public float buildingYScaleMultiplier;
+
+    [HideInInspector]
+    public List<Vector2> positionsInZone;
+    public Vector3 zoneCenter;
     
 }

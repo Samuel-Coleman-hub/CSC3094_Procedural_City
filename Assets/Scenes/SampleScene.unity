@@ -209,7 +209,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 18f752670189ed343ab231ff52ef9a50, type: 2}
   visualizer: {fileID: 336736540}
   zones:
-  - roadLength: 8
+  - generateRoadsForZone: 1
+    roadLength: 10
     rules:
     - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
     axiom: '[F]--[F]'
@@ -218,24 +219,26 @@ MonoBehaviour:
     chanceToIgnoreRule: 0.3
     chanceOfBuildingPlacement: 3
     buildingYScaleMultiplier: 10
-  - roadLength: 6
+  - generateRoadsForZone: 1
+    roadLength: 8
     rules:
-    - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
-    axiom: '[F]--[F]'
-    iterationLimit: 2
+    - {fileID: 11400000, guid: 3cdb349c2864eff429cc5f576ed4c7bf, type: 2}
+    axiom: '[F]--F'
+    iterationLimit: 3
     randomIgnoreRuleModifier: 1
-    chanceToIgnoreRule: 0.267
-    chanceOfBuildingPlacement: 0.25
+    chanceToIgnoreRule: 0.162
+    chanceOfBuildingPlacement: 3
     buildingYScaleMultiplier: 3
-  - roadLength: 4
+  - generateRoadsForZone: 0
+    roadLength: 8
     rules:
     - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
-    axiom: '[F]--[F]'
+    axiom: F
     iterationLimit: 2
     randomIgnoreRuleModifier: 1
     chanceToIgnoreRule: 0.3
-    chanceOfBuildingPlacement: 1.03
-    buildingYScaleMultiplier: 6.41
+    chanceOfBuildingPlacement: 0.14
+    buildingYScaleMultiplier: 3.32
 --- !u!4 &200823960
 Transform:
   m_ObjectHideFlags: 0

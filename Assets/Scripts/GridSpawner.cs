@@ -20,12 +20,13 @@ public class GridSpawner : MonoBehaviour
     private Color[] colourRegions;
 
     private List<CityZone> cityZones = new List<CityZone>();
-    private List<Vector3> zoneCentroids = new List<Vector3>();
 
-    // Start is called before the first frame update
+    private CityManager cityManager;
 
     private GridTile[,] SpawnGrid()
     {
+        cityManager = GameObject.FindGameObjectWithTag("CityManager").GetComponent<CityManager>();
+
         gridMatrix = new GridTile[x, z];
 
         StartVoroni();
@@ -48,10 +49,13 @@ public class GridSpawner : MonoBehaviour
                 Debug.Log("Hello my closest centroid is " + closestCentroidIndex);
                 Debug.Log("this is the length of zones " + cityZones.Count);
                 gridMatrix[i, j].Zone = cityZones[closestCentroidIndex];
+                cityZones[closestCentroidIndex].positionsInZone.Add(new Vector2(i,j));
                 //For debugging
                 temp.GetComponentInChildren<TextMeshProUGUI>().text = "Row " + i + " , Column " + j + " " + gridMatrix[i,j].Zone; 
             }
         }
+
+        FindZoneCentroids();
 
         return gridMatrix;
     }
@@ -84,11 +88,6 @@ public class GridSpawner : MonoBehaviour
         return SpawnGrid();
     }
 
-    public List<Vector3> ZoneCentroids()
-    {
-        return zoneCentroids;
-    }
-
     private void StartVoroni()
     {
         centroids = new Vector2Int[cityZones.Count];
@@ -97,7 +96,6 @@ public class GridSpawner : MonoBehaviour
         {
             centroids[i] = new Vector2Int(Random.Range(0, x), Random.Range(0, z));
             colourRegions[i] = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
-            zoneCentroids.Add(new Vector3(centroids[i].x, 0f, centroids[i].y));
         }
     }
 
@@ -114,6 +112,29 @@ public class GridSpawner : MonoBehaviour
             }
         }
         return index;
+    }
+
+    private void FindZoneCentroids()
+    {
+        Vector2 center = new Vector2();
+        int count = 0;
+
+        foreach (CityZone zone in cityZones)
+        {
+            foreach(Vector2 pos in zone.positionsInZone)
+            {
+                center += pos;
+                count++;
+            }
+
+            Vector2 result = center / count;
+            zone.zoneCenter = new Vector3(result.x, 0f, result.y);
+            center = new Vector2();
+            count = 0;
+        }
+
+        cityManager.zones = cityZones;
+
     }
 
 
