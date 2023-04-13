@@ -44,7 +44,7 @@ public class CityManager : MonoBehaviour
 
         for(int i = 0; i < zones.Count; i++)
         {
-            visualizer.StartRoadGeneration(zoneCentroids[i], zones[i].roadLength);
+            visualizer.StartRoadGeneration(zoneCentroids[i], zones[i]);
         }
 
         visualizer.roadHelper.transform.position = new Vector3(visualizer.roadHelper.transform.position.x,
@@ -82,9 +82,20 @@ public class CityManager : MonoBehaviour
 [System.Serializable]
 public class CityZone
 {
+    [Header("L-System Settings")]
     public int roadLength;
+    public Rule[] rules;
+    public string axiom;
+    [Range(0, 10)]
+    public int iterationLimit = 1;
+    public bool randomIgnoreRuleModifier = true;
+    [Range(0, 1)]
+    public float chanceToIgnoreRule = 0.3f;
+
+    [Header("Building Settings")]
     [Range(0f, 3f)]
     public float chanceOfBuildingPlacement;
     [Range(3f, 10f)]
     public float buildingYScaleMultiplier;
+    
 }

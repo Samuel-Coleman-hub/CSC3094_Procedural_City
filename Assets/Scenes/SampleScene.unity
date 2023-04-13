@@ -210,21 +210,30 @@ MonoBehaviour:
   visualizer: {fileID: 336736540}
   zones:
   - roadLength: 8
+    rules:
+    - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
+    axiom: '[F]--[F]'
+    iterationLimit: 2
+    randomIgnoreRuleModifier: 1
+    chanceToIgnoreRule: 0.3
     chanceOfBuildingPlacement: 3
     buildingYScaleMultiplier: 10
   - roadLength: 6
+    rules:
+    - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
+    axiom: '[F]--[F]'
+    iterationLimit: 2
+    randomIgnoreRuleModifier: 1
+    chanceToIgnoreRule: 0.267
     chanceOfBuildingPlacement: 0.25
     buildingYScaleMultiplier: 3
   - roadLength: 4
-    chanceOfBuildingPlacement: 1.03
-    buildingYScaleMultiplier: 7.34
-  - roadLength: 4
-    chanceOfBuildingPlacement: 1.03
-    buildingYScaleMultiplier: 6.41
-  - roadLength: 4
-    chanceOfBuildingPlacement: 1.03
-    buildingYScaleMultiplier: 6.41
-  - roadLength: 4
+    rules:
+    - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
+    axiom: '[F]--[F]'
+    iterationLimit: 2
+    randomIgnoreRuleModifier: 1
+    chanceToIgnoreRule: 0.3
     chanceOfBuildingPlacement: 1.03
     buildingYScaleMultiplier: 6.41
 --- !u!4 &200823960
@@ -1171,12 +1180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0839c9b09439c2f4fab037aa8155e6a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rules:
-  - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
-  axiom: '[F]--F'
-  iterationLimit: 2
-  randomIgnoreRuleModifier: 1
-  chanceToIgnoreRule: 0.3
 --- !u!4 &709684051
 Transform:
   m_ObjectHideFlags: 0
@@ -2748,8 +2751,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lSystem: {fileID: 0}
+  positions: []
   prefab: {fileID: 8685521330805257529, guid: 02b8b2c98dd684a4382df1d4d0395049, type: 3}
   lineMaterial: {fileID: 2100000, guid: 87a061207492238489fda1e5654d9ea8, type: 2}
+  length: 8
+  angle: 90
 --- !u!4 &1654960384
 Transform:
   m_ObjectHideFlags: 0

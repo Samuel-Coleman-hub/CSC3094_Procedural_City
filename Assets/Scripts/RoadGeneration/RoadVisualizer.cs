@@ -33,13 +33,13 @@ public class RoadVisualizer : MonoBehaviour
         set => length = value;
     }
 
-    public void StartRoadGeneration(Vector3 startPos, int length)
+    public void StartRoadGeneration(Vector3 startPos, CityZone zone)
     {
-        this.length = length;
+        this.length = zone.roadLength;
         //Position agent to start in center for road placement
         //roadHelper.transform.position = startPos;
         this.startPos = startPos;
-        string sequence = lSystem.GenerateSentence();
+        string sequence = lSystem.GenerateSentence(zone.axiom, zone.rules, zone.iterationLimit, zone.randomIgnoreRuleModifier, zone.chanceToIgnoreRule);
         VisualizeSequence(sequence);
     }
 

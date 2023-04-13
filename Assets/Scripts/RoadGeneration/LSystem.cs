@@ -6,23 +6,22 @@ using UnityEngine;
 
 public class LSystem : MonoBehaviour
 {
-    public Rule[] rules;
-    public string axiom;
+    private Rule[] rules;
 
-    [Range(0,10)]
-    public int iterationLimit = 1;
+    private int iterationLimit;
 
-    public bool randomIgnoreRuleModifier = true;
-    [Range(0, 1)]
-    public float chanceToIgnoreRule = 0.3f;
+    private bool randomIgnoreRuleModifier;
+
+    private float chanceToIgnoreRule;
 
     //Assigns a word from axiom
-    public string GenerateSentence(string word = null)
+    public string GenerateSentence(string word, Rule[] rules, int iterationLimit, bool randomIgnoreRuleModifier, float chanceToIgnoreRule)
     {
-        if (word == null)
-        {
-            word = axiom;
-        }
+        this.rules = rules;
+        this.iterationLimit = iterationLimit;
+        this.randomIgnoreRuleModifier= randomIgnoreRuleModifier;
+        this.chanceToIgnoreRule= chanceToIgnoreRule;
+
         return GrowRecursive(word);
     }
 
