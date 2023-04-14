@@ -35,6 +35,9 @@ public class CityManager : MonoBehaviour
 
     [Header("City Zones")]
     [SerializeField] public List<CityZone> zones = new List<CityZone>();
+
+    [HideInInspector]
+    public Vector3 centerOfZones;
     
 
     private void Start()

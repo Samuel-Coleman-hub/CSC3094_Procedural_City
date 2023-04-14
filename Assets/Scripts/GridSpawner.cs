@@ -55,7 +55,7 @@ public class GridSpawner : MonoBehaviour
             }
         }
 
-        FindZoneCentroids();
+        FindZoneCenters();
 
         return gridMatrix;
     }
@@ -114,7 +114,7 @@ public class GridSpawner : MonoBehaviour
         return index;
     }
 
-    private void FindZoneCentroids()
+    private void FindZoneCenters()
     {
         Vector2 center = new Vector2();
         int count = 0;
@@ -133,8 +133,16 @@ public class GridSpawner : MonoBehaviour
             count = 0;
         }
 
-        cityManager.zones = cityZones;
+        Vector3 centroid = new Vector3();
 
+        foreach (CityZone zone in cityZones)
+        {
+            centroid += zone.zoneCenter;
+            count++;
+        }
+
+        cityManager.centerOfZones = centroid / count;
+        cityManager.zones = cityZones;
     }
 
 
