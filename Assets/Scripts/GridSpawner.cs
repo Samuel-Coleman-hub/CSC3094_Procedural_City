@@ -46,8 +46,6 @@ public class GridSpawner : MonoBehaviour
                 gridMatrix[i, j].Object.GetComponent<MeshRenderer>().material.color = colourRegions[closestCentroidIndex];
 
                 //Maybe change this so that it works with any number of zones. Hello past me thank you i did
-                Debug.Log("Hello my closest centroid is " + closestCentroidIndex);
-                Debug.Log("this is the length of zones " + cityZones.Count);
                 gridMatrix[i, j].Zone = cityZones[closestCentroidIndex];
                 cityZones[closestCentroidIndex].positionsInZone.Add(new Vector2(i,j));
                 //For debugging

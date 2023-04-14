@@ -48,8 +48,13 @@ public class CityManager : MonoBehaviour
         {
             if (zones[i].generateRoadsForZone)
             {
-                visualizer.StartRoadGeneration(zones[i].zoneCenter, zones[i]);
+                zones[i].roadEndToCenter = visualizer.StartRoadGeneration(zones[i].zoneCenter, zones[i]);
             }   
+        }
+
+        if(zones.Count > 1)
+        {
+            visualizer.ConnectZones(zones);
         }
 
         visualizer.roadHelper.transform.position = new Vector3(visualizer.roadHelper.transform.position.x,
@@ -106,6 +111,9 @@ public class CityZone
 
     [HideInInspector]
     public List<Vector2> positionsInZone;
+    [HideInInspector]
+    public Vector3 roadEndToCenter;
+    [HideInInspector]
     public Vector3 zoneCenter;
     
 }

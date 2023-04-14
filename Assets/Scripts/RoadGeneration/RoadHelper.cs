@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
@@ -78,11 +79,11 @@ public class RoadHelper : MonoBehaviour
         }
     }
 
-    public void FixRoad()
+    public Vector3 FixRoad()
     {
+        Vector3 connectorRoadEnd = new Vector3();
         foreach(Vector3Int pos in fixRoadPossibilities)
         {
-            Debug.Log(pos.x + " " + pos.z);
             //Get neighbour road directions
             List<Direction> neighbourDir = PlacementHelper.FindNeighbour(pos, roadDict.Keys);
 
@@ -113,6 +114,17 @@ public class RoadHelper : MonoBehaviour
                 }
 
                 roadDict[pos] = Instantiate(roadEnd, pos, rotation, transform);
+                //Checks if this road end is closer to the center than the previous, if so add to list
+                if((Vector3.Distance(connectorRoadEnd, cityManager.centerOfZones) > Vector3.Distance(pos, cityManager.centerOfZones)) || connectorRoadEnd == null)
+                {
+                    connectorRoadEnd = pos;
+                }
+                else
+                {
+                    GameObject temp = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Sphere));
+                    temp.transform.position = pos;
+                    
+                }
 
             }
             else if(neighbourDir.Count == 2)
@@ -174,6 +186,7 @@ public class RoadHelper : MonoBehaviour
             }
             
         }
+        return connectorRoadEnd;
     }
 
     private bool RoadsNearbyInGrid(int x, int z)
