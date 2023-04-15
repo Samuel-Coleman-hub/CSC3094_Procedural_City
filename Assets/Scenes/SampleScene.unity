@@ -209,8 +209,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 18f752670189ed343ab231ff52ef9a50, type: 2}
   visualizer: {fileID: 336736540}
   zones:
-  - generateRoadsForZone: 1
-    roadLength: 10
+  - zoneName: Industrial
+    generateRoadsForZone: 1
+    roadLength: 8
     rules:
     - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
     axiom: '[F]--[F]'
@@ -222,8 +223,23 @@ MonoBehaviour:
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
-  - generateRoadsForZone: 1
+  - zoneName: Industrial
+    generateRoadsForZone: 1
     roadLength: 8
+    rules:
+    - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
+    axiom: '[F]--[F]'
+    iterationLimit: 2
+    randomIgnoreRuleModifier: 1
+    chanceToIgnoreRule: 0.3
+    chanceOfBuildingPlacement: 3
+    buildingYScaleMultiplier: 10
+    positionsInZone: []
+    roadEndToCenter: {x: 0, y: 0, z: 0}
+    zoneCenter: {x: 0, y: 0, z: 0}
+  - zoneName: Residential
+    generateRoadsForZone: 1
+    roadLength: 6
     rules:
     - {fileID: 11400000, guid: 3cdb349c2864eff429cc5f576ed4c7bf, type: 2}
     axiom: '[F]--F'
@@ -235,7 +251,8 @@ MonoBehaviour:
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
-  - generateRoadsForZone: 0
+  - zoneName: Agricultural
+    generateRoadsForZone: 0
     roadLength: 8
     rules:
     - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}

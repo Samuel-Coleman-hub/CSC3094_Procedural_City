@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class CityManager : MonoBehaviour
 {
@@ -49,9 +50,8 @@ public class CityManager : MonoBehaviour
             if (zones[i].generateRoadsForZone)
             {
                 zones[i].roadEndToCenter = visualizer.StartRoadGeneration(zones[i].zoneCenter, zones[i]);
-            }   
+            }
         }
-
         if(zones.Count > 1)
         {
             visualizer.ConnectZones(zones);
@@ -60,6 +60,12 @@ public class CityManager : MonoBehaviour
         visualizer.roadHelper.transform.position = new Vector3(visualizer.roadHelper.transform.position.x,
             gridCenter.y - 0.15f, visualizer.roadHelper.transform.position.z);
     }
+
+    //private IEnumerator GenerateZoneRoad(CityZone zone)
+    //{
+    //    zone.roadEndToCenter = visualizer.StartRoadGeneration(zone.zoneCenter, zone);
+    //    yield return null;
+    //}
 
     public void GenerateBuildings()
     {
@@ -92,6 +98,7 @@ public class CityManager : MonoBehaviour
 [System.Serializable]
 public class CityZone
 {
+    public string zoneName;
     [Header("L-System Settings")]
     public bool generateRoadsForZone;
     public int roadLength;

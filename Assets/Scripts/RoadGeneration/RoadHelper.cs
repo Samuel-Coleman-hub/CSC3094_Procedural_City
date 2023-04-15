@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
@@ -79,8 +80,16 @@ public class RoadHelper : MonoBehaviour
         }
     }
 
-    public Vector3 FixRoad()
+    public Vector3 FixRoad(CityZone zone, List<Vector3> posToFix = default)
     {
+        if(posToFix != null)
+        {
+            foreach (Vector3 pos in posToFix)
+            {
+                fixRoadPossibilities.Add(Vector3Int.RoundToInt(pos));
+            }
+        }
+        
         Vector3 connectorRoadEnd = new Vector3();
         foreach(Vector3Int pos in fixRoadPossibilities)
         {
@@ -115,9 +124,12 @@ public class RoadHelper : MonoBehaviour
 
                 roadDict[pos] = Instantiate(roadEnd, pos, rotation, transform);
                 //Checks if this road end is closer to the center than the previous, if so add to list
-                if((Vector3.Distance(connectorRoadEnd, cityManager.centerOfZones) > Vector3.Distance(pos, cityManager.centerOfZones)) || connectorRoadEnd == null)
+                if(((Vector3.Distance(connectorRoadEnd, cityManager.centerOfZones) > Vector3.Distance(pos, cityManager.centerOfZones)) || connectorRoadEnd == null)
+                    && cityManager.gridMatrix[pos.x,pos.z].Zone.Equals(zone))
                 {
                     connectorRoadEnd = pos;
+                    GameObject temp = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Capsule));
+                    temp.transform.position = pos;
                 }
                 else
                 {
@@ -181,6 +193,7 @@ public class RoadHelper : MonoBehaviour
             }
             else
             {
+                
                 Destroy(roadDict[pos]);
                 roadDict[pos] = Instantiate(roadCrossroad, pos, rotation, transform);
             }
