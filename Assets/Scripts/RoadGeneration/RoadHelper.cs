@@ -20,8 +20,17 @@ public class RoadHelper : MonoBehaviour
     //Roads that might need fixing, hashset so no duplicates
     HashSet<Vector3Int> fixRoadPossibilities = new HashSet<Vector3Int>();
 
-    public void PlaceRoad(Vector3 startPos, Vector3Int dir, int length)
+    //DEBUGGING
+    int counter;
+    bool mainRoad = false;
+
+    public void PlaceRoad(Vector3 startPos, Vector3Int dir, int length, CityZone zone = default)
     {
+        if(zone == default)
+        {
+            mainRoad = true;
+        }
+        
         Quaternion rotation = Quaternion.identity;
         if(dir.x == 0)
         {
@@ -30,19 +39,23 @@ public class RoadHelper : MonoBehaviour
 
         for(int i = 0; i < length; i++)
         {
-            
             //Next position of road
             Vector3Int pos = Vector3Int.RoundToInt(startPos + dir * i);
-            //Checks if position is within the grid
-            
-            if(pos.x >= cityManager.x || pos.z >= cityManager.z || pos.x <= 0 || pos.z <= 0 )
+
+
+            //YOU CAN REMOVE GRID CHECK ZONE IF IT HAS TO BE IN ZONE ANYWAY
+            //Checks if position is within the grid and in the zone
+            if(pos.x >= cityManager.x || pos.z >= cityManager.z || pos.x <= 0 || pos.z <= 0 ||
+                (cityManager.gridMatrix[pos.x,pos.z].Zone != zone && !mainRoad))
             {
+                fixRoadPossibilities.Add(roadDict.Last().Key);
                 break;
             }
 
             //Checks that a road object has not alredy been placed at position
             if (roadDict.ContainsKey(pos))
             {
+                fixRoadPossibilities.Add(pos);
                 continue;
             }
 
@@ -82,6 +95,7 @@ public class RoadHelper : MonoBehaviour
 
     public Vector3 FixRoad(CityZone zone, List<Vector3> posToFix = default)
     {
+        counter = 0;
         if(posToFix != null)
         {
             foreach (Vector3 pos in posToFix)
@@ -123,6 +137,7 @@ public class RoadHelper : MonoBehaviour
                 }
 
                 roadDict[pos] = Instantiate(roadEnd, pos, rotation, transform);
+                counter++; 
                 //Checks if this road end is closer to the center than the previous, if so add to list
                 if(((Vector3.Distance(connectorRoadEnd, cityManager.centerOfZones) > Vector3.Distance(pos, cityManager.centerOfZones)) || connectorRoadEnd == null)
                     && cityManager.gridMatrix[pos.x,pos.z].Zone.Equals(zone))
@@ -130,12 +145,15 @@ public class RoadHelper : MonoBehaviour
                     connectorRoadEnd = pos;
                     GameObject temp = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Capsule));
                     temp.transform.position = pos;
+                    Debug.Log("Placed capsule at " + temp.transform.position.x + ", " + temp.transform.position.z +  " as distance is closer to the centre");
+
                 }
                 else
                 {
                     GameObject temp = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Sphere));
                     temp.transform.position = pos;
-                    
+                    Debug.Log("Placed sphere at " + temp.transform.position.x + ", " + temp.transform.position.z +  " as we considered it but not closer to centre");
+                    temp.name = "Sphere " + counter;
                 }
 
             }

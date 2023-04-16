@@ -93,7 +93,7 @@ public class RoadVisualizer : MonoBehaviour
                     tempPos = currentPos;
                     currentPos += direction * Length;
                     //Used to be drawline
-                    roadHelper.PlaceRoad(tempPos, Vector3Int.RoundToInt(direction), length);
+                    roadHelper.PlaceRoad(tempPos, Vector3Int.RoundToInt(direction), length, zone);
                     //Makes line shorter overtime so roads get shorter further we go
                     Length -= 1;
                     positions.Add(currentPos);
@@ -116,6 +116,8 @@ public class RoadVisualizer : MonoBehaviour
     {
         GameObject center = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cylinder));
         center.transform.position = cityManager.centerOfZones;
+        Debug.Log("Spawned cylinder at the center of all city zones " + center.transform.position.x + " " + center.transform.position.z);
+        center.name = "Brucey Center";
 
 
         Pathfinding pathfinder = new Pathfinding();
@@ -137,28 +139,28 @@ public class RoadVisualizer : MonoBehaviour
             .roadEndToCenter.x + " " + zones[1].roadEndToCenter.z);
 
         //Find paths for other zones
-        //for (int i = 2; i < zones.Count; i++)
-        //{
-        //    //Vector3 closestTile = new Vector3(cityManager.x *2, 0f, cityManager.z *2);
+        for (int i = 2; i < zones.Count; i++)
+        {
+            //Vector3 closestTile = new Vector3(cityManager.x *2, 0f, cityManager.z *2);
 
-        //    //Pick a position from the main road
-        //    //foreach (GridTile tile in mainRoad)
-        //    //{
-        //    //    Vector3 tilePos = new Vector3(tile.GetX(), 0f, tile.GetY());
-        //    //    if (Vector3.Distance(tilePos, zones[i].roadEndToCenter) < Vector3.Distance(closestTile, zones[i].roadEndToCenter))
-        //    //    {
-        //    //        closestTile = tilePos;
-        //    //    }
-        //    //}
+            //Pick a position from the main road
+            //foreach (GridTile tile in mainRoad)
+            //{
+            //    Vector3 tilePos = new Vector3(tile.GetX(), 0f, tile.GetY());
+            //    if (Vector3.Distance(tilePos, zones[i].roadEndToCenter) < Vector3.Distance(closestTile, zones[i].roadEndToCenter))
+            //    {
+            //        closestTile = tilePos;
+            //    }
+            //}
 
-        //    //Generate path
-        //    GridTile roadEnd = cityManager.gridMatrix[(int)zones[i].roadEndToCenter.x, (int)zones[i].roadEndToCenter.z];
-        //    //GridTile endTile = cityManager.gridMatrix[(int)closestTile.x, (int)closestTile.z];
-        //    List<GridTile> roadTiles = pathfinder.FindPath(roadEnd, centerTile, cityManager.gridMatrix, cityManager.x, cityManager.z);
+            //Generate path
+            GridTile roadEnd = cityManager.gridMatrix[(int)zones[i].roadEndToCenter.x, (int)zones[i].roadEndToCenter.z];
+            //GridTile endTile = cityManager.gridMatrix[(int)closestTile.x, (int)closestTile.z];
+            List<GridTile> roadTiles = pathfinder.FindPath(roadEnd, centerTile, cityManager.gridMatrix, cityManager.x, cityManager.z);
 
-        //    //Add to list of existing paths
-        //    mainRoad = mainRoad.Concat(roadTiles).ToList();
-        //}
+            //Add to list of existing paths
+            mainRoad = mainRoad.Concat(roadTiles).ToList();
+        }
 
         //mainRoad = mainRoad.Distinct().ToList();
 
@@ -180,6 +182,7 @@ public class RoadVisualizer : MonoBehaviour
             var head = previous - current;
             var dist = head.magnitude;
             var dir = head / dist;
+            Debug.Log("Spawning main road");
             roadHelper.PlaceRoad(current, Vector3Int.RoundToInt(dir), 1);
         }
 
@@ -189,7 +192,7 @@ public class RoadVisualizer : MonoBehaviour
             roadPos.Add(new Vector3(tile.GetX(), 0f, tile.GetY()));
         }
 
-        roadHelper.FixRoad(zone, roadPos);
+        roadHelper.FixRoad(zone);
 
 
         //for (int i = 2; i < zones.Count; i++)
