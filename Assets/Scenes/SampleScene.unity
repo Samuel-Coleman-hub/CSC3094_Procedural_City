@@ -1081,6 +1081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 662438881}
   - component: {fileID: 662438880}
+  - component: {fileID: 662438882}
   m_Layer: 0
   m_Name: Building Test
   m_TagString: Untagged
@@ -1115,6 +1116,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &662438882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662438879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95382e1c1a24cc74ca5602c6a6e40d67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorPrefab: {fileID: -8679921383154817045, guid: eabbafc164db47045a6f5632c8d64198, type: 3}
+  wallPrefab:
+  - {fileID: -8679921383154817045, guid: b7ccbab2b1aecec4989ff84988bc0d1a, type: 3}
+  - {fileID: -8679921383154817045, guid: fabddee89acb30443a80b260751183cf, type: 3}
+  - {fileID: -8679921383154817045, guid: 8568d80ecbf02334bb5615e0065102f2, type: 3}
+  roofPrefab:
+  - {fileID: -8679921383154817045, guid: 27a2f0e25a539c947a54669cb6f18201, type: 3}
+  - {fileID: -8679921383154817045, guid: a5c1ad5c4434e274387cc69379bd6437, type: 3}
+  - {fileID: -8679921383154817045, guid: bab8fff9ed767384f8794633913a1395, type: 3}
+  - {fileID: -8679921383154817045, guid: 755cb1ee943b1044399e174ac419ab30, type: 3}
 --- !u!1 &666852513
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class BuildingTest : MonoBehaviour
     void Start()
     {
         Building b = BuildingGeneration.Generate();
+        GetComponent<BuildingVisualizer>().Visualise(b);
         Debug.Log(b.ToString());
+        
     }
 }
