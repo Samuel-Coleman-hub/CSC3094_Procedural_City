@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BuildingTest : MonoBehaviour
 {
+    [SerializeField] GameObject wallPrefab;
     // Start is called before the first frame update
     void Start()
     {

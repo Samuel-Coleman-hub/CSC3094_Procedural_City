@@ -1101,6 +1101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8619e00f14eae64eb861767b1668728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallPrefab: {fileID: 919132149155446097, guid: b7ccbab2b1aecec4989ff84988bc0d1a, type: 3}
 --- !u!4 &662438881
 Transform:
   m_ObjectHideFlags: 0
@@ -1128,14 +1129,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95382e1c1a24cc74ca5602c6a6e40d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorPrefab: {fileID: -8679921383154817045, guid: eabbafc164db47045a6f5632c8d64198, type: 3}
+  xOffSet: -0.989
+  xEastOffSet: 0.4
+  xWestOffSet: -0.35
+  yOffSet: -0.989
+  ySouthOffSet: -0.381
+  yNorthOffSet: 0.38
+  heightOffset: 1.3
+  wallHeightOffset: 0.2
+  floorPrefab: {fileID: 6542839307809389306, guid: a0d32d1e56beef747925fb334c937774, type: 3}
   wallPrefab:
-  - {fileID: -8679921383154817045, guid: b7ccbab2b1aecec4989ff84988bc0d1a, type: 3}
+  - {fileID: 3903412868912126399, guid: 9c9e968c2ce5f09489b2c33ea27962da, type: 3}
   - {fileID: -8679921383154817045, guid: fabddee89acb30443a80b260751183cf, type: 3}
   - {fileID: -8679921383154817045, guid: 8568d80ecbf02334bb5615e0065102f2, type: 3}
   roofPrefab:
-  - {fileID: -8679921383154817045, guid: 27a2f0e25a539c947a54669cb6f18201, type: 3}
-  - {fileID: -8679921383154817045, guid: a5c1ad5c4434e274387cc69379bd6437, type: 3}
+  - {fileID: 6792689094324849615, guid: 54cd30d61867ed14eb1bdbc2af499c53, type: 3}
+  - {fileID: 6792689094324849615, guid: 54cd30d61867ed14eb1bdbc2af499c53, type: 3}
   - {fileID: -8679921383154817045, guid: bab8fff9ed767384f8794633913a1395, type: 3}
   - {fileID: -8679921383154817045, guid: 755cb1ee943b1044399e174ac419ab30, type: 3}
 --- !u!1 &666852513

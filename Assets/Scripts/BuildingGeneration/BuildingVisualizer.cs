@@ -4,6 +4,26 @@ using UnityEngine;
 
 public class BuildingVisualizer : MonoBehaviour
 {
+    [Range(-5,10)]
+    [SerializeField] public float xOffSet;
+    [Range(-5, 10)]
+    [SerializeField] public float xEastOffSet;
+    [Range(-5, 10)]
+    [SerializeField] public float xWestOffSet;
+    [Range(-5, 10)]
+    [SerializeField] public float yOffSet;
+    [Range(-5, 10)]
+    [SerializeField] public float ySouthOffSet;
+    [Range(-5, 10)]
+    [SerializeField] public float yNorthOffSet;
+
+    [Range(-5, 10)]
+    [SerializeField] public float heightOffset;
+    [Range(-5, 10)]
+    [SerializeField] public float wallHeightOffset;
+
+
+
     public Transform floorPrefab;
     public Transform[] wallPrefab;
     public Transform[] roofPrefab;
@@ -73,32 +93,37 @@ public class BuildingVisualizer : MonoBehaviour
 
     private void PlaceFloor(int x, int y, int level, Transform storyEmpty)
     {
-        Transform f = Instantiate(floorPrefab, storyEmpty.TransformPoint(new Vector3(x * -3f, 0f + level * 2.5f, y * -3f)), Quaternion.identity);
+        Transform f = Instantiate(floorPrefab, storyEmpty.TransformPoint(new Vector3(x * xOffSet, 0f + level * heightOffset, y * yOffSet)), Quaternion.identity);
         f.SetParent(storyEmpty);
+        f.name = "Floor";
     }
 
     private void PlaceSouthWall(int x, int y, int level, Transform storyEmpty, Transform wall)
     {
-        Transform w = Instantiate(wall, storyEmpty.TransformPoint(new Vector3(x * -3f, 0.3f + level * 2.5f, y * 3f - 0.5f)), Quaternion.Euler(0f, 90f, 0f));
+        Transform w = Instantiate(wall, storyEmpty.TransformPoint(new Vector3(x * xOffSet, wallHeightOffset + level * heightOffset, y * yOffSet - ySouthOffSet)), Quaternion.Euler(0f, 90f, 0f));
         w.SetParent(storyEmpty);
+        w.name = "SouthWall";
     }
 
     private void PlaceEastWall(int x, int y, int level, Transform storyEmpty, Transform wall)
     {
-        Transform w = Instantiate(wall, storyEmpty.TransformPoint(new Vector3(x * -3f - 2.5f, 0.3f + level * 2.5F, y * -3f)), Quaternion.identity);
+        Transform w = Instantiate(wall, storyEmpty.TransformPoint(new Vector3(x * xOffSet - xEastOffSet, wallHeightOffset + level * heightOffset, y * yOffSet)), Quaternion.identity);
         w.SetParent(storyEmpty);
+        w.name = "EastWall";
     }
 
     private void PlaceNorthWall(int x, int y, int level, Transform storyEmpty, Transform wall)
     {
-        Transform w = Instantiate(wall, storyEmpty.TransformPoint(new Vector3(x * -3f, 0.3f + level * 2.5f, y * -3f - 3f)), Quaternion.Euler(0f, 90f, 0f));
+        Transform w = Instantiate(wall, storyEmpty.TransformPoint(new Vector3(x * xOffSet, wallHeightOffset + level * heightOffset, y * yOffSet - yNorthOffSet)), Quaternion.Euler(0f, 90f, 0f));
         w.SetParent(storyEmpty);
+        w.name = "NorthWall";
     }
 
     private void PlaceWestWall(int x, int y, int level, Transform storyEmpty, Transform wall)
     {
-        Transform w = Instantiate(wall, storyEmpty.TransformPoint(new Vector3(x * -3f, 0.3f + level * 2.5f, y * -3f)), Quaternion.identity);
+        Transform w = Instantiate(wall, storyEmpty.TransformPoint(new Vector3(x * xOffSet - xWestOffSet, wallHeightOffset + level * heightOffset, y * yOffSet)), Quaternion.identity);
         w.SetParent(storyEmpty);
+        w.name = "WestWall";
     }
 
     //Code from board to bits but I will need to change to work for mine
@@ -120,9 +145,9 @@ public class BuildingVisualizer : MonoBehaviour
             roofPrefab[(int)type],
             wingFolder.TransformPoint(
                 new Vector3(
-                        x * -3f + rotationOffset[(int)direction].x,
-                        level * 2.5f + (type == RoofType.Point ? -0.3f : 0f),
-                        y * -3f + rotationOffset[(int)direction].z
+                        x * xOffSet, //+ rotationOffset[(int)direction].x,
+                        level * heightOffset, //+ (type == RoofType.Point ? -0.3f : 0f),
+                        y * yOffSet //+ rotationOffset[(int)direction].z
                     )
                 ),
             Quaternion.Euler(0f, rotationOffset[(int)direction].y, 0f)
