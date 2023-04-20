@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BuildingVisualizer : MonoBehaviour
@@ -21,6 +22,8 @@ public class BuildingVisualizer : MonoBehaviour
     [SerializeField] public float heightOffset;
     [Range(-5, 10)]
     [SerializeField] public float wallHeightOffset;
+    [Range(-5, 10)]
+    [SerializeField] public float roofHeightOffset;
 
 
 
@@ -42,6 +45,7 @@ public class BuildingVisualizer : MonoBehaviour
     {
         Transform wingEmpty = new GameObject("Wing").transform;
         wingEmpty.SetParent(buildingEmpty);
+        Debug.Log("There are this amount of stories " + wing.Stories.Count());
         foreach(Story story in wing.Stories)
         {
             VisualiseStory(story, wing, wingEmpty);
@@ -114,14 +118,14 @@ public class BuildingVisualizer : MonoBehaviour
 
     private void PlaceNorthWall(int x, int y, int level, Transform storyEmpty, Transform wall)
     {
-        Transform w = Instantiate(wall, storyEmpty.TransformPoint(new Vector3(x * xOffSet, wallHeightOffset + level * heightOffset, y * yOffSet - yNorthOffSet)), Quaternion.Euler(0f, 90f, 0f));
+        Transform w = Instantiate(wall, storyEmpty.TransformPoint(new Vector3(x * xOffSet, wallHeightOffset + level * heightOffset, y * yOffSet - yNorthOffSet)), Quaternion.Euler(0f, -90f, 0f));
         w.SetParent(storyEmpty);
         w.name = "NorthWall";
     }
 
     private void PlaceWestWall(int x, int y, int level, Transform storyEmpty, Transform wall)
     {
-        Transform w = Instantiate(wall, storyEmpty.TransformPoint(new Vector3(x * xOffSet - xWestOffSet, wallHeightOffset + level * heightOffset, y * yOffSet)), Quaternion.identity);
+        Transform w = Instantiate(wall, storyEmpty.TransformPoint(new Vector3(x * xOffSet - xWestOffSet, wallHeightOffset + level * heightOffset, y * yOffSet)), Quaternion.Euler(0f, 180f, 0f));
         w.SetParent(storyEmpty);
         w.name = "WestWall";
     }
@@ -146,8 +150,8 @@ public class BuildingVisualizer : MonoBehaviour
             wingFolder.TransformPoint(
                 new Vector3(
                         x * xOffSet, //+ rotationOffset[(int)direction].x,
-                        level * heightOffset, //+ (type == RoofType.Point ? -0.3f : 0f),
-                        y * yOffSet //+ rotationOffset[(int)direction].z
+                        level * heightOffset + roofHeightOffset, //+ (type == RoofType.Point ? -0.3f : 0f),
+                        y * yOffSet//+ rotationOffset[(int)direction].z
                     )
                 ),
             Quaternion.Euler(0f, rotationOffset[(int)direction].y, 0f)

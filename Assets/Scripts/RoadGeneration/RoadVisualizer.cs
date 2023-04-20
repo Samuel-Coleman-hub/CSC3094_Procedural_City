@@ -182,7 +182,6 @@ public class RoadVisualizer : MonoBehaviour
             var head = previous - current;
             var dist = head.magnitude;
             var dir = head / dist;
-            Debug.Log("Spawning main road");
             roadHelper.PlaceRoad(current, Vector3Int.RoundToInt(dir), 1);
         }
 

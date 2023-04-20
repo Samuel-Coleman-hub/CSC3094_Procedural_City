@@ -145,14 +145,12 @@ public class RoadHelper : MonoBehaviour
                     connectorRoadEnd = pos;
                     GameObject temp = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Capsule));
                     temp.transform.position = pos;
-                    Debug.Log("Placed capsule at " + temp.transform.position.x + ", " + temp.transform.position.z +  " as distance is closer to the centre");
 
                 }
                 else
                 {
                     GameObject temp = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Sphere));
                     temp.transform.position = pos;
-                    Debug.Log("Placed sphere at " + temp.transform.position.x + ", " + temp.transform.position.z +  " as we considered it but not closer to centre");
                     temp.name = "Sphere " + counter;
                 }
 
