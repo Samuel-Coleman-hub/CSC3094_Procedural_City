@@ -10,5 +10,7 @@ public class BuildingSettings : ScriptableObject
 
     public int buildingHeight;
 
+    public int numberOfWings;
+
     public Vector2Int Size { get { return buildingSize; } }
 }

@@ -12,7 +12,11 @@ public static class BuildingGeneration
 
     static Wing[] GenerateWings(BuildingSettings settings)
     {
-        //Wing[] wings = new Wing[settings.];
+        //Wing[] wings = new Wing[settings.numberOfWings];
+        //for(int i = 0; i < wings.Length; i++)
+        //{
+        //    wings[i] = Generate(Wing)
+        //}
         return new Wing[] { GenerateWing(settings, new RectInt(0, 0, settings.Size.x, settings.Size.y), settings.buildingHeight)};
     }
 
