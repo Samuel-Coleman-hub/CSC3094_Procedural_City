@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f465877722a7e4bab65e9d342ded29, type: 3}
   m_Name: Default Building Preset
   m_EditorClassIdentifier: 
-  buildingSize: {x: 10, y: 10}
-  buildingHeight: 12
+  buildingSize: {x: 4, y: 4}
+  buildingHeight: 4
+  numberOfWings: 2

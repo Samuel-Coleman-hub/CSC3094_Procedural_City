@@ -49,6 +49,7 @@ public class BuildingVisualizer : MonoBehaviour
         foreach(Story story in wing.Stories)
         {
             VisualiseStory(story, wing, wingEmpty);
+
         }
         VisualiseRoof(wing, wingEmpty);
     }
