@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public enum TileType
@@ -7,7 +8,17 @@ public enum TileType
     Building,
     Grass,
     Road,
+    Pavement,
     Empty
+}
+
+public enum NearRoadDirection
+{
+    North,
+    East,
+    South,
+    West,
+    None
 }
 
 public class GridTile
@@ -16,10 +27,10 @@ public class GridTile
     private GameObject _childObject;
     private int _xPosition;
     private int _yPosition;
-    private double _centerScore;
     private TileType _type;
-    private bool _nearRoad = false;
+    private NearRoadDirection _roadDirection = NearRoadDirection.None;
     private CityZone _zone;
+    private MeshRenderer _meshRenderer;
 
     //Pathfinding variables
     private int _gCost = 0;
@@ -32,25 +43,24 @@ public class GridTile
     public GameObject ChildObject { get { return _childObject; } set { _childObject = value; } }
     public int GetX() { return _xPosition; }
     public int GetY() { return _yPosition; }
-    public double CenterScore { get { return _centerScore; } set { _centerScore = value; } }
     public TileType TileType { get { return _type; } set { _type = value; } }
-    public bool NearRoad { get { return _nearRoad; } set { _nearRoad = value; } }
+    public NearRoadDirection NearRoadDirection { get { return _roadDirection; } set { _roadDirection = value; } }
     public CityZone Zone { get { return _zone; } set { _zone = value; } }
 
     public int GCost { get { return _gCost; } set { _gCost = value; } }
     public int HCost { get { return _gCost; } set { _gCost = value; } }
     public int FCost { get { return _gCost; } set { _gCost = value; } }
     public GridTile ParentNode { get { return _parentNode; } set { _parentNode = value; } }
+    public Material Material { get { return _meshRenderer.material; } set { _meshRenderer.material = value;} }
 
 
-    public GridTile(GameObject tileObject, int xPosition, int yPosition, double centerScore, TileType type)
+    public GridTile(GameObject tileObject, int xPosition, int yPosition, TileType type)
     {
         _xPosition = xPosition;
         _yPosition = yPosition;
-        _centerScore = centerScore;
         _type = type;
         _tileObject = tileObject;
-
+        _meshRenderer = tileObject.GetComponent<MeshRenderer>();
     }
 
     public void CalculateFScore()

@@ -9,7 +9,6 @@ using UnityEngine;
 public class BuildingGenerator : MonoBehaviour
 {
     //Building generation variables
-    [SerializeField] private AnimationCurve heightCurve;
     private List<Material> materials = new List<Material>();
     private GameObject buildingPrefab = null;
     private float randomPercentage;
@@ -33,26 +32,42 @@ public class BuildingGenerator : MonoBehaviour
                     gridMatrix[i, j].TileType = TileType.Empty;
                 }
 
-                float placementChanceMultipler = gridMatrix[i, j].Zone.chanceOfBuildingPlacement;
-                if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && UnityEngine.Random.value * gridMatrix[i, j].CenterScore <= randomPercentage * placementChanceMultipler
-                    && gridMatrix[i,j].NearRoad)
-                {
+                CityZone zone = gridMatrix[i, j].Zone;
+                float distToCenter = Vector3.Distance(zone.zoneCenter, new Vector3(i, 0, j));
 
+                float placementChanceMultipler = zone.chanceOfBuildingPlacement;
+                if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && UnityEngine.Random.value * distToCenter <= randomPercentage * placementChanceMultipler
+                    && !gridMatrix[i,j].NearRoadDirection.Equals(NearRoadDirection.None))
+                {
                     List<GridTile> emptyNeighbours;
                     emptyNeighbours = NumberOfEmptyNeighbours(i, j);
 
-                    Material mat = materials[UnityEngine.Random.Range(0, materials.Count)];
 
-                    Vector3 centroid = FindCentroid(emptyNeighbours);
-                    int gridLength = gridMatrix.GetLength(0) > gridMatrix.GetLength(1) ? gridMatrix.GetLength(0) : gridMatrix.GetLength(1);
-                    float centerScorePercentage = (float)(gridMatrix[i, j].CenterScore / gridLength);
+                    //Material mat = materials[UnityEngine.Random.Range(0, materials.Count)];
+                    //Vector3 centroid = FindCentroid(emptyNeighbours);
 
-                    float yScaleMultiplier = gridMatrix[i, j].Zone.buildingYScaleMultiplier;
-                    float yScale = Mathf.Clamp(heightCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value * yScaleMultiplier, 0.5f, 10);
-                    float xzScale = Mathf.Clamp(heightCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value * 5f, 1f, emptyNeighbours.Count * 0.35f);
-                    Debug.Log("xzScale " + xzScale);
 
-                    producer.Build(emptyNeighbours);
+                    //int gridLength = gridMatrix.GetLength(0) > gridMatrix.GetLength(1) ? gridMatrix.GetLength(0) : gridMatrix.GetLength(1);
+                    //float centerScorePercentage = (float)(gridMatrix[i, j].CenterScore / gridLength);
+
+                    //double centerScore = Math.Floor(Math.Sqrt(Math.Pow(((x/2)-i), 2) + Math.Pow(((z/2)-j), 2)));
+                    
+                    
+                    float heightScaleMultiplier = zone.buildingHeightScaleMultiplier;
+                    int buildingHeight = (int)Mathf.Clamp(zone.heightCenterCurve.Evaluate(distToCenter*100) * UnityEngine.Random.value *
+                        heightScaleMultiplier, zone.minBuildingHeight, zone.maxBuildingHeight);
+
+                    float widthScaleMultiplier = zone.buildingWidthScaleMultiplier;
+                    int buildingWidth = (int)Mathf.Clamp(zone.widthCenterCurve.Evaluate(distToCenter* 100) * UnityEngine.Random.value *
+                        widthScaleMultiplier, Mathf.Clamp(zone.minBuildingWidth, 0f, emptyNeighbours.Count), Mathf.Clamp(zone.maxBuildingWidth, 1f, emptyNeighbours.Count));
+
+                    Debug.Log("height " + i + ", " + j + ": " + buildingHeight);
+                    Debug.Log("width " + i + ", " + j + ": " + buildingWidth);
+                    Debug.Log("center distance " + i + ", " + j + ": " + distToCenter);
+                    Debug.Log("center score " + i + ", " + j + ": " + zone.heightCenterCurve.Evaluate(distToCenter *100));
+
+
+                    producer.Build(emptyNeighbours, gridMatrix[i,j].NearRoadDirection, buildingWidth, buildingHeight);
 
                 }
             }
@@ -82,8 +97,6 @@ public class BuildingGenerator : MonoBehaviour
 
     private List<GridTile> NumberOfEmptyNeighbours(int x, int z)
     {
-        int fullTiles = 0;
-
         int minX = Math.Max(x - 1, gridMatrix.GetLowerBound(0) + 1);
         int maxX = Math.Min(x + 1, gridMatrix.GetUpperBound(0) - 1);
         int minZ = Math.Max(z - 1, gridMatrix.GetLowerBound(1) + 1);
@@ -92,9 +105,6 @@ public class BuildingGenerator : MonoBehaviour
         List<GridTile> neighbourRoadTiles = new List<GridTile>();
         List<GridTile> emptyNeighbours = new List<GridTile>();
         emptyNeighbours.Add(gridMatrix[x, z]);
-        //GridTile[,] emptyTiles = new GridTile[1, 2];
-        //emptyTiles[1, 1] = gridMatrix[x, z];
-        Debug.Log("This is for x: " + x + " z: " + z);
         List<int> numBuildingsPerRow = new List<int>();
 
 
@@ -103,27 +113,21 @@ public class BuildingGenerator : MonoBehaviour
             int zCount = 0;
             for (int j = minZ; j <= maxZ; j++)
             {
-                Debug.Log("IS A Neighbour of " + x + " " + z + " is: " + i + " " + j);
-                //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                //cube.transform.position = new Vector3(i, 0, j);
+               
                 if (gridMatrix[i, j].TileType.Equals(TileType.Empty))
                 {
                     emptyNeighbours.Add(gridMatrix[i, j]);
                     gridMatrix[i, j].TileType = TileType.Building;
                     zCount++;
-                    
-                    Debug.Log("End of search for " + i + " " + j);
                 }
             }
             numBuildingsPerRow.Add(zCount);
         }
 
-        Debug.Log("For " + x + " " + z + " "+ emptyNeighbours.Count + "  and distinct" + emptyNeighbours.Distinct().ToList().Count);
         emptyNeighbours = emptyNeighbours.Distinct().ToList();
 
         if(emptyNeighbours.Count == 3 || emptyNeighbours.Count == 5 || emptyNeighbours.Count == 7)
         {
-            Debug.Log("There is a problem at " + x + " " + z + " because count is " + emptyNeighbours.Count);
             int unique = numBuildingsPerRow.Distinct().First();
             if (unique == 1)
             {
@@ -156,10 +160,5 @@ public class BuildingGenerator : MonoBehaviour
         this.randomPercentage = randomPercentage;
         this.gridMatrix = gridMatrix;
         SpawnBuildings();
-    }
-
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(0);
     }
 }

@@ -7,32 +7,54 @@ public class BuildingProducer : MonoBehaviour
 {
     public int minUnits;
     public int maxUnits;
+    public float startHeightOffset = 0.241f;
     public GameObject[] baseUnits;
     public GameObject[] middleUnits;
     public GameObject[] topUnits;
 
-    public void Build(List<GridTile> tiles)
+    private Quaternion buildingRotation = Quaternion.identity;
+
+    public void Build(List<GridTile> tiles, NearRoadDirection roadDirection, int buildingWidth, int buildingHeight)
     {
         GameObject buildingEmpty = new GameObject();
         buildingEmpty.name = "Building";
 
-        foreach (GridTile tile in tiles)
+        switch (roadDirection)
         {
-            Vector3 tilePos = new Vector3(tile.GetX(), 0, tile.GetY());
+            case NearRoadDirection.North:
+                buildingRotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case NearRoadDirection.East:
+                buildingRotation = Quaternion.Euler(0, -90, 0);
+                break;
+            case NearRoadDirection.South:
+                buildingRotation = Quaternion.Euler(0, 180, 0);
+                break;
+            case NearRoadDirection.West:
+                buildingRotation = Quaternion.Euler(0, 90, 0);
+                break;
+        }
+
+        buildingEmpty.name = "Building " + roadDirection;
+
+        for (int i = 0; i < buildingWidth; i++)
+        {
+            Vector3 tilePos = new Vector3(tiles[i].GetX(), 0f, tiles[i].GetY());
 
             GameObject storyEmpty = new GameObject();
-            storyEmpty.name = "Story " + tile.GetX() + ", " + tile.GetY();
+            storyEmpty.name = "Story " + tiles[i].GetX() + ", " + tiles[i].GetY();
             storyEmpty.transform.parent = buildingEmpty.transform;
 
             //Randomly decided how many modular units we are going to use
             int targetUnits = Random.Range(minUnits, maxUnits);
 
             //Defines height to ensure we place object above the previous one
-            float heighOffset = 0;
+            //Change this to be variable start height
+            float heighOffset = startHeightOffset;
             heighOffset += SpawnPieceLayer(baseUnits, heighOffset, tilePos, storyEmpty.transform);
 
             //Loop through and spawn middle part pieces
-            for (int i = 0; i < targetUnits; i++)
+            for (int j = 0; j < buildingHeight; j++)
             {
                 heighOffset += SpawnPieceLayer(middleUnits, heighOffset, tilePos, storyEmpty.transform);
             }
@@ -47,11 +69,11 @@ public class BuildingProducer : MonoBehaviour
     {
         //Picks a random object from the appropriate unit array to place next
         Transform randomTransform = unitsArray[Random.Range(0, unitsArray.Length)].transform;
-        GameObject clone = Instantiate(randomTransform.gameObject, new Vector3(pos.x, inputHeight, pos.z), transform.rotation) as GameObject;
-        GameObject clone1 = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cube), new Vector3(pos.x, inputHeight, pos.z), transform.rotation) as GameObject;
-        Mesh cloneMesh = clone.GetComponentInChildren<MeshFilter>().mesh;
-        Bounds baseBounds = cloneMesh.bounds;
-        float heightOffset = baseBounds.size.y;
+        GameObject clone = Instantiate(randomTransform.gameObject, new Vector3(pos.x, inputHeight, pos.z), buildingRotation) as GameObject;
+        //Mesh cloneMesh = clone.GetComponentInChildren<MeshFilter>().mesh;
+        //Bounds baseBounds = cloneMesh.bounds;
+        Collider collider = clone.GetComponent<Collider>();
+        float heightOffset = collider.bounds.size.y;
 
         clone.transform.SetParent(storyEmpty.transform);
 

@@ -30,6 +30,7 @@ public class CityManager : MonoBehaviour
 
     [Header("Road Settings")]
     [SerializeField] public RoadVisualizer visualizer;
+    [SerializeField] public Material pavementMaterial;
     
 
     public GridTile[,] gridMatrix;
@@ -113,8 +114,26 @@ public class CityZone
     [Header("Building Settings")]
     [Range(0f, 3f)]
     public float chanceOfBuildingPlacement;
-    [Range(3f, 10f)]
-    public float buildingYScaleMultiplier;
+
+    [Range(1, 10)]
+    public int minBuildingHeight;
+    [Range(1, 10)]
+    public int maxBuildingHeight;
+
+    [Range(1, 6)]
+    public int minBuildingWidth;
+    [Range(1, 6)]
+    public int maxBuildingWidth;
+
+    [Range(1f, 10f)]
+    public float buildingHeightScaleMultiplier;
+    [Range(1f, 6f)]
+    public float buildingWidthScaleMultiplier;
+    public AnimationCurve heightCenterCurve;
+    public AnimationCurve widthCenterCurve;
+
+
+
 
     [HideInInspector]
     public List<Vector2> positionsInZone;
