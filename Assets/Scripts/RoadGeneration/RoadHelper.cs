@@ -174,15 +174,15 @@ public class RoadHelper : MonoBehaviour
                     && gridMatrix[pos.x,pos.z].Zone.Equals(zone))
                 {
                     connectorRoadEnd = pos;
-                    GameObject temp = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Capsule));
-                    temp.transform.position = pos;
+                    //GameObject temp = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Capsule));
+                    //temp.transform.position = pos;
 
                 }
                 else
                 {
-                    GameObject temp = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Sphere));
-                    temp.transform.position = pos;
-                    temp.name = "Sphere " + counter;
+                    //GameObject temp = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Sphere));
+                    //temp.transform.position = pos;
+                    //temp.name = "Sphere " + counter;
                 }
 
             }

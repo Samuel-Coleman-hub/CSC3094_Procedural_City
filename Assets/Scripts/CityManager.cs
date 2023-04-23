@@ -44,16 +44,17 @@ public class CityManager : MonoBehaviour
 
     private void Start()
     {
+        //StartCoroutine(TestStart());
         GenerateGrid();
 
-        for(int i = 0; i < zones.Count; i++)
+        for (int i = 0; i < zones.Count; i++)
         {
             if (zones[i].generateRoadsForZone)
             {
                 zones[i].roadEndToCenter = visualizer.StartRoadGeneration(zones[i].zoneCenter, zones[i]);
             }
         }
-        if(zones.Count > 1)
+        if (zones.Count > 1)
         {
             visualizer.ConnectZones(zones);
         }
@@ -97,6 +98,36 @@ public class CityManager : MonoBehaviour
     public void SetRandom()
     {
         randomPercentage = randomSlider.value;
+    }
+
+    private IEnumerator TestStart()
+    {
+        GenerateGrid();
+
+        yield return new WaitForSeconds(0.5f);
+
+        for (int i = 0; i < zones.Count; i++)
+        {
+            if (zones[i].generateRoadsForZone)
+            {
+                zones[i].roadEndToCenter = visualizer.StartRoadGeneration(zones[i].zoneCenter, zones[i]);
+            }
+        }
+        if (zones.Count > 1)
+        {
+            visualizer.ConnectZones(zones);
+        }
+
+        visualizer.roadHelper.transform.position = new Vector3(visualizer.roadHelper.transform.position.x,
+            gridCenter.y - 0.15f, visualizer.roadHelper.transform.position.z);
+
+        yield return new WaitForSeconds(0.5f);
+
+        buildingGenerator.GenerateBuildings(materials, buildingPrefab, 5, gridMatrix);
+
+        yield return new WaitForSeconds(0.5f);
+
+        gridSpawner.SpawnMiscallenous();
     }
 }
 
