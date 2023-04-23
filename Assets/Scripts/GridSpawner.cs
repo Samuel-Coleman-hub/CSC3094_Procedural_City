@@ -44,13 +44,13 @@ public class GridSpawner : MonoBehaviour
                 int closestCentroidIndex = GetClosestCentroidIndex(new Vector2Int(i, j), centroids);
 
                 //Shows Voronoi on grid
-                //gridMatrix[i, j].Object.GetComponent<MeshRenderer>().material.color = colourRegions[closestCentroidIndex];
+                gridMatrix[i, j].Object.GetComponent<MeshRenderer>().material.color = colourRegions[closestCentroidIndex];
 
                 //Maybe change this so that it works with any number of zones. Hello past me thank you i did
                 gridMatrix[i, j].Zone = cityZones[closestCentroidIndex];
                 cityZones[closestCentroidIndex].positionsInZone.Add(new Vector2(i,j));
                 //For debugging
-                //temp.GetComponentInChildren<TextMeshProUGUI>().text = "Row " + i + " , Column " + j + " " + gridMatrix[i,j].Zone; 
+                temp.GetComponentInChildren<TextMeshProUGUI>().text = "Row " + i + " , Column " + j + " " + gridMatrix[i,j].Zone; 
             }
         }
 

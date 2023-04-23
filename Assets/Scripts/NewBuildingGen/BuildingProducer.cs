@@ -39,6 +39,8 @@ public class BuildingProducer : MonoBehaviour
 
         for (int i = 0; i < buildingWidth; i++)
         {
+            //They are spawning on top of each other
+
             Vector3 tilePos = new Vector3(tiles[i].GetX(), 0f, tiles[i].GetY());
 
             GameObject storyEmpty = new GameObject();

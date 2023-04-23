@@ -277,7 +277,7 @@ public class RoadHelper : MonoBehaviour
     private void CreatePavement(int x, int z, bool changeX, bool isIncrease, NearRoadDirection direction)
     {
 
-        gridMatrix[x, z].Material = cityManager.pavementMaterial;
+        //gridMatrix[x, z].Material = cityManager.pavementMaterial;
         gridMatrix[x, z].TileType = TileType.Pavement;
 
         if(changeX && x + 1 < cityManager.x && x - 1 > 0)

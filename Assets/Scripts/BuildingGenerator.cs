@@ -49,22 +49,28 @@ public class BuildingGenerator : MonoBehaviour
 
                     //int gridLength = gridMatrix.GetLength(0) > gridMatrix.GetLength(1) ? gridMatrix.GetLength(0) : gridMatrix.GetLength(1);
                     //float centerScorePercentage = (float)(gridMatrix[i, j].CenterScore / gridLength);
+                    
+                    double centerScore = Math.Floor(Math.Sqrt(Math.Pow(((gridMatrix[i, j].Zone.zoneCenter.x)-i), 2) 
+                        + Math.Pow((gridMatrix[i, j].Zone.zoneCenter.z-j), 2)));
+                    float centerScorePercentage = (float)(distToCenter / Math.Sqrt(gridMatrix[i,j].Zone.positionsInZone.Count));
+                    centerScorePercentage *= 2;
 
-                    //double centerScore = Math.Floor(Math.Sqrt(Math.Pow(((x/2)-i), 2) + Math.Pow(((z/2)-j), 2)));
-                    
-                    
+
+
                     float heightScaleMultiplier = zone.buildingHeightScaleMultiplier;
-                    int buildingHeight = (int)Mathf.Clamp(zone.heightCenterCurve.Evaluate(distToCenter*100) * UnityEngine.Random.value *
+                    int buildingHeight = (int)Mathf.Clamp(zone.heightCenterCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value *
                         heightScaleMultiplier, zone.minBuildingHeight, zone.maxBuildingHeight);
 
                     float widthScaleMultiplier = zone.buildingWidthScaleMultiplier;
-                    int buildingWidth = (int)Mathf.Clamp(zone.widthCenterCurve.Evaluate(distToCenter* 100) * UnityEngine.Random.value *
+                    int buildingWidth = (int)Mathf.Clamp(zone.widthCenterCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value *
                         widthScaleMultiplier, Mathf.Clamp(zone.minBuildingWidth, 0f, emptyNeighbours.Count), Mathf.Clamp(zone.maxBuildingWidth, 1f, emptyNeighbours.Count));
 
                     Debug.Log("height " + i + ", " + j + ": " + buildingHeight);
                     Debug.Log("width " + i + ", " + j + ": " + buildingWidth);
                     Debug.Log("center distance " + i + ", " + j + ": " + distToCenter);
-                    Debug.Log("center score " + i + ", " + j + ": " + zone.heightCenterCurve.Evaluate(distToCenter *100));
+                    Debug.Log("center score " + i + ", " + j + ": " + centerScore);
+                    Debug.Log("center percentage " + i + ", " + j + ": " + centerScorePercentage + " where tiles in zone are " + zone.positionsInZone.Count);
+                    Debug.Log("Evaluating center percentage on curve " + gridMatrix[i, j].Zone.heightCenterCurve.Evaluate(centerScorePercentage));
 
 
                     producer.Build(emptyNeighbours, gridMatrix[i,j].NearRoadDirection, buildingWidth, buildingHeight);

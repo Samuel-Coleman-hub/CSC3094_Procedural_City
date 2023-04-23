@@ -361,7 +361,7 @@ MonoBehaviour:
     minBuildingWidth: 1
     maxBuildingWidth: 4
     buildingHeightScaleMultiplier: 10
-    buildingWidthScaleMultiplier: 5.54
+    buildingWidthScaleMultiplier: 6
     heightCenterCurve:
       serializedVersion: 2
       m_Curve:
@@ -428,7 +428,7 @@ MonoBehaviour:
     minBuildingWidth: 1
     maxBuildingWidth: 4
     buildingHeightScaleMultiplier: 10
-    buildingWidthScaleMultiplier: 5.54
+    buildingWidthScaleMultiplier: 6
     heightCenterCurve:
       serializedVersion: 2
       m_Curve:
@@ -494,8 +494,8 @@ MonoBehaviour:
     maxBuildingHeight: 3
     minBuildingWidth: 1
     maxBuildingWidth: 4
-    buildingHeightScaleMultiplier: 1
-    buildingWidthScaleMultiplier: 4.75
+    buildingHeightScaleMultiplier: 5.54
+    buildingWidthScaleMultiplier: 6
     heightCenterCurve:
       serializedVersion: 2
       m_Curve:
@@ -525,10 +525,10 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
-        tangentMode: 0
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
         value: 1
         inSlope: 0
         outSlope: 0
-        tangentMode: 0
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0
@@ -561,8 +561,8 @@ MonoBehaviour:
     maxBuildingHeight: 3
     minBuildingWidth: 1
     maxBuildingWidth: 4
-    buildingHeightScaleMultiplier: 1
-    buildingWidthScaleMultiplier: 4.75
+    buildingHeightScaleMultiplier: 5.05
+    buildingWidthScaleMultiplier: 6
     heightCenterCurve:
       serializedVersion: 2
       m_Curve:
@@ -592,10 +592,10 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
-        tangentMode: 0
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0
@@ -604,7 +604,7 @@ MonoBehaviour:
         value: 1
         inSlope: 0
         outSlope: 0
-        tangentMode: 0
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0
@@ -2649,7 +2649,7 @@ MonoBehaviour:
   - {fileID: 1149578706638218864, guid: c1d71baa38709ab4c9c1d49d8944b12d, type: 3}
   - {fileID: 8543480918034273082, guid: f7df29f62f7eefb48bca57698ee4e082, type: 3}
   topUnits:
-  - {fileID: 363113117881865047, guid: 4e663c58b7ac0de4bab824b05dc25c00, type: 3}
+  - {fileID: 422679120768742747, guid: b5d5119e1a014914bbbaabf20cc1581f, type: 3}
 --- !u!1 &1035148753
 GameObject:
   m_ObjectHideFlags: 0
