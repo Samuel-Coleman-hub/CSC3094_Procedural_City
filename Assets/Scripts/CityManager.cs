@@ -124,13 +124,15 @@ public class CityZone
     public int minBuildingWidth;
     [Range(1, 6)]
     public int maxBuildingWidth;
-
     [Range(1f, 10f)]
     public float buildingHeightScaleMultiplier;
     [Range(1f, 6f)]
     public float buildingWidthScaleMultiplier;
     public AnimationCurve heightCenterCurve;
     public AnimationCurve widthCenterCurve;
+
+    public List<Material> buildingMainColourMaterials;
+
 
 
 

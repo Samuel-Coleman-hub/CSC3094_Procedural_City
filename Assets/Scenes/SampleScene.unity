@@ -410,6 +410,9 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    buildingMainColourMaterials:
+    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
+    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
@@ -477,6 +480,9 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    buildingMainColourMaterials:
+    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
+    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
@@ -544,6 +550,9 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    buildingMainColourMaterials:
+    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
+    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
@@ -611,6 +620,9 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    buildingMainColourMaterials:
+    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
+    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
@@ -678,6 +690,9 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    buildingMainColourMaterials:
+    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
+    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
@@ -745,6 +760,9 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    buildingMainColourMaterials:
+    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
+    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}

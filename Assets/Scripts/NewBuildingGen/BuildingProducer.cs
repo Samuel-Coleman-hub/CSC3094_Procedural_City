@@ -19,6 +19,9 @@ public class BuildingProducer : MonoBehaviour
         GameObject buildingEmpty = new GameObject();
         buildingEmpty.name = "Building";
 
+        Material buildingMat = tiles[0].Zone.buildingMainColourMaterials[Random.Range(0, 
+            tiles[0].Zone.buildingMainColourMaterials.Count)];
+
         switch (roadDirection)
         {
             case NearRoadDirection.North:
@@ -53,12 +56,12 @@ public class BuildingProducer : MonoBehaviour
             //Defines height to ensure we place object above the previous one
             //Change this to be variable start height
             float heighOffset = startHeightOffset;
-            heighOffset += SpawnPieceLayer(baseUnits, heighOffset, tilePos, storyEmpty.transform);
+            heighOffset += SpawnPieceLayer(baseUnits, heighOffset, tilePos, storyEmpty.transform, buildingMat);
 
             //Loop through and spawn middle part pieces
             for (int j = 0; j < buildingHeight; j++)
             {
-                heighOffset += SpawnPieceLayer(middleUnits, heighOffset, tilePos, storyEmpty.transform);
+                heighOffset += SpawnPieceLayer(middleUnits, heighOffset, tilePos, storyEmpty.transform, buildingMat);
             }
 
             SpawnPieceLayer(topUnits, heighOffset, tilePos ,storyEmpty.transform);
@@ -67,7 +70,7 @@ public class BuildingProducer : MonoBehaviour
     }
 
     //Gets the height that our last unit was at 
-    private float SpawnPieceLayer(GameObject[] unitsArray, float inputHeight, Vector3 pos, Transform storyEmpty)
+    private float SpawnPieceLayer(GameObject[] unitsArray, float inputHeight, Vector3 pos, Transform storyEmpty, Material buildingMat = default)
     {
         //Picks a random object from the appropriate unit array to place next
         Transform randomTransform = unitsArray[Random.Range(0, unitsArray.Length)].transform;
@@ -78,6 +81,15 @@ public class BuildingProducer : MonoBehaviour
         float heightOffset = collider.bounds.size.y;
 
         clone.transform.SetParent(storyEmpty.transform);
+
+        if(buildingMat != default)
+        {
+            Renderer cloneRenderer = clone.GetComponent<Renderer>();
+            Material[] materials = cloneRenderer.materials;
+            materials[0] = buildingMat;
+            cloneRenderer.materials = materials;
+        }
+        
 
         return heightOffset;
     }
