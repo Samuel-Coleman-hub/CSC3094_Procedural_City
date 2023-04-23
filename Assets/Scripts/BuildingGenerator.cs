@@ -73,6 +73,7 @@ public class BuildingGenerator : MonoBehaviour
                     Debug.Log("Evaluating center percentage on curve " + gridMatrix[i, j].Zone.heightCenterCurve.Evaluate(centerScorePercentage));
 
 
+                    producer = GetComponent<BuildingProducer>();
                     producer.Build(emptyNeighbours, gridMatrix[i,j].NearRoadDirection, buildingWidth, buildingHeight);
 
                 }

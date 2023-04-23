@@ -338,7 +338,7 @@ MonoBehaviour:
   buildingGenerator: {fileID: 985850044}
   buildingPrefab: {fileID: 5369354472377203406, guid: fba4ca020bc21824484cf5efb2431293, type: 3}
   CityCentreRadius: 60
-  chanceOfBuilding: 1
+  chanceOfBuilding: 5
   materials:
   - {fileID: 2100000, guid: 41954af32c8c9bb4aa79bd19180453a4, type: 2}
   - {fileID: 2100000, guid: 87a061207492238489fda1e5654d9ea8, type: 2}
@@ -413,6 +413,19 @@ MonoBehaviour:
     buildingMainColourMaterials:
     - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
     - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
+    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
+    placeTrees: 1
+    treeDensity: 10
+    treePrefabs:
+    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
+    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
+    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
+    placeLampPosts: 1
+    lampPostDensity: 2.16
+    lampPostPrefabs:
+    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
+    miscObjects: []
+    miscDensity: []
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
@@ -483,6 +496,19 @@ MonoBehaviour:
     buildingMainColourMaterials:
     - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
     - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
+    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
+    placeTrees: 1
+    treeDensity: 10
+    treePrefabs:
+    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
+    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
+    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
+    placeLampPosts: 1
+    lampPostDensity: 2.06
+    lampPostPrefabs:
+    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
+    miscObjects: []
+    miscDensity: []
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
@@ -553,6 +579,19 @@ MonoBehaviour:
     buildingMainColourMaterials:
     - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
     - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
+    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
+    placeTrees: 1
+    treeDensity: 5.69
+    treePrefabs:
+    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
+    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
+    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
+    placeLampPosts: 1
+    lampPostDensity: 4.95
+    lampPostPrefabs:
+    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
+    miscObjects: []
+    miscDensity: []
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
@@ -623,6 +662,19 @@ MonoBehaviour:
     buildingMainColourMaterials:
     - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
     - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
+    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
+    placeTrees: 1
+    treeDensity: 5.78
+    treePrefabs:
+    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
+    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
+    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
+    placeLampPosts: 1
+    lampPostDensity: 5
+    lampPostPrefabs:
+    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
+    miscObjects: []
+    miscDensity: []
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
@@ -693,6 +745,21 @@ MonoBehaviour:
     buildingMainColourMaterials:
     - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
     - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
+    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
+    placeTrees: 1
+    treeDensity: 2.99
+    treePrefabs:
+    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
+    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
+    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
+    placeLampPosts: 1
+    lampPostDensity: 10
+    lampPostPrefabs:
+    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
+    miscObjects:
+    - {fileID: 8583840984611027160, guid: 5159319dbfa6ab24ebcc95dc60af2806, type: 3}
+    miscDensity:
+    - 30
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
@@ -763,6 +830,21 @@ MonoBehaviour:
     buildingMainColourMaterials:
     - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
     - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
+    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
+    placeTrees: 1
+    treeDensity: 2
+    treePrefabs:
+    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
+    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
+    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
+    placeLampPosts: 1
+    lampPostDensity: 9.8
+    lampPostPrefabs:
+    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
+    miscObjects:
+    - {fileID: 8583840984611027160, guid: 5159319dbfa6ab24ebcc95dc60af2806, type: 3}
+    miscDensity:
+    - 30
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
@@ -2465,7 +2547,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.379
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

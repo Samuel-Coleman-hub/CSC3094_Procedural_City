@@ -60,6 +60,10 @@ public class CityManager : MonoBehaviour
 
         visualizer.roadHelper.transform.position = new Vector3(visualizer.roadHelper.transform.position.x,
             gridCenter.y - 0.15f, visualizer.roadHelper.transform.position.z);
+
+        buildingGenerator.GenerateBuildings(materials, buildingPrefab, randomPercentage, gridMatrix);
+
+        gridSpawner.SpawnMiscallenous();
     }
 
     //private IEnumerator GenerateZoneRoad(CityZone zone)
@@ -133,9 +137,24 @@ public class CityZone
 
     public List<Material> buildingMainColourMaterials;
 
+    [Header("Tree Settings")]
+    public bool placeTrees;
+    [Range(1, 10)]
+    public float treeDensity;
+    public List<GameObject> treePrefabs;
 
+    [Header("Lamp Post Settings")]
+    public bool placeLampPosts;
+    [Range(1, 10)]
+    public float lampPostDensity;
+    public List<GameObject> lampPostPrefabs;
 
-
+    //GameObject is the prefab int is the multipliers
+    [Tooltip("The Prefabs of misc objects")]
+    public List<GameObject> miscObjects;
+    [Tooltip("The density of the previous objects")]
+    [Range(1, 30)]
+    public List<float> miscDensity;
 
     [HideInInspector]
     public List<Vector2> positionsInZone;

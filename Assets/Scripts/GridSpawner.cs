@@ -44,13 +44,13 @@ public class GridSpawner : MonoBehaviour
                 int closestCentroidIndex = GetClosestCentroidIndex(new Vector2Int(i, j), centroids);
 
                 //Shows Voronoi on grid
-                gridMatrix[i, j].Object.GetComponent<MeshRenderer>().material.color = colourRegions[closestCentroidIndex];
+                //gridMatrix[i, j].Object.GetComponent<MeshRenderer>().material.color = colourRegions[closestCentroidIndex];
 
                 //Maybe change this so that it works with any number of zones. Hello past me thank you i did
                 gridMatrix[i, j].Zone = cityZones[closestCentroidIndex];
                 cityZones[closestCentroidIndex].positionsInZone.Add(new Vector2(i,j));
                 //For debugging
-                temp.GetComponentInChildren<TextMeshProUGUI>().text = "Row " + i + " , Column " + j + " " + gridMatrix[i,j].Zone; 
+                //temp.GetComponentInChildren<TextMeshProUGUI>().text = "Row " + i + " , Column " + j + " " + gridMatrix[i,j].Zone; 
             }
         }
 
@@ -145,4 +145,52 @@ public class GridSpawner : MonoBehaviour
     }
 
 
+    //Should this be in its own class
+    public void SpawnMiscallenous()
+    {
+        for (int i = 0; i < x; i++)
+        {
+            for (int j = 0; j < z; j++)
+            {
+                CityZone zone = gridMatrix[i, j].Zone;
+                //Need a better system for weighted randoms probably own class
+                if (zone.placeTrees && gridMatrix[i, j].TileType.Equals(TileType.Empty) && Random.value * zone.treeDensity < 0.5f && zone.treePrefabs.Count != 0)
+                {
+                    int randomIndex = Random.Range(0, zone.treePrefabs.Count);
+                    GameObject tree = GameObject.Instantiate(zone.treePrefabs[randomIndex]);
+                    tree.transform.position = new Vector3(gridMatrix[i,j].GetX(), 0, gridMatrix[i,j].GetY());
+                    gridMatrix[i, j].TileType = TileType.Misc;
+                }
+
+                if (zone.placeLampPosts && gridMatrix[i, j].TileType.Equals(TileType.Pavement) && Random.value * zone.lampPostDensity < 0.5f && zone.lampPostPrefabs.Count != 0)
+                {
+                    int randomIndex = Random.Range(0, zone.lampPostPrefabs.Count);
+                    GameObject lampPost = GameObject.Instantiate(zone.lampPostPrefabs[randomIndex]);
+                    lampPost.transform.position = new Vector3(gridMatrix[i, j].GetX(), 0, gridMatrix[i, j].GetY());
+                }
+
+                List<GameObject> miscList = gridMatrix[i, j].Zone.miscObjects;
+                List<float> miscDensity = gridMatrix[i,j].Zone.miscDensity;
+
+                if(miscList.Count > 0 && miscList.Count == miscDensity.Count)
+                {
+                    for (int k = 0; k < miscList.Count; k++)
+                    {
+                        Debug.Log("at point " + k + " in misc list");
+                        if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && Random.value * miscDensity[k] < 0.5f)
+                        {
+                            GameObject miscObject = GameObject.Instantiate(miscList[k]);
+                            miscObject.transform.position = new Vector3(gridMatrix[i, j].GetX(), 0, gridMatrix[i, j].GetY());
+                            gridMatrix[i, j].TileType = TileType.Misc;
+                        }
+                        else if (gridMatrix[i,j].TileType != TileType.Empty)
+                        {
+                            break;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
 }

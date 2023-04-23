@@ -9,6 +9,7 @@ public enum TileType
     Grass,
     Road,
     Pavement,
+    Misc,
     Empty
 }
 
