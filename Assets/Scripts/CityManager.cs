@@ -62,7 +62,8 @@ public class CityManager : MonoBehaviour
         visualizer.roadHelper.transform.position = new Vector3(visualizer.roadHelper.transform.position.x,
             gridCenter.y - 0.15f, visualizer.roadHelper.transform.position.z);
 
-        buildingGenerator.GenerateBuildings(materials, buildingPrefab, randomPercentage, gridMatrix);
+        //Change the random percentage parameter to a variable
+        buildingGenerator.GenerateBuildings(materials, buildingPrefab, 5, gridMatrix);
 
         gridSpawner.SpawnMiscallenous();
     }
