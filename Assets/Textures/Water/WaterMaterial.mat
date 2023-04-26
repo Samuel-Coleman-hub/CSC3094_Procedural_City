@@ -44,8 +44,8 @@ Material:
     m_Floats:
     - _Depth: 3
     - _Depth_Fade: 0.03
-    - _Foam: 0.49
-    - _Foam_Scale: 4.35
+    - _Foam: 1
+    - _Foam_Scale: 3.23
     - _Lerp: 0.683
     - _Normal_Strength: 0.4
     - _QueueControl: 0
@@ -54,12 +54,12 @@ Material:
     - _Refraction: 0.04
     - _Smoothness: 0.903
     - _Water_Lerp: 0.529
-    - _Wave: 0.0000005
+    - _Wave: 0.005
     m_Colors:
     - _Albedo: {r: 1, g: 1, b: 1, a: 0}
     - _Foam_Colour: {r: 1, g: 1, b: 1, a: 0}
-    - _UV1: {r: 50, g: 50, b: -100.6, a: -0.1}
-    - _UV2: {r: 60, g: 60, b: 0, a: 0}
+    - _UV1: {r: 30, g: 30, b: -100.6, a: -0.1}
+    - _UV2: {r: 40, g: 40, b: 0, a: 0}
     - _Water_Speed_1: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _Water_Speed_2: {r: -0.1, g: 0.1, b: 0, a: 0}
   m_BuildTextureStacks: []
