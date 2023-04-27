@@ -16,10 +16,8 @@ public class GridSpawner : MonoBehaviour
     private GameObject gridTilePrefab;
     private GridTile[,] gridMatrix;
 
-    private Vector2Int[] centroids;
-    private Color[] colourRegions;
-
     private List<CityZone> cityZones = new List<CityZone>();
+    private VoronoiDiagram voronoi;
 
     private CityManager cityManager;
 
@@ -29,7 +27,9 @@ public class GridSpawner : MonoBehaviour
 
         gridMatrix = new GridTile[x, z];
 
-        StartVoroni();
+        voronoi = new VoronoiDiagram();
+        voronoi.GenerateVoronoi(cityZones.Count, x, z);
+
         Color[] pixelColors = new Color[x * z];
 
         for (int i = 0; i < x; i++)
@@ -40,16 +40,13 @@ public class GridSpawner : MonoBehaviour
                 GameObject temp = Instantiate(gridTilePrefab, spawnPos, Quaternion.identity, transform);
                 gridMatrix[i, j] = new GridTile(temp, i, j, TileType.Empty);
 
-                //For Voronoi Colours
-                int closestCentroidIndex = GetClosestCentroidIndex(new Vector2Int(i, j), centroids);
+                int closestCentroidIndex = voronoi.GetClosestCentroidIndex(new Vector2Int(i, j));
 
-                //Shows Voronoi on grid
-                //gridMatrix[i, j].Object.GetComponent<MeshRenderer>().material.color = colourRegions[closestCentroidIndex];
-
-                //Maybe change this so that it works with any number of zones. Hello past me thank you i did
                 gridMatrix[i, j].Zone = cityZones[closestCentroidIndex];
                 cityZones[closestCentroidIndex].positionsInZone.Add(new Vector2(i,j));
+
                 //For debugging
+                gridMatrix[i, j].Object.GetComponent<MeshRenderer>().material.color = voronoi.colourRegions[closestCentroidIndex];
                 //temp.GetComponentInChildren<TextMeshProUGUI>().text = "Row " + i + " , Column " + j + " " + gridMatrix[i,j].Zone; 
             }
         }
@@ -85,32 +82,6 @@ public class GridSpawner : MonoBehaviour
         gridMatrix = null;
 
         return SpawnGrid();
-    }
-
-    private void StartVoroni()
-    {
-        centroids = new Vector2Int[cityZones.Count];
-        colourRegions = new Color[cityZones.Count];
-        for (int i = 0; i < cityZones.Count; i++)
-        {
-            centroids[i] = new Vector2Int(Random.Range(0, x), Random.Range(0, z));
-            colourRegions[i] = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
-        }
-    }
-
-    private int GetClosestCentroidIndex(Vector2Int pixelPos, Vector2Int[] centroids)
-    {
-        float closestDst = float.MaxValue;
-        int index = 0;
-        for (int i = 0; i < centroids.Length; i++)
-        {
-            if (Vector2.Distance(pixelPos, centroids[i]) < closestDst)
-            {
-                closestDst = Vector2.Distance(pixelPos, centroids[i]);
-                index = i;
-            }
-        }
-        return index;
     }
 
     private void FindZoneCenters()
