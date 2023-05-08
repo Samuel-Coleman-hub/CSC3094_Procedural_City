@@ -37,7 +37,7 @@ public class RoadVisualizer : MonoBehaviour
         set => length = value;
     }
 
-    public Vector3 StartRoadGeneration(Vector3 startPos, CityZone zone)
+    public Vector3 GenerateRoad(Vector3 startPos, CityZone zone)
     {
         this.length = zone.roadLength;
         this.zone = zone;
@@ -146,7 +146,7 @@ public class RoadVisualizer : MonoBehaviour
             //Pick a position from the main road
             //foreach (GridTile tile in mainRoad)
             //{
-            //    Vector3 tilePos = new Vector3(tile.GetX(), 0f, tile.GetY());
+            //    Vector3 tilePos = new Vector3(tile.GetX(), 0f, tile.GetZ());
             //    if (Vector3.Distance(tilePos, zones[i].roadEndToCenter) < Vector3.Distance(closestTile, zones[i].roadEndToCenter))
             //    {
             //        closestTile = tilePos;
@@ -174,10 +174,10 @@ public class RoadVisualizer : MonoBehaviour
             }
             else
             {
-                previous = new Vector3(mainRoad[i-1].GetX(), 0f, mainRoad[i-1].GetY());
+                previous = new Vector3(mainRoad[i-1].GetX(), 0f, mainRoad[i-1].GetZ());
             }
 
-            Vector3 current = new Vector3(mainRoad[i].GetX(), 0f, mainRoad[i].GetY());
+            Vector3 current = new Vector3(mainRoad[i].GetX(), 0f, mainRoad[i].GetZ());
 
             var head = previous - current;
             var dist = head.magnitude;
@@ -188,7 +188,7 @@ public class RoadVisualizer : MonoBehaviour
         List<Vector3> roadPos = new List<Vector3>();
         foreach (GridTile tile in mainRoad)
         { 
-            roadPos.Add(new Vector3(tile.GetX(), 0f, tile.GetY()));
+            roadPos.Add(new Vector3(tile.GetX(), 0f, tile.GetZ()));
         }
 
         roadHelper.FixRoad(zone);

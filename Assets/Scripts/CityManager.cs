@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.XR;
 
 public class CityManager : MonoBehaviour
 {
+    public bool test = false;
     [Header("UI Settings")]
     [SerializeField] public Slider xSlider;
     [SerializeField] public Slider zSlider;
@@ -20,13 +22,14 @@ public class CityManager : MonoBehaviour
     [SerializeField] public GameObject gridTilePrefab;
     [SerializeField] public Vector3 gridCenter;
 
-    [Header("Building Settings")]
+    //[Header("Building Settings")]
     [SerializeField] public BuildingGenerator buildingGenerator;
-    [SerializeField] public GameObject buildingPrefab;
-    [SerializeField] private int CityCentreRadius;
-    [SerializeField] private int chanceOfBuilding;
-    [SerializeField] List<Material> materials = new List<Material>();
-    private float randomPercentage = 0.5f;
+    //[SerializeField] public GameObject buildingPrefab;
+    
+    //[SerializeField] private int CityCentreRadius;
+    //[SerializeField] private int chanceOfBuilding;
+    //[SerializeField] List<Material> materials = new List<Material>();
+    //private float randomPercentage = 0.5f;
 
     [Header("Road Settings")]
     [SerializeField] public RoadVisualizer visualizer;
@@ -40,9 +43,77 @@ public class CityManager : MonoBehaviour
 
     [HideInInspector]
     public Vector3 centerOfZones;
-    
 
     private void Start()
+    {
+        if (test)
+        {
+            TestStart();
+        }
+        else
+        {
+            NormalStart();
+        }
+    }
+
+    private void TestStart()
+    {
+        GenerateGrid();
+        //for (int i = 0; i < zones.Count; i++)
+        //{
+        //    if (zones[i].generateRoadsForZone)
+        //    {
+        //        zones[i].roadEndToCenter = visualizer.GenerateRoad(zones[i].zoneCenter, zones[i]);
+        //    }
+        //}
+        //if (zones.Count > 1)
+        //{
+        //    visualizer.ConnectZones(zones);
+        //}
+
+
+
+        //visualizer.roadHelper.transform.position = new Vector3(visualizer.roadHelper.transform.position.x,
+        //    gridCenter.y - 0.15f, visualizer.roadHelper.transform.position.z);
+
+        System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+
+        List<GridTile> tiles = new List<GridTile>();
+        tiles.Add(gridMatrix[0, 0]);
+        tiles.Add(gridMatrix[0, 1]);
+        tiles.Add(gridMatrix[1,0]);
+        tiles.Add(gridMatrix[1, 1]);
+        tiles.Add(gridMatrix[1, 2]);
+        tiles.Add(gridMatrix[2, 1]);
+        tiles.Add(gridMatrix[2, 2]);
+        tiles.Add(gridMatrix[0, 2]);
+        tiles.Add(gridMatrix[2, 0]);
+        tiles.Add(gridMatrix[3, 0]);
+        tiles.Add(gridMatrix[3, 1]);
+        tiles.Add(gridMatrix[3, 2]);
+        tiles.Add(gridMatrix[3, 3]);
+        tiles.Add(gridMatrix[4, 3]);
+        tiles.Add(gridMatrix[3, 4]);
+        tiles.Add(gridMatrix[4, 4]);
+        tiles.Add(gridMatrix[5, 3]);
+        tiles.Add(gridMatrix[3, 5]);
+        tiles.Add(gridMatrix[4, 5]);
+        tiles.Add(gridMatrix[5, 4]);
+        tiles.Add(gridMatrix[6, 5]);
+        tiles.Add(gridMatrix[5, 5]);
+        BuildingProducer producer = buildingGenerator.GetComponent<BuildingProducer>();
+
+
+        stopwatch.Start();
+
+        producer.Build(tiles, NearRoadDirection.South, 20, 1);
+
+        stopwatch.Stop();
+        TimeSpan timeSpan = stopwatch.Elapsed;
+        Debug.Log(timeSpan.ToString(@"m\:ss\.ffff"));
+    }
+
+    private void NormalStart()
     {
         //StartCoroutine(TestStart());
         GenerateGrid();
@@ -51,7 +122,7 @@ public class CityManager : MonoBehaviour
         {
             if (zones[i].generateRoadsForZone)
             {
-                zones[i].roadEndToCenter = visualizer.StartRoadGeneration(zones[i].zoneCenter, zones[i]);
+                zones[i].roadEndToCenter = visualizer.GenerateRoad(zones[i].zoneCenter, zones[i]);
             }
         }
         if (zones.Count > 1)
@@ -62,20 +133,14 @@ public class CityManager : MonoBehaviour
         visualizer.roadHelper.transform.position = new Vector3(visualizer.roadHelper.transform.position.x,
             gridCenter.y - 0.15f, visualizer.roadHelper.transform.position.z);
 
-        buildingGenerator.GenerateBuildings(materials, buildingPrefab, randomPercentage, gridMatrix);
+        buildingGenerator.GenerateBuildings(100, gridMatrix);
 
-        gridSpawner.SpawnMiscallenous();
+        gridSpawner.SpawnMiscellaneous();
     }
-
-    //private IEnumerator GenerateZoneRoad(CityZone zone)
-    //{
-    //    zone.roadEndToCenter = visualizer.StartRoadGeneration(zone.zoneCenter, zone);
-    //    yield return null;
-    //}
 
     public void GenerateBuildings()
     {
-        buildingGenerator.GenerateBuildings(materials, buildingPrefab, randomPercentage, gridMatrix);
+        buildingGenerator.GenerateBuildings(50, gridMatrix);
     }
 
     public void GenerateGrid()
@@ -93,41 +158,6 @@ public class CityManager : MonoBehaviour
     public void SetY()
     {
         z = (int)zSlider.value;
-    }
-
-    public void SetRandom()
-    {
-        randomPercentage = randomSlider.value;
-    }
-
-    private IEnumerator TestStart()
-    {
-        GenerateGrid();
-
-        yield return new WaitForSeconds(0.5f);
-
-        for (int i = 0; i < zones.Count; i++)
-        {
-            if (zones[i].generateRoadsForZone)
-            {
-                zones[i].roadEndToCenter = visualizer.StartRoadGeneration(zones[i].zoneCenter, zones[i]);
-            }
-        }
-        if (zones.Count > 1)
-        {
-            visualizer.ConnectZones(zones);
-        }
-
-        visualizer.roadHelper.transform.position = new Vector3(visualizer.roadHelper.transform.position.x,
-            gridCenter.y - 0.15f, visualizer.roadHelper.transform.position.z);
-
-        yield return new WaitForSeconds(0.5f);
-
-        buildingGenerator.GenerateBuildings(materials, buildingPrefab, 5, gridMatrix);
-
-        yield return new WaitForSeconds(0.5f);
-
-        gridSpawner.SpawnMiscallenous();
     }
 }
 

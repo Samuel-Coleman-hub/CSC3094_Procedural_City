@@ -81,25 +81,25 @@ public class Pathfinding
         //Left
         if(currentTile.GetX() - 1 >= 0)
         {
-            neighbourList.Add(gridMatrix[currentTile.GetX() - 1, currentTile.GetY()]);
+            neighbourList.Add(gridMatrix[currentTile.GetX() - 1, currentTile.GetZ()]);
         }
 
         //Right
         if (currentTile.GetX() + 1 < width)
         {
-            neighbourList.Add(gridMatrix[currentTile.GetX() + 1, currentTile.GetY()]);
+            neighbourList.Add(gridMatrix[currentTile.GetX() + 1, currentTile.GetZ()]);
         }
 
         //Down
-        if (currentTile.GetY() - 1 >= 0)
+        if (currentTile.GetZ() - 1 >= 0)
         {
-            neighbourList.Add(gridMatrix[currentTile.GetX(), currentTile.GetY() - 1]);
+            neighbourList.Add(gridMatrix[currentTile.GetX(), currentTile.GetZ() - 1]);
         }
 
         //Up
-        if(currentTile.GetY() + 1 < height)
+        if(currentTile.GetZ() + 1 < height)
         {
-            neighbourList.Add(gridMatrix[currentTile.GetX(), currentTile.GetY() + 1]);
+            neighbourList.Add(gridMatrix[currentTile.GetX(), currentTile.GetZ() + 1]);
         }
 
         return neighbourList;
@@ -122,7 +122,7 @@ public class Pathfinding
     private int CalculateDistance(GridTile a, GridTile b)
     {
         int xDistance = Mathf.Abs(a.GetX() - b.GetX());
-        int yDistance = Mathf.Abs(a.GetY() - b.GetY());
+        int yDistance = Mathf.Abs(a.GetZ() - b.GetZ());
         int remaining = Mathf.Abs(xDistance - yDistance);
 
         return DIAGONAL_COST * Mathf.Min(xDistance, yDistance) + STRAIGHT_COST * remaining;

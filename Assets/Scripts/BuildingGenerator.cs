@@ -9,11 +9,9 @@ using UnityEngine;
 public class BuildingGenerator : MonoBehaviour
 {
     //Building generation variables
-    private List<Material> materials = new List<Material>();
-    private GameObject buildingPrefab = null;
-    private float randomPercentage;
+    private float buildingDensity;
     private GridTile[,] gridMatrix;
-    private BuildingProducer producer;
+    public BuildingProducer producer;
 
     private void Start()
     {
@@ -36,11 +34,11 @@ public class BuildingGenerator : MonoBehaviour
                 float distToCenter = Vector3.Distance(zone.zoneCenter, new Vector3(i, 0, j));
 
                 float placementChanceMultipler = zone.chanceOfBuildingPlacement;
-                if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && UnityEngine.Random.value * distToCenter <= randomPercentage * placementChanceMultipler
+                if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && UnityEngine.Random.value * distToCenter <= buildingDensity * placementChanceMultipler
                     && !gridMatrix[i,j].NearRoadDirection.Equals(NearRoadDirection.None))
                 {
                     List<GridTile> emptyNeighbours;
-                    emptyNeighbours = NumberOfEmptyNeighbours(i, j);
+                    emptyNeighbours = GetEmptyNeighbours(i, j);
 
 
                     //Material mat = materials[UnityEngine.Random.Range(0, materials.Count)];
@@ -81,28 +79,7 @@ public class BuildingGenerator : MonoBehaviour
         }
     }
 
-    private IEnumerator GenerateBuilding(float x, float z, float yScale, float xzScale, Material mat, int numTiles)
-    {
-        GameObject buildingObject = Instantiate(buildingPrefab, new Vector3(x, 1f,
-            z), Quaternion.identity) as GameObject;
-
-        yield return new WaitForSeconds(0f);
-
-        buildingObject.GetComponent<MeshRenderer>().material = mat;
-
-        ////Randomise scale of building
-        buildingObject.transform.position += Vector3.up * yScale / 2;
-        buildingObject.transform.localScale += Vector3.up * yScale;
-        Vector3 scale = buildingObject.transform.localScale;
-        //buildingObject.transform.localScale = new Vector3(scale.x * numTiles * 0.45f, scale.y, scale.z * numTiles * 0.45f);
-        buildingObject.transform.localScale = new Vector3(xzScale, scale.y, xzScale);
-        //buildingObject.transform.parent = gridMatrix[x, z].Object.transform;
-
-        //gridMatrix[x, z].ChildObject = buildingObject;
-        //gridMatrix[x, z].TileType = TileType.Building;
-    }
-
-    private List<GridTile> NumberOfEmptyNeighbours(int x, int z)
+    private List<GridTile> GetEmptyNeighbours(int x, int z)
     {
         int minX = Math.Max(x - 1, gridMatrix.GetLowerBound(0) + 1);
         int maxX = Math.Min(x + 1, gridMatrix.GetUpperBound(0) - 1);
@@ -145,26 +122,9 @@ public class BuildingGenerator : MonoBehaviour
         return emptyNeighbours;
     }
 
-    public Vector3 FindCentroid(List<GridTile> neighbouringTiles)
+    public void GenerateBuildings(float buildingDensity, GridTile[,] gridMatrix)
     {
-        Vector3 centroid = new Vector3(0,0,0);
-        int numPoints = neighbouringTiles.Count;
-
-        foreach(GridTile tile in neighbouringTiles) 
-        {
-            centroid += tile.Object.transform.position;
-        }
-
-        centroid /= numPoints;
-
-        return centroid;
-    }
-
-    public void GenerateBuildings(List<Material> materials, GameObject buildingPrefab, float randomPercentage, GridTile[,] gridMatrix)
-    {
-        this.materials = materials;
-        this.buildingPrefab = buildingPrefab;
-        this.randomPercentage = randomPercentage;
+        this.buildingDensity = buildingDensity;
         this.gridMatrix = gridMatrix;
         SpawnBuildings();
     }

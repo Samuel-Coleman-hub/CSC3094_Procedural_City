@@ -43,11 +43,11 @@ public class BuildingProducer : MonoBehaviour
         for (int i = 0; i < buildingWidth; i++)
         {
             //They are spawning on top of each other
-
-            Vector3 tilePos = new Vector3(tiles[i].GetX(), 0f, tiles[i].GetY());
+            tiles[i].ChildObject = buildingEmpty;
+            Vector3 tilePos = new Vector3(tiles[i].GetX(), 0f, tiles[i].GetZ());
 
             GameObject storyEmpty = new GameObject();
-            storyEmpty.name = "Story " + tiles[i].GetX() + ", " + tiles[i].GetY();
+            storyEmpty.name = "Story " + tiles[i].GetX() + ", " + tiles[i].GetZ();
             storyEmpty.transform.parent = buildingEmpty.transform;
 
             //Randomly decided how many modular units we are going to use
@@ -93,4 +93,6 @@ public class BuildingProducer : MonoBehaviour
 
         return heightOffset;
     }
+
+    
 }

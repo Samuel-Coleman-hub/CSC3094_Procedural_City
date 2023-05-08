@@ -123,73 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &55846743
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 55846745}
-  - component: {fileID: 55846744}
-  m_Layer: 0
-  m_Name: Building Producer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &55846744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 55846743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cc6ff7046b36fa47888afa57b5e096f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minUnits: 2
-  maxUnits: 20
-  startHeightOffset: 0
-  baseUnits:
-  - {fileID: 919132149155446097, guid: e9f804d2d84f2f344817ec72905812f8, type: 3}
-  - {fileID: 919132149155446097, guid: 6ae573f3348f12b4988ea0d1f0192c28, type: 3}
-  - {fileID: 919132149155446097, guid: d217029ecbfaff04dbcd2ef46f73ec30, type: 3}
-  - {fileID: 919132149155446097, guid: 8491703e3d440ee44b8a6b71546761e5, type: 3}
-  - {fileID: 919132149155446097, guid: 109d6d7796dfff349840b68a0d0f7b2b, type: 3}
-  - {fileID: 919132149155446097, guid: a1bc1bc034ae98749997db9fdb6e5c2b, type: 3}
-  middleUnits:
-  - {fileID: 919132149155446097, guid: bdbb76698718f074b98378ecf110c8e9, type: 3}
-  - {fileID: 919132149155446097, guid: d7cc5145772747c4da42683d79c5bef7, type: 3}
-  - {fileID: 919132149155446097, guid: a7c6828d7d3a79641bd2a5ba2c643a84, type: 3}
-  - {fileID: 919132149155446097, guid: 1a4ae9260e6a97f4fb35e8cdec9f3c20, type: 3}
-  - {fileID: 919132149155446097, guid: 70ab083fd78c1d340a223a58413f7904, type: 3}
-  - {fileID: 919132149155446097, guid: 0ade4b20220ec04478b79e60cab08f13, type: 3}
-  - {fileID: 919132149155446097, guid: f1bb9adfd7c43cf41b66eea340cb7ee4, type: 3}
-  - {fileID: 919132149155446097, guid: 99a6c568ce4967c42b340f9c9fe68955, type: 3}
-  topUnits:
-  - {fileID: 919132149155446097, guid: 93ac4a4d3e0e02b4ca491e0b51dd3340, type: 3}
-  - {fileID: 919132149155446097, guid: 9e1ac4f0ae2983a41842147fc37a9bde, type: 3}
-  - {fileID: 919132149155446097, guid: 93ac4a4d3e0e02b4ca491e0b51dd3340, type: 3}
---- !u!4 &55846745
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 55846743}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &110225875
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,75 +160,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &196432054
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2125999654}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-      propertyPath: m_Name
-      value: SeaPlane
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
 --- !u!1 &200823958
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b92b78e71dd74f4bb1c342270567b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  test: 0
   xSlider: {fileID: 396589625}
   zSlider: {fileID: 2099104997}
   randomSlider: {fileID: 942688059}
@@ -336,17 +201,10 @@ MonoBehaviour:
   gridTilePrefab: {fileID: 354321629346971810, guid: 54f224ca2e674884c957c69d97e02a12, type: 3}
   gridCenter: {x: 0, y: 0, z: 0}
   buildingGenerator: {fileID: 985850044}
-  buildingPrefab: {fileID: 5369354472377203406, guid: fba4ca020bc21824484cf5efb2431293, type: 3}
-  CityCentreRadius: 60
-  chanceOfBuilding: 5
-  materials:
-  - {fileID: 2100000, guid: 41954af32c8c9bb4aa79bd19180453a4, type: 2}
-  - {fileID: 2100000, guid: 87a061207492238489fda1e5654d9ea8, type: 2}
-  - {fileID: 2100000, guid: 18f752670189ed343ab231ff52ef9a50, type: 2}
   visualizer: {fileID: 336736540}
   pavementMaterial: {fileID: 2100000, guid: 61bcede6801a87744a7b1978f000f5e3, type: 2}
   zones:
-  - zoneName: Industrial
+  - zoneName: CBD offices and shops
     generateRoadsForZone: 1
     roadLength: 8
     rules:
@@ -356,6 +214,506 @@ MonoBehaviour:
     randomIgnoreRuleModifier: 1
     chanceToIgnoreRule: 0.3
     chanceOfBuildingPlacement: 3
+    minBuildingHeight: 4
+    maxBuildingHeight: 10
+    minBuildingWidth: 1
+    maxBuildingWidth: 4
+    buildingHeightScaleMultiplier: 10
+    buildingWidthScaleMultiplier: 6
+    heightCenterCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.0083351135
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.9916687
+        value: 0.002357483
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    widthCenterCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    buildingMainColourMaterials:
+    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
+    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
+    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
+    placeTrees: 1
+    treeDensity: 2.94
+    treePrefabs:
+    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
+    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
+    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
+    placeLampPosts: 1
+    lampPostDensity: 2.16
+    lampPostPrefabs:
+    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
+    miscObjects: []
+    miscDensity: []
+    positionsInZone: []
+    roadEndToCenter: {x: 0, y: 0, z: 0}
+    zoneCenter: {x: 0, y: 0, z: 0}
+  - zoneName: Inner city factories and tenements
+    generateRoadsForZone: 1
+    roadLength: 6
+    rules:
+    - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
+    axiom: '[F]--[F]'
+    iterationLimit: 2
+    randomIgnoreRuleModifier: 0
+    chanceToIgnoreRule: 0.3
+    chanceOfBuildingPlacement: 3
+    minBuildingHeight: 4
+    maxBuildingHeight: 10
+    minBuildingWidth: 1
+    maxBuildingWidth: 4
+    buildingHeightScaleMultiplier: 10
+    buildingWidthScaleMultiplier: 6
+    heightCenterCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.0083351135
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.9916687
+        value: 0.002357483
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    widthCenterCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    buildingMainColourMaterials:
+    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
+    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
+    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
+    placeTrees: 1
+    treeDensity: 2.7
+    treePrefabs:
+    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
+    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
+    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
+    placeLampPosts: 1
+    lampPostDensity: 8.63
+    lampPostPrefabs:
+    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
+    miscObjects: []
+    miscDensity: []
+    positionsInZone: []
+    roadEndToCenter: {x: 0, y: 0, z: 0}
+    zoneCenter: {x: 0, y: 0, z: 0}
+  - zoneName: Modern Suburbs
+    generateRoadsForZone: 1
+    roadLength: 8
+    rules:
+    - {fileID: 11400000, guid: 3cdb349c2864eff429cc5f576ed4c7bf, type: 2}
+    axiom: '[F]--[F]'
+    iterationLimit: 2
+    randomIgnoreRuleModifier: 1
+    chanceToIgnoreRule: 0.3
+    chanceOfBuildingPlacement: 3
+    minBuildingHeight: 1
+    maxBuildingHeight: 6
+    minBuildingWidth: 1
+    maxBuildingWidth: 4
+    buildingHeightScaleMultiplier: 5
+    buildingWidthScaleMultiplier: 3
+    heightCenterCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.0083351135
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.9916687
+        value: 0.002357483
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    widthCenterCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    buildingMainColourMaterials:
+    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
+    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
+    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
+    placeTrees: 1
+    treeDensity: 6
+    treePrefabs:
+    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
+    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
+    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
+    placeLampPosts: 1
+    lampPostDensity: 10
+    lampPostPrefabs:
+    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
+    miscObjects: []
+    miscDensity: []
+    positionsInZone: []
+    roadEndToCenter: {x: 0, y: 0, z: 0}
+    zoneCenter: {x: 0, y: 0, z: 0}
+  - zoneName: New Industrial Zone
+    generateRoadsForZone: 1
+    roadLength: 6
+    rules:
+    - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
+    axiom: '[F]--[F]'
+    iterationLimit: 2
+    randomIgnoreRuleModifier: 1
+    chanceToIgnoreRule: 0.5
+    chanceOfBuildingPlacement: 1.5
+    minBuildingHeight: 1
+    maxBuildingHeight: 4
+    minBuildingWidth: 3
+    maxBuildingWidth: 6
+    buildingHeightScaleMultiplier: 5.29
+    buildingWidthScaleMultiplier: 6
+    heightCenterCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.0083351135
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.9916687
+        value: 0.002357483
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    widthCenterCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    buildingMainColourMaterials:
+    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
+    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
+    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
+    placeTrees: 1
+    treeDensity: 6
+    treePrefabs:
+    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
+    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
+    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
+    placeLampPosts: 1
+    lampPostDensity: 6.81
+    lampPostPrefabs:
+    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
+    miscObjects: []
+    miscDensity: []
+    positionsInZone: []
+    roadEndToCenter: {x: 0, y: 0, z: 0}
+    zoneCenter: {x: 0, y: 0, z: 0}
+  - zoneName: New Business district
+    generateRoadsForZone: 1
+    roadLength: 6
+    rules:
+    - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
+    axiom: '[F]--[F]'
+    iterationLimit: 2
+    randomIgnoreRuleModifier: 1
+    chanceToIgnoreRule: 0.5
+    chanceOfBuildingPlacement: 1.5
+    minBuildingHeight: 1
+    maxBuildingHeight: 4
+    minBuildingWidth: 3
+    maxBuildingWidth: 6
+    buildingHeightScaleMultiplier: 5.29
+    buildingWidthScaleMultiplier: 6
+    heightCenterCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.0083351135
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.9916687
+        value: 0.002357483
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    widthCenterCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    buildingMainColourMaterials:
+    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
+    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
+    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
+    placeTrees: 1
+    treeDensity: 6
+    treePrefabs:
+    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
+    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
+    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
+    placeLampPosts: 1
+    lampPostDensity: 7.5
+    lampPostPrefabs:
+    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
+    miscObjects: []
+    miscDensity: []
+    positionsInZone: []
+    roadEndToCenter: {x: 0, y: 0, z: 0}
+    zoneCenter: {x: 0, y: 0, z: 0}
+  - zoneName: Rural-Urban fringe
+    generateRoadsForZone: 1
+    roadLength: 8
+    rules:
+    - {fileID: 11400000, guid: fdf686fe948794b4ab6a14f5bc04c6ae, type: 2}
+    axiom: '[F]--[F]'
+    iterationLimit: 2
+    randomIgnoreRuleModifier: 1
+    chanceToIgnoreRule: 0.3
+    chanceOfBuildingPlacement: 0.1
+    minBuildingHeight: 4
+    maxBuildingHeight: 2
+    minBuildingWidth: 2
+    maxBuildingWidth: 6
+    buildingHeightScaleMultiplier: 2
+    buildingWidthScaleMultiplier: 6
+    heightCenterCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    widthCenterCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    buildingMainColourMaterials:
+    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
+    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
+    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
+    placeTrees: 1
+    treeDensity: 10
+    treePrefabs:
+    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
+    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
+    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
+    placeLampPosts: 1
+    lampPostDensity: 2.16
+    lampPostPrefabs:
+    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
+    miscObjects:
+    - {fileID: 8583840984611027160, guid: 5159319dbfa6ab24ebcc95dc60af2806, type: 3}
+    miscDensity:
+    - 30
+    positionsInZone: []
+    roadEndToCenter: {x: 0, y: 0, z: 0}
+    zoneCenter: {x: 0, y: 0, z: 0}
+  - zoneName: Greenbelt
+    generateRoadsForZone: 0
+    roadLength: 8
+    rules:
+    - {fileID: 11400000, guid: d74e7d70da91388488c25df47ce5ecec, type: 2}
+    axiom: '[F]--[F]'
+    iterationLimit: 2
+    randomIgnoreRuleModifier: 0
+    chanceToIgnoreRule: 0.3
+    chanceOfBuildingPlacement: 0
     minBuildingHeight: 6
     maxBuildingHeight: 10
     minBuildingWidth: 1
@@ -421,596 +779,11 @@ MonoBehaviour:
     - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
     - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
     placeLampPosts: 1
-    lampPostDensity: 2.16
+    lampPostDensity: 1
     lampPostPrefabs:
     - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
     miscObjects: []
     miscDensity: []
-    positionsInZone: []
-    roadEndToCenter: {x: 0, y: 0, z: 0}
-    zoneCenter: {x: 0, y: 0, z: 0}
-  - zoneName: Industrial
-    generateRoadsForZone: 1
-    roadLength: 8
-    rules:
-    - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
-    axiom: '[F]--[F]'
-    iterationLimit: 2
-    randomIgnoreRuleModifier: 1
-    chanceToIgnoreRule: 0.3
-    chanceOfBuildingPlacement: 3
-    minBuildingHeight: 3
-    maxBuildingHeight: 10
-    minBuildingWidth: 1
-    maxBuildingWidth: 4
-    buildingHeightScaleMultiplier: 10
-    buildingWidthScaleMultiplier: 6
-    heightCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.0083351135
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.9916687
-        value: 0.002357483
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    widthCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    buildingMainColourMaterials:
-    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
-    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
-    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
-    placeTrees: 1
-    treeDensity: 10
-    treePrefabs:
-    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
-    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
-    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
-    placeLampPosts: 1
-    lampPostDensity: 2.06
-    lampPostPrefabs:
-    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
-    miscObjects: []
-    miscDensity: []
-    positionsInZone: []
-    roadEndToCenter: {x: 0, y: 0, z: 0}
-    zoneCenter: {x: 0, y: 0, z: 0}
-  - zoneName: Industrial
-    generateRoadsForZone: 1
-    roadLength: 8
-    rules:
-    - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
-    axiom: '[F]--[F]'
-    iterationLimit: 2
-    randomIgnoreRuleModifier: 1
-    chanceToIgnoreRule: 0.3
-    chanceOfBuildingPlacement: 3
-    minBuildingHeight: 3
-    maxBuildingHeight: 10
-    minBuildingWidth: 1
-    maxBuildingWidth: 4
-    buildingHeightScaleMultiplier: 10
-    buildingWidthScaleMultiplier: 6
-    heightCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.0083351135
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.9916687
-        value: 0.002357483
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    widthCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    buildingMainColourMaterials:
-    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
-    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
-    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
-    placeTrees: 1
-    treeDensity: 10
-    treePrefabs:
-    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
-    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
-    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
-    placeLampPosts: 1
-    lampPostDensity: 2.06
-    lampPostPrefabs:
-    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
-    miscObjects: []
-    miscDensity: []
-    positionsInZone: []
-    roadEndToCenter: {x: 0, y: 0, z: 0}
-    zoneCenter: {x: 0, y: 0, z: 0}
-  - zoneName: Industrial
-    generateRoadsForZone: 1
-    roadLength: 8
-    rules:
-    - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
-    axiom: '[F]--[F]'
-    iterationLimit: 2
-    randomIgnoreRuleModifier: 1
-    chanceToIgnoreRule: 0.3
-    chanceOfBuildingPlacement: 3
-    minBuildingHeight: 3
-    maxBuildingHeight: 10
-    minBuildingWidth: 1
-    maxBuildingWidth: 4
-    buildingHeightScaleMultiplier: 10
-    buildingWidthScaleMultiplier: 6
-    heightCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.0083351135
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.9916687
-        value: 0.002357483
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    widthCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    buildingMainColourMaterials:
-    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
-    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
-    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
-    placeTrees: 1
-    treeDensity: 10
-    treePrefabs:
-    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
-    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
-    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
-    placeLampPosts: 1
-    lampPostDensity: 2.06
-    lampPostPrefabs:
-    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
-    miscObjects: []
-    miscDensity: []
-    positionsInZone: []
-    roadEndToCenter: {x: 0, y: 0, z: 0}
-    zoneCenter: {x: 0, y: 0, z: 0}
-  - zoneName: Residential
-    generateRoadsForZone: 1
-    roadLength: 6
-    rules:
-    - {fileID: 11400000, guid: 3cdb349c2864eff429cc5f576ed4c7bf, type: 2}
-    axiom: '[F]--F'
-    iterationLimit: 3
-    randomIgnoreRuleModifier: 1
-    chanceToIgnoreRule: 0.162
-    chanceOfBuildingPlacement: 3
-    minBuildingHeight: 1
-    maxBuildingHeight: 3
-    minBuildingWidth: 1
-    maxBuildingWidth: 4
-    buildingHeightScaleMultiplier: 5.54
-    buildingWidthScaleMultiplier: 6
-    heightCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.008590698
-        value: 1.0041809
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.995697
-        value: -0.009044647
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    widthCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    buildingMainColourMaterials:
-    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
-    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
-    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
-    placeTrees: 1
-    treeDensity: 5.69
-    treePrefabs:
-    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
-    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
-    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
-    placeLampPosts: 1
-    lampPostDensity: 4.95
-    lampPostPrefabs:
-    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
-    miscObjects: []
-    miscDensity: []
-    positionsInZone: []
-    roadEndToCenter: {x: 0, y: 0, z: 0}
-    zoneCenter: {x: 0, y: 0, z: 0}
-  - zoneName: Residential
-    generateRoadsForZone: 1
-    roadLength: 6
-    rules:
-    - {fileID: 11400000, guid: 3cdb349c2864eff429cc5f576ed4c7bf, type: 2}
-    axiom: '[F]--F'
-    iterationLimit: 3
-    randomIgnoreRuleModifier: 1
-    chanceToIgnoreRule: 0.162
-    chanceOfBuildingPlacement: 3
-    minBuildingHeight: 1
-    maxBuildingHeight: 3
-    minBuildingWidth: 1
-    maxBuildingWidth: 4
-    buildingHeightScaleMultiplier: 5.05
-    buildingWidthScaleMultiplier: 6
-    heightCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.008590698
-        value: 1.0041809
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.995697
-        value: -0.009044647
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    widthCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    buildingMainColourMaterials:
-    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
-    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
-    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
-    placeTrees: 1
-    treeDensity: 5.78
-    treePrefabs:
-    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
-    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
-    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
-    placeLampPosts: 1
-    lampPostDensity: 5
-    lampPostPrefabs:
-    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
-    miscObjects: []
-    miscDensity: []
-    positionsInZone: []
-    roadEndToCenter: {x: 0, y: 0, z: 0}
-    zoneCenter: {x: 0, y: 0, z: 0}
-  - zoneName: Agricultural
-    generateRoadsForZone: 0
-    roadLength: 8
-    rules:
-    - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
-    axiom: F
-    iterationLimit: 2
-    randomIgnoreRuleModifier: 1
-    chanceToIgnoreRule: 0.3
-    chanceOfBuildingPlacement: 0.14
-    minBuildingHeight: 1
-    maxBuildingHeight: 3
-    minBuildingWidth: 2
-    maxBuildingWidth: 6
-    buildingHeightScaleMultiplier: 3
-    buildingWidthScaleMultiplier: 6
-    heightCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    widthCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    buildingMainColourMaterials:
-    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
-    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
-    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
-    placeTrees: 1
-    treeDensity: 2.99
-    treePrefabs:
-    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
-    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
-    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
-    placeLampPosts: 1
-    lampPostDensity: 10
-    lampPostPrefabs:
-    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
-    miscObjects:
-    - {fileID: 8583840984611027160, guid: 5159319dbfa6ab24ebcc95dc60af2806, type: 3}
-    miscDensity:
-    - 30
-    positionsInZone: []
-    roadEndToCenter: {x: 0, y: 0, z: 0}
-    zoneCenter: {x: 0, y: 0, z: 0}
-  - zoneName: Agricultural
-    generateRoadsForZone: 0
-    roadLength: 8
-    rules:
-    - {fileID: 11400000, guid: 044305f26a6048041801413972528144, type: 2}
-    axiom: F
-    iterationLimit: 2
-    randomIgnoreRuleModifier: 1
-    chanceToIgnoreRule: 0.3
-    chanceOfBuildingPlacement: 0.14
-    minBuildingHeight: 1
-    maxBuildingHeight: 3
-    minBuildingWidth: 2
-    maxBuildingWidth: 6
-    buildingHeightScaleMultiplier: 3
-    buildingWidthScaleMultiplier: 6
-    heightCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    widthCenterCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    buildingMainColourMaterials:
-    - {fileID: 2100000, guid: cf31fa9b783def144843bbf6bdc8fc63, type: 2}
-    - {fileID: 2100000, guid: b38fd693357784343aab9b5a8d6d9b89, type: 2}
-    - {fileID: 2100000, guid: e6ea49d34eb9ca840b9028a1209c74e5, type: 2}
-    placeTrees: 1
-    treeDensity: 2
-    treePrefabs:
-    - {fileID: 2623798225778488802, guid: a83cbea9bd78e2d4c81f4db6814d3c84, type: 3}
-    - {fileID: 4671940145435849231, guid: dba58f9a219c2754d9d941f8f84d2e34, type: 3}
-    - {fileID: 9078757057746047253, guid: c1d6a05ad1f22f241ad755cc95592bc2, type: 3}
-    placeLampPosts: 1
-    lampPostDensity: 9.8
-    lampPostPrefabs:
-    - {fileID: 3920284015774040884, guid: d6b608ffc65955140b5b74448a2517d6, type: 3}
-    miscObjects:
-    - {fileID: 8583840984611027160, guid: 5159319dbfa6ab24ebcc95dc60af2806, type: 3}
-    miscDensity:
-    - 30
     positionsInZone: []
     roadEndToCenter: {x: 0, y: 0, z: 0}
     zoneCenter: {x: 0, y: 0, z: 0}
@@ -1028,7 +801,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &255690682
 GameObject:
@@ -1650,7 +1423,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &395897863
 GameObject:
@@ -1952,7 +1725,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &662438882
 MonoBehaviour:
@@ -2115,7 +1888,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 171.829, y: 0, z: 0}
 --- !u!114 &705507996
 MonoBehaviour:
@@ -2179,7 +1952,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &777363446
 GameObject:
@@ -2469,7 +2242,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &871641784
 GameObject:
@@ -2570,7 +2343,7 @@ RectTransform:
   - {fileID: 806555617}
   - {fileID: 1578571726}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2624,8 +2397,87 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &916113585 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+  m_PrefabInstance: {fileID: 916454664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &916113586
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916113585}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.393097, y: 25.942398, z: 10.539444}
+  m_Center: {x: 0, y: -5.8724866, z: 0.0989182}
+--- !u!1001 &916454664
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 21e45dfc3028ee14c885463bf14bd1e3, type: 2}
+    - target: {fileID: 919132149155446097, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
+      propertyPath: m_Name
+      value: characterNew 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 793218ca71a686d4690392bb02dad48c, type: 3}
 --- !u!1 &942688057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2877,6 +2729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c40f324d47bbbc40a001ad6fbd777d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  producer: {fileID: 0}
 --- !u!4 &985850045
 Transform:
   m_ObjectHideFlags: 0
@@ -2890,7 +2743,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &985850046
 MonoBehaviour:
@@ -2946,7 +2799,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1035148755
 MonoBehaviour:
@@ -2997,11 +2850,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &1036696771 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
-  m_PrefabInstance: {fileID: 196432054}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1104605511
 GameObject:
   m_ObjectHideFlags: 0
@@ -3067,7 +2915,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1131355124
 GameObject:
@@ -3117,7 +2965,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1159281025
 GameObject:
@@ -3584,7 +3432,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1584325179
 BoxCollider:
@@ -4053,6 +3901,143 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936897636}
   m_CullTransparentMesh: 1
+--- !u!1001 &2074319428
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5.1365
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5.1365
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5.1365
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 304.746
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.76
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 317.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7388894396013007978, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 953050254107e16449e51e54e38f2506, type: 2}
+    - target: {fileID: -6902573867230041995, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 953050254107e16449e51e54e38f2506, type: 2}
+    - target: {fileID: -4683669308469848369, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8405bee5c9b7a7240859ae15dff4ac1b, type: 2}
+    - target: {fileID: -1461304994638716399, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8405bee5c9b7a7240859ae15dff4ac1b, type: 2}
+    - target: {fileID: -1439730007547781893, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 953050254107e16449e51e54e38f2506, type: 2}
+    - target: {fileID: -804731622281664130, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8405bee5c9b7a7240859ae15dff4ac1b, type: 2}
+    - target: {fileID: -804731622281664130, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8405bee5c9b7a7240859ae15dff4ac1b, type: 2}
+    - target: {fileID: -678588488315902003, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8405bee5c9b7a7240859ae15dff4ac1b, type: 2}
+    - target: {fileID: -678588488315902003, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8405bee5c9b7a7240859ae15dff4ac1b, type: 2}
+    - target: {fileID: 919132149155446097, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Name
+      value: SeaPlane
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129496810705857465, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 953050254107e16449e51e54e38f2506, type: 2}
+    - target: {fileID: 1746654310787607633, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 953050254107e16449e51e54e38f2506, type: 2}
+    - target: {fileID: 6944656104360116776, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 953050254107e16449e51e54e38f2506, type: 2}
+    - target: {fileID: 7071182760956848314, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8405bee5c9b7a7240859ae15dff4ac1b, type: 2}
+    - target: {fileID: 7202271454713460447, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 36e9a238ec9b4474daec1da7f5d873b9, type: 2}
+    - target: {fileID: 7202271454713460447, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 36e9a238ec9b4474daec1da7f5d873b9, type: 2}
+    - target: {fileID: 7743480366618694112, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 953050254107e16449e51e54e38f2506, type: 2}
+    - target: {fileID: 8089062573417005363, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 953050254107e16449e51e54e38f2506, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 402dc2b67b219aa488bb24e16123fc6d, type: 3}
 --- !u!1 &2097828102
 GameObject:
   m_ObjectHideFlags: 0
@@ -8863,7 +8848,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2099104995
 GameObject:
@@ -9145,10 +9130,9 @@ Transform:
   m_LocalPosition: {x: 352.6, y: -5.53, z: 367.97}
   m_LocalScale: {x: 3.2026052, y: 3.2026052, z: 3.2026052}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1036696771}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2125999655
 Rigidbody:
@@ -9196,7 +9180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3607296049557908222, guid: 7016e45b91164c94894a070f44955dd8, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3607296049557908222, guid: 7016e45b91164c94894a070f44955dd8, type: 3}
       propertyPath: m_LocalPosition.x
