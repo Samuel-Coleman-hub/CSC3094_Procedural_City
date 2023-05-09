@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 384609266546266807}
   - component: {fileID: 15861566733075849}
   - component: {fileID: 8940799854574484167}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 354321629346971813}
   - component: {fileID: 354321629346971812}
   - component: {fileID: 354321629346971811}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GridTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 7563327732289640810}
   - component: {fileID: 4442380367930222224}
   - component: {fileID: 3548413410280150838}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

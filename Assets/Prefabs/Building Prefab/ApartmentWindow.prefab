@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4653397361079125721}
   - component: {fileID: 7453676697948025363}
   - component: {fileID: 3320891265428178035}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ApartmentWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
