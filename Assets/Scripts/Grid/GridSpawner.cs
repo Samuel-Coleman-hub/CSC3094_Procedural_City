@@ -19,12 +19,8 @@ public class GridSpawner : MonoBehaviour
     private List<CityZone> cityZones = new List<CityZone>();
     private VoronoiDiagram voronoi;
 
-    private CityManager cityManager;
-
     private GridTile[,] SpawnGrid()
     {
-        cityManager = GameObject.FindGameObjectWithTag("CityManager").GetComponent<CityManager>();
-
         gridMatrix = new GridTile[x, z];
 
         voronoi = new VoronoiDiagram();
@@ -111,8 +107,8 @@ public class GridSpawner : MonoBehaviour
             count++;
         }
 
-        cityManager.centerOfZones = centroid / count;
-        cityManager.zones = cityZones;
+        CityManager.Instance.CenterOfZones = centroid / count;
+        CityManager.Instance.Zones = cityZones;
     }
 
 

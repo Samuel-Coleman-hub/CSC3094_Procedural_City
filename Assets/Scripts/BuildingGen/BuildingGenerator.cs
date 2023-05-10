@@ -1,0 +1,113 @@
+using JetBrains.Annotations;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class BuildingGenerator : MonoBehaviour
+{
+    //Building generation variables
+    private float buildingDensity;
+    private GridTile[,] gridMatrix;
+    private BuildingProducer producer;
+
+    private void Start()
+    {
+        producer = GetComponent<BuildingProducer>();
+    }
+
+    private void SpawnBuildings()
+    {
+        for (int i = 0; i < gridMatrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < gridMatrix.GetLength(1); j++)
+            {
+                if (gridMatrix[i, j].ChildObject != null)
+                {
+                    Destroy(gridMatrix[i, j].ChildObject);
+                    gridMatrix[i, j].TileType = TileType.Empty;
+                }
+
+                CityZone zone = gridMatrix[i, j].Zone;
+                float distToCenter = Vector3.Distance(zone.zoneCenter, new Vector3(i, 0, j));
+
+                float placementChanceMultipler = zone.chanceOfBuildingPlacement;
+                if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && UnityEngine.Random.value * distToCenter <= buildingDensity * placementChanceMultipler
+                    && !gridMatrix[i,j].NearRoadDirection.Equals(NearRoadDirection.None))
+                {
+                    List<GridTile> emptyNeighbours;
+                    emptyNeighbours = GetEmptyNeighbours(i, j);
+
+
+                    //Material mat = materials[UnityEngine.Random.Range(0, materials.Count)];
+                    //Vector3 centroid = FindCentroid(emptyNeighbours);
+
+
+                    //int gridLength = gridMatrix.GetLength(0) > gridMatrix.GetLength(1) ? gridMatrix.GetLength(0) : gridMatrix.GetLength(1);
+                    //float centerScorePercentage = (float)(gridMatrix[i, j].CenterScore / gridLength);
+                    
+                    double centerScore = Math.Floor(Math.Sqrt(Math.Pow(((gridMatrix[i, j].Zone.zoneCenter.x)-i), 2) 
+                        + Math.Pow((gridMatrix[i, j].Zone.zoneCenter.z-j), 2)));
+                    float centerScorePercentage = (float)(distToCenter / Math.Sqrt(gridMatrix[i,j].Zone.positionsInZone.Count));
+                    centerScorePercentage *= 2;
+
+
+
+                    float heightScaleMultiplier = zone.buildingHeightScaleMultiplier;
+                    int buildingHeight = (int)Mathf.Clamp(zone.heightCenterCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value *
+                        heightScaleMultiplier, zone.minBuildingHeight, zone.maxBuildingHeight);
+
+                    float widthScaleMultiplier = zone.buildingWidthScaleMultiplier;
+                    int buildingWidth = (int)Mathf.Clamp(zone.widthCenterCurve.Evaluate(centerScorePercentage) * UnityEngine.Random.value *
+                        widthScaleMultiplier, Mathf.Clamp(zone.minBuildingWidth, 0f, emptyNeighbours.Count), Mathf.Clamp(zone.maxBuildingWidth, 1f, emptyNeighbours.Count));
+
+                    producer = GetComponent<BuildingProducer>();
+                    producer.Build(emptyNeighbours, gridMatrix[i,j].NearRoadDirection, buildingWidth, buildingHeight);
+
+                }
+            }
+        }
+    }
+
+    private List<GridTile> GetEmptyNeighbours(int x, int z)
+    {
+        int minX = Math.Max(x - 1, gridMatrix.GetLowerBound(0) + 1);
+        int maxX = Math.Min(x + 1, gridMatrix.GetUpperBound(0) - 1);
+        int minZ = Math.Max(z - 1, gridMatrix.GetLowerBound(1) + 1);
+        int maxZ = Math.Min(z + 1, gridMatrix.GetUpperBound(1) - 1);
+
+        List<GridTile> neighbourRoadTiles = new List<GridTile>();
+        List<GridTile> emptyNeighbours = new List<GridTile>();
+        emptyNeighbours.Add(gridMatrix[x, z]);
+        List<int> numBuildingsPerRow = new List<int>();
+
+
+        for(int i = minX; i <= maxX; i++)
+        {
+            int zCount = 0;
+            for (int j = minZ; j <= maxZ; j++)
+            {
+               
+                if (gridMatrix[i, j].TileType.Equals(TileType.Empty))
+                {
+                    emptyNeighbours.Add(gridMatrix[i, j]);
+                    gridMatrix[i, j].TileType = TileType.Building;
+                    zCount++;
+                }
+            }
+            numBuildingsPerRow.Add(zCount);
+        }
+
+        emptyNeighbours = emptyNeighbours.Distinct().ToList();
+        return emptyNeighbours;
+    }
+
+    public void GenerateBuildings(float buildingDensity, GridTile[,] gridMatrix)
+    {
+        this.buildingDensity = buildingDensity;
+        this.gridMatrix = gridMatrix;
+        SpawnBuildings();
+    }
+}

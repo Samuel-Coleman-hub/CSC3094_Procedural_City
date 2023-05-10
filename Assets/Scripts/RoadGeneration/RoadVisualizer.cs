@@ -7,7 +7,6 @@ using UnityEngine.XR;
 
 public class RoadVisualizer : MonoBehaviour
 {
-    [SerializeField] CityManager cityManager;
 
     public LSystem lSystem;
     List<Vector3> positions = new List<Vector3>();
@@ -41,8 +40,6 @@ public class RoadVisualizer : MonoBehaviour
     {
         this.length = zone.roadLength;
         this.zone = zone;
-        //Position agent to start in center for road placement
-        //roadHelper.transform.position = startPos;
         this.startPos = startPos;
         string sequence = lSystem.GenerateSentence(zone.axiom, zone.rules, zone.iterationLimit, zone.randomIgnoreRuleModifier, zone.chanceToIgnoreRule);
         return VisualizeSequence(sequence);
@@ -53,7 +50,6 @@ public class RoadVisualizer : MonoBehaviour
     {
         //Used for saving and loading agents position
         Stack<AgentParameters> savePoints = new Stack<AgentParameters>();
-        //var currentPos = cityManager.gridCenter; 
         var currentPos = startPos;
 
         Vector3 direction = Vector3.forward;
@@ -106,63 +102,43 @@ public class RoadVisualizer : MonoBehaviour
                     break;
             }
         }
-        return roadHelper.FixRoad(zone);
+        //return roadHelper.FixRoad(zone);
+        return zone.roadEndToCenter;
         
-        //roadHelper.transform.position = new Vector3(this.transform.position.x, cityManager.gridCenter.y - 0.15f,
-         //   this.transform.position.z);
     }
 
     public void ConnectZones(List<CityZone> zones)
     {
-        GameObject center = Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cylinder));
-        center.transform.position = cityManager.centerOfZones;
-        Debug.Log("Spawned cylinder at the center of all city zones " + center.transform.position.x + " " + center.transform.position.z);
-        center.name = "Brucey Center";
-
-
         Pathfinding pathfinder = new Pathfinding();
 
-        GridTile centerTile = cityManager.gridMatrix[(int)cityManager.centerOfZones.x, (int)cityManager.centerOfZones.z];
-        GridTile roadEndTile = cityManager.gridMatrix[(int)zones[0].roadEndToCenter.x, (int)zones[0].roadEndToCenter.z];
-        List<GridTile> firstRoad = pathfinder.FindPath(roadEndTile, centerTile, cityManager.gridMatrix, cityManager.x, cityManager.z);
+        GridTile centerTile = CityManager.Instance.GridMatrix[(int)CityManager.Instance.CenterOfZones.x, (int)CityManager.Instance.CenterOfZones.z];
+        GridTile roadEndTile = CityManager.Instance.GridMatrix[(int)zones[0].roadEndToCenter.x, (int)zones[0].roadEndToCenter.z];
+        List<GridTile> firstRoad = pathfinder.FindPath(roadEndTile, centerTile, CityManager.Instance.GridMatrix, CityManager.Instance.X, CityManager.Instance.Z);
 
-        roadEndTile = cityManager.gridMatrix[(int)zones[1].roadEndToCenter.x, (int)zones[1].roadEndToCenter.z];
-        List<GridTile> secondRoad = pathfinder.FindPath(roadEndTile, centerTile, cityManager.gridMatrix, cityManager.x, cityManager.z);
+        roadEndTile = CityManager.Instance.GridMatrix[(int)zones[1].roadEndToCenter.x, (int)zones[1].roadEndToCenter.z];
+        List<GridTile> secondRoad = pathfinder.FindPath(roadEndTile, centerTile, CityManager.Instance.GridMatrix, CityManager.Instance.X, CityManager.Instance.Z);
 
         List<GridTile> mainRoad = firstRoad.Concat(secondRoad).ToList();
 
-        List<Vector3> fixes = new List<Vector3>();
-
-        fixes.Add(zones[0].roadEndToCenter);
-        fixes.Add(zones[1].roadEndToCenter);
-        Debug.Log("Added positions " + zones[0].roadEndToCenter.x + " " + zones[0].roadEndToCenter.z + " and " +zones[1]
-            .roadEndToCenter.x + " " + zones[1].roadEndToCenter.z);
+        List<Vector3> fixes = new List<Vector3>
+        {
+            zones[0].roadEndToCenter,
+            zones[1].roadEndToCenter
+        };
 
         //Find paths for other zones
         for (int i = 2; i < zones.Count; i++)
         {
-            //Vector3 closestTile = new Vector3(cityManager.x *2, 0f, cityManager.z *2);
-
-            //Pick a position from the main road
-            //foreach (GridTile tile in mainRoad)
-            //{
-            //    Vector3 tilePos = new Vector3(tile.GetX(), 0f, tile.GetZ());
-            //    if (Vector3.Distance(tilePos, zones[i].roadEndToCenter) < Vector3.Distance(closestTile, zones[i].roadEndToCenter))
-            //    {
-            //        closestTile = tilePos;
-            //    }
-            //}
-
+            Debug.Log("center road end " + zones[i].roadEndToCenter.x + " " + zones[i].roadEndToCenter.z);
             //Generate path
-            GridTile roadEnd = cityManager.gridMatrix[(int)zones[i].roadEndToCenter.x, (int)zones[i].roadEndToCenter.z];
-            //GridTile endTile = cityManager.gridMatrix[(int)closestTile.x, (int)closestTile.z];
-            List<GridTile> roadTiles = pathfinder.FindPath(roadEnd, centerTile, cityManager.gridMatrix, cityManager.x, cityManager.z);
+            GridTile roadEnd = CityManager.Instance.GridMatrix[(int)zones[i].roadEndToCenter.x, (int)zones[i].roadEndToCenter.z];
+            fixes.Add(new Vector3((int)zones[i].roadEndToCenter.x, 0, (int)zones[i].roadEndToCenter.z));
+            //GridTile endTile = CityManager.Instance.gridMatrix[(int)closestTile.x, (int)closestTile.z];
+            List<GridTile> roadTiles = pathfinder.FindPath(roadEnd, centerTile, CityManager.Instance.GridMatrix, CityManager.Instance.X, CityManager.Instance.Z);
 
             //Add to list of existing paths
             mainRoad = mainRoad.Concat(roadTiles).ToList();
         }
-
-        //mainRoad = mainRoad.Distinct().ToList();
 
         //Place all of the road assets
         for (int i = 0; i < mainRoad.Count(); i++)
@@ -191,29 +167,9 @@ public class RoadVisualizer : MonoBehaviour
             roadPos.Add(new Vector3(tile.GetX(), 0f, tile.GetZ()));
         }
 
+        
+        //StartCoroutine(fix());
         roadHelper.FixRoad(zone);
 
-
-        //for (int i = 2; i < zones.Count; i++)
-        //{
-        //    GridTile destinationTile;
-        //    GridTile roadEndTile = cityManager.gridMatrix[(int)zones[i].roadEndToCenter.x, (int)zones[i].roadEndToCenter.z];
-        //    if (i <= 1)
-        //    {
-        //        destinationTile = centerTile;
-        //    }
-        //    else
-        //    {
-        //        destinationTile = mainRoad[Random.Range(0, mainRoad.Count)];
-        //    }
-
-        //    List<GridTile> path = pathfinder.FindPath(roadEndTile, destinationTile, cityManager.gridMatrix, cityManager.x, cityManager.z);
-            
-        //    foreach (GridTile tile in path)
-        //    {
-        //        tile.Object.GetComponent<MeshRenderer>().material.color = Color.black;
-        //    }
-        //}
-        
     }
 }
