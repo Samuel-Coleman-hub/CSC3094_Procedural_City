@@ -48,6 +48,8 @@ public class CityManager : MonoBehaviour
     public List<CityZone> Zones { get => zones; set => zones=value; }
     public Vector3 CenterOfZones { get => centerOfZones; set => centerOfZones=value; }
 
+    public event Action cityGenerated;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -62,6 +64,18 @@ public class CityManager : MonoBehaviour
 
     private void Start()
     {
+        GenerateCity();
+    }
+
+    public void GenerateCity()
+    {
+        if(gridMatrix != null)
+        {
+            DeleteCity();
+            visualizer.roadHelper.transform.position = Vector3.zero;
+        }
+
+
         //StartCoroutine(TestStart());
         GenerateGrid();
 
@@ -69,6 +83,7 @@ public class CityManager : MonoBehaviour
         {
             if (zones[i].generateRoadsForZone)
             {
+                Debug.Log("zone road length" + zones[i].roadLength);
                 visualizer.GenerateRoad(zones[i].zoneCenter, zones[i]);
             }
         }
@@ -83,6 +98,29 @@ public class CityManager : MonoBehaviour
         buildingGenerator.GenerateBuildings(100, gridMatrix);
 
         gridSpawner.SpawnMiscellaneous();
+
+        cityGenerated?.Invoke();
+    }
+
+    private void DeleteCity()
+    {
+        gridMatrix = null;
+
+        foreach (Transform child in gridSpawner.gameObject.GetComponentInChildren<Transform>())
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        foreach (Transform child in visualizer.roadHelper.gameObject.GetComponentInChildren<Transform>())
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        foreach (Transform child in buildingGenerator.gameObject.GetComponentInChildren<Transform>())
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        visualizer.Reset();
     }
 
     private IEnumerator TestStart()

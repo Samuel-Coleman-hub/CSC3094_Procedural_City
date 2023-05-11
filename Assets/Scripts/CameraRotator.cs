@@ -45,12 +45,21 @@ public class CameraRotator : MonoBehaviour
         {
             mainCamera = Camera.main;
         }
+
+        if (CityManager.Instance != null)
+        {
+            CityManager.Instance.cityGenerated += AdjustCamera;
+        }
     }
     // Start is called before the first frame update
     void Start()
     {
+        AdjustCamera();
+    }
 
-        mainCamera.transform.position = new Vector3(CityManager.Instance.X * distanceFromCenter, 
+    private void AdjustCamera()
+    {
+        mainCamera.transform.position = new Vector3(CityManager.Instance.X * distanceFromCenter,
             mainCamera.transform.position.y, CityManager.Instance.X *distanceFromCenter);
         this.transform.position = CityManager.Instance.GridCenter;
         distanceBetweenCameraAndTarget = Vector3.Distance(mainCamera.transform.position, target.position);
@@ -139,5 +148,13 @@ public class CameraRotator : MonoBehaviour
             mainCamera = Camera.main;
         }
         mainCamera.transform.position = new Vector3(0, 0, -distanceBetweenCameraAndTarget);
+    }
+
+    private void OnDestroy()
+    {
+        if (CityManager.Instance != null)
+        {
+            CityManager.Instance.cityGenerated -= AdjustCamera;
+        }
     }
 }

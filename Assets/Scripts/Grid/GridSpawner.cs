@@ -42,6 +42,7 @@ public class GridSpawner : MonoBehaviour
                 cityZones[closestCentroidIndex].positionsInZone.Add(new Vector2(i,j));
 
                 //For debugging
+                
                 //gridMatrix[i, j].Object.GetComponent<MeshRenderer>().material.color = voronoi.colourRegions[closestCentroidIndex];
                 //temp.GetComponentInChildren<TextMeshProUGUI>().text = "Row " + i + " , Column " + j + " " + gridMatrix[i,j].Zone; 
             }
@@ -60,6 +61,7 @@ public class GridSpawner : MonoBehaviour
         this.cityZones = cityZones;
         this.gridOrigin = gridOrigin;
         this.gridTilePrefab = gridTilePrefab;
+
 
 
         if (gridMatrix != null)
@@ -126,6 +128,7 @@ public class GridSpawner : MonoBehaviour
                     int randomIndex = Random.Range(0, zone.treePrefabs.Count);
                     GameObject tree = GameObject.Instantiate(zone.treePrefabs[randomIndex]);
                     tree.transform.position = new Vector3(gridMatrix[i,j].GetX(), 0, gridMatrix[i,j].GetZ());
+                    tree.transform.parent = this.transform;
                     gridMatrix[i, j].TileType = TileType.Misc;
                 }
 
@@ -133,6 +136,7 @@ public class GridSpawner : MonoBehaviour
                 {
                     int randomIndex = Random.Range(0, zone.lampPostPrefabs.Count);
                     GameObject lampPost = GameObject.Instantiate(zone.lampPostPrefabs[randomIndex]);
+                    lampPost.transform.parent = this.transform;
                     lampPost.transform.position = new Vector3(gridMatrix[i, j].GetX(), 0, gridMatrix[i, j].GetZ());
                 }
 
@@ -143,11 +147,11 @@ public class GridSpawner : MonoBehaviour
                 {
                     for (int k = 0; k < miscList.Count; k++)
                     {
-                        Debug.Log("at point " + k + " in misc list");
                         if (gridMatrix[i, j].TileType.Equals(TileType.Empty) && Random.value * miscDensity[k] < 0.5f)
                         {
                             GameObject miscObject = GameObject.Instantiate(miscList[k]);
                             miscObject.transform.position = new Vector3(gridMatrix[i, j].GetX(), 0, gridMatrix[i, j].GetZ());
+                            miscObject.transform.parent = this.transform;
                             gridMatrix[i, j].TileType = TileType.Misc;
                         }
                         else if (gridMatrix[i,j].TileType != TileType.Empty)

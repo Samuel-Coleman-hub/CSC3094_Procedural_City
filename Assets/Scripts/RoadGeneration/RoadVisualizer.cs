@@ -89,6 +89,7 @@ public class RoadVisualizer : MonoBehaviour
                     tempPos = currentPos;
                     currentPos += direction * Length;
                     //Used to be drawline
+                    Debug.Log("Road length at placement " + length);
                     roadHelper.PlaceRoad(tempPos, Vector3Int.RoundToInt(direction), length, zone);
                     //Makes line shorter overtime so roads get shorter further we go
                     Length -= 1;
@@ -129,7 +130,6 @@ public class RoadVisualizer : MonoBehaviour
         //Find paths for other zones
         for (int i = 2; i < zones.Count; i++)
         {
-            Debug.Log("center road end " + zones[i].roadEndToCenter.x + " " + zones[i].roadEndToCenter.z);
             //Generate path
             GridTile roadEnd = CityManager.Instance.GridMatrix[(int)zones[i].roadEndToCenter.x, (int)zones[i].roadEndToCenter.z];
             fixes.Add(new Vector3((int)zones[i].roadEndToCenter.x, 0, (int)zones[i].roadEndToCenter.z));
@@ -171,5 +171,11 @@ public class RoadVisualizer : MonoBehaviour
         //StartCoroutine(fix());
         roadHelper.FixRoad(zone);
 
+    }
+
+    public void Reset()
+    {
+        positions = new List<Vector3>();
+        roadHelper.Reset();
     }
 }

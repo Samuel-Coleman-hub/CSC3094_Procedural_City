@@ -50,8 +50,8 @@ public class RoadHelper : MonoBehaviour
 
             //YOU CAN REMOVE GRID CHECK ZONE IF IT HAS TO BE IN ZONE ANYWAY
             //Checks if position is within the grid and in the zone
-            if (pos.x >= CityManager.Instance.X || pos.z >= CityManager.Instance.Z || pos.x <= 0 || pos.z <= 0 ||
-                (gridMatrix[pos.x, pos.z].Zone != zone && !mainRoad))
+            if ((pos.x >= CityManager.Instance.X || pos.z >= CityManager.Instance.Z || pos.x <= 0 || pos.z <= 0 ||
+                (gridMatrix[pos.x, pos.z].Zone != zone && !mainRoad)) && roadDict.Count != 0 )
             {
                 fixRoadPossibilities.Add(roadDict.Last().Key);
                 break;
@@ -332,5 +332,15 @@ public class RoadHelper : MonoBehaviour
             }
         }
 
+    }
+
+    public void Reset()
+    {
+        gridMatrix = null;
+        roadDict.Clear();
+        fixRoadPossibilities.Clear();
+        mainRoad = false;
+
+        Debug.Log("Road Dict count" + roadDict.Count);
     }
 }
