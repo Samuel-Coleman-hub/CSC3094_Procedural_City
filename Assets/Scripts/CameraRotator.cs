@@ -39,8 +39,20 @@ public class CameraRotator : MonoBehaviour
     //Mouse rotation related
     private float rotX; // around x
     private float rotY; // around y
+
+    public static CameraRotator Instance { get; private set; }
+
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         if (mainCamera == null)
         {
             mainCamera = Camera.main;

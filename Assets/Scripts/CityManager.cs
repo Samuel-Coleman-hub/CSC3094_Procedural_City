@@ -27,6 +27,7 @@ public class CityManager : MonoBehaviour
 
 
     private GridTile[,] gridMatrix;
+    [SerializeField] private List<CityZone> defaultZones;
 
     [Header("City Zones")]
     [SerializeField] private List<CityZone> zones = new List<CityZone>();
@@ -36,8 +37,8 @@ public class CityManager : MonoBehaviour
 
     public static CityManager Instance { get; private set; }
     public GridSpawner GridSpawner { get => gridSpawner;}
-    public int X { get => x;}
-    public int Z { get => z; }
+    public int X { get => x; set => x = value; }
+    public int Z { get => z; set => z = value; }
     public float GridSpacing { get => gridSpacing;}
     public Vector3 GridOrigin { get => gridOrigin; }
     public GameObject GridTilePrefab { get => gridTilePrefab;}
@@ -47,6 +48,7 @@ public class CityManager : MonoBehaviour
     public Material PavementMaterial { get => pavementMaterial; }
     public GridTile[,] GridMatrix { get => gridMatrix; }
     public List<CityZone> Zones { get => zones; set => zones=value; }
+    public List<CityZone> DefaultZones { get => defaultZones; }
     public Vector3 CenterOfZones { get => centerOfZones; set => centerOfZones=value; }
 
     public event Action cityGenerated;
@@ -61,14 +63,9 @@ public class CityManager : MonoBehaviour
         {
             Instance = this;
         }
-    }
 
-    private void Start()
-    {
-        //GenerateCity();
+        defaultZones = new List<CityZone>(zones);
     }
-
-    
 
     public (String, String, String) GenerateWithTests()
     {
@@ -213,6 +210,7 @@ public class CityManager : MonoBehaviour
     public void GenerateGrid()
     {
         gridCenter = new Vector3(x / 2, 0.45f, z / 2);
+        UnityEngine.Debug.Log("Grid is size " + x + " " + z);
         gridMatrix = gridSpawner.GenerateGrid(x, z, gridSpacing, zones, gridOrigin, gridTilePrefab);
     }
 }
@@ -265,7 +263,7 @@ public class CityZone
 
     [Header("Tree Settings")]
     public bool placeTrees;
-    [Range(1, 10)]
+    [Range(0, 10)]
     public float treeDensity;
     public List<GameObject> treePrefabs;
 
@@ -279,7 +277,7 @@ public class CityZone
     [Tooltip("The Prefabs of misc objects")]
     public List<GameObject> miscObjects;
     [Tooltip("The density of the previous objects")]
-    [Range(1, 30)]
+    [Range(0, 30)]
     public List<float> miscDensity;
 
     [HideInInspector]
