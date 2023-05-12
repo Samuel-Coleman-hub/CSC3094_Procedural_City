@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
@@ -34,17 +35,17 @@ public class CityManager : MonoBehaviour
     private Vector3 centerOfZones;
 
     public static CityManager Instance { get; private set; }
-    public GridSpawner GridSpawner { get => gridSpawner; set => gridSpawner=value; }
-    public int X { get => x; set => x=value; }
-    public int Z { get => z; set => z=value; }
-    public float GridSpacing { get => gridSpacing; set => gridSpacing=value; }
-    public Vector3 GridOrigin { get => gridOrigin; set => gridOrigin=value; }
-    public GameObject GridTilePrefab { get => gridTilePrefab; set => gridTilePrefab=value; }
+    public GridSpawner GridSpawner { get => gridSpawner;}
+    public int X { get => x;}
+    public int Z { get => z; }
+    public float GridSpacing { get => gridSpacing;}
+    public Vector3 GridOrigin { get => gridOrigin; }
+    public GameObject GridTilePrefab { get => gridTilePrefab;}
     public Vector3 GridCenter { get => gridCenter; set => gridCenter=value; }
-    public BuildingGenerator BuildingGenerator { get => buildingGenerator; set => buildingGenerator=value; }
-    public RoadVisualizer Visualizer { get => visualizer; set => visualizer=value; }
-    public Material PavementMaterial { get => pavementMaterial; set => pavementMaterial=value; }
-    public GridTile[,] GridMatrix { get => gridMatrix; set => gridMatrix=value; }
+    public BuildingGenerator BuildingGenerator { get => buildingGenerator; }
+    public RoadVisualizer Visualizer { get => visualizer;}
+    public Material PavementMaterial { get => pavementMaterial; }
+    public GridTile[,] GridMatrix { get => gridMatrix; }
     public List<CityZone> Zones { get => zones; set => zones=value; }
     public Vector3 CenterOfZones { get => centerOfZones; set => centerOfZones=value; }
 
@@ -64,10 +65,68 @@ public class CityManager : MonoBehaviour
 
     private void Start()
     {
-        GenerateCity();
+        //GenerateCity();
     }
 
-    public void GenerateCity()
+    
+
+    public (String, String, String) GenerateWithTests()
+    {
+        if (gridMatrix != null)
+        {
+            DeleteCity();
+            visualizer.roadHelper.transform.position = Vector3.zero;
+        }
+
+        //StartCoroutine(TestStart());
+
+        Stopwatch sw = new Stopwatch();
+
+        sw.Start();
+        GenerateGrid();
+        sw.Stop();
+
+        String gridTime = sw.Elapsed.ToString(@"ss\.ffff");
+        UnityEngine.Debug.Log("Grid time" + gridTime);
+
+        sw.Restart();
+        sw.Start();
+
+        for (int i = 0; i < zones.Count; i++)
+        {
+            if (zones[i].generateRoadsForZone)
+            {
+                visualizer.GenerateRoad(zones[i].zoneCenter, zones[i]);
+            }
+        }
+        if (zones.Count > 1)
+        {
+            visualizer.ConnectZones(zones);
+        }
+
+        sw.Stop();
+
+        String roadTime = sw.Elapsed.ToString(@"ss\.ffff");
+
+        sw.Restart();
+
+
+        visualizer.roadHelper.transform.position = new Vector3(visualizer.roadHelper.transform.position.x,
+            gridCenter.y - 0.15f, visualizer.roadHelper.transform.position.z);
+
+        sw.Start();
+        buildingGenerator.GenerateBuildings(100, gridMatrix);
+
+        sw.Stop();
+        String buildingTime = sw.Elapsed.ToString(@"ss\.ffff");
+
+        gridSpawner.SpawnMiscellaneous();
+
+        cityGenerated?.Invoke();
+
+        return (gridTime, roadTime, buildingTime);
+    }
+    public void GenerateCityNormal()
     {
         if(gridMatrix != null)
         {
@@ -83,7 +142,6 @@ public class CityManager : MonoBehaviour
         {
             if (zones[i].generateRoadsForZone)
             {
-                Debug.Log("zone road length" + zones[i].roadLength);
                 visualizer.GenerateRoad(zones[i].zoneCenter, zones[i]);
             }
         }
@@ -105,6 +163,11 @@ public class CityManager : MonoBehaviour
     private void DeleteCity()
     {
         gridMatrix = null;
+        foreach (CityZone zone in zones)
+        {
+            zone.positionsInZone = new List<Vector2>();
+            zone.zoneCenter = Vector3.zero;
+        }
 
         foreach (Transform child in gridSpawner.gameObject.GetComponentInChildren<Transform>())
         {
@@ -120,7 +183,9 @@ public class CityManager : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
+
         visualizer.Reset();
+        
     }
 
     private IEnumerator TestStart()

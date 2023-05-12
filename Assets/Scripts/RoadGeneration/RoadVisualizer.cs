@@ -41,6 +41,7 @@ public class RoadVisualizer : MonoBehaviour
         this.length = zone.roadLength;
         this.zone = zone;
         this.startPos = startPos;
+        zone.roadEndToCenter = new Vector3(10000, 0, 10000);
         string sequence = lSystem.GenerateSentence(zone.axiom, zone.rules, zone.iterationLimit, zone.randomIgnoreRuleModifier, zone.chanceToIgnoreRule);
         return VisualizeSequence(sequence);
     }

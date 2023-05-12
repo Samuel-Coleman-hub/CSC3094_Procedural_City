@@ -59,10 +59,13 @@ public class CameraRotator : MonoBehaviour
 
     private void AdjustCamera()
     {
+        Debug.Log("Grid x is " + CityManager.Instance.X);
+        Debug.Log("distance from center is " + distanceFromCenter);
         mainCamera.transform.position = new Vector3(CityManager.Instance.X * distanceFromCenter,
             mainCamera.transform.position.y, CityManager.Instance.X *distanceFromCenter);
         this.transform.position = CityManager.Instance.GridCenter;
         distanceBetweenCameraAndTarget = Vector3.Distance(mainCamera.transform.position, target.position);
+        SetCamPos();
     }
 
     // Update is called once per frame

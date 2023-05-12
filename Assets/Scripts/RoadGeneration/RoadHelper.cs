@@ -64,7 +64,6 @@ public class RoadHelper : MonoBehaviour
                 continue;
             }
 
-            Debug.Log("Pos on line 67 " + pos.x + " " + pos.z);
             if (gridMatrix[pos.x, pos.z].TileType.Equals(TileType.Empty) || gridMatrix[pos.x, pos.z].TileType.Equals(TileType.Pavement))
             {
 
