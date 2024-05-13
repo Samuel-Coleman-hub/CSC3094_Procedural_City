@@ -9,5 +9,5 @@ I designed my tool to take a variety of parameters, so that it would give game d
 
 A demo of the tool can be played on my itch io page [Click here to play.](https://samcoleman.itch.io/procedural-city-generator.)
 
-[Cover Art](Assets/Textures/Cover.png)
-[Example Screenshot](Assets/Textures/ExampleScreenshot.png)
+![Cover Art](Assets/Textures/Cover.png)
+![Example Screenshot](Assets/Textures/ExampleScreenshot.png)
