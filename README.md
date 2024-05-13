@@ -8,3 +8,6 @@ I then went on to create my own procedural generation tool utilising algorithms 
 I designed my tool to take a variety of parameters, so that it would give game developers the control to create a city within the vision fo their game.
 
 A demo of the tool can be played on my itch io page [Click here to play.](https://samcoleman.itch.io/procedural-city-generator.)
+
+[Cover Art](Assets/Textures/Cover.png)
+[Example Screenshot](Assets/Textures/ExampleScreenshot.png)
